@@ -1,0 +1,4 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x0" sceneBg="" layers="1,1,0,0,第 1 层">
+  <Image url="png.ui.bg" x="0" y="0" layer="1" var="imgBack"/>
+  <Button label="开始游戏" skin="png.ui.btn_start" x="475" y="362" layer="1" var="btnStart" labelFont="Microsoft YaHei" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" labelSize="20"/>
+</View>
