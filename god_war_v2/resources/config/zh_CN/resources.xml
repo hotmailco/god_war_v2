@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<LoaderMax name="login_ui_batch">
+		<SWFLoader name='login_ui' url='assets/login.swf' autoPlay= "false" version="1.0.0"/>
+	</LoaderMax>
+</root>

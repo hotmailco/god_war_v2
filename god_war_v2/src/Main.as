@@ -3,8 +3,6 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import morn.core.handlers.Handler;
-	
 	import starling.core.Starling;
 	
 	[SWF(width="1200", height="800", backgroundColor="0x000000",frameRate="30")]
