@@ -30,6 +30,11 @@ package com.xgame.godwar.core
 			LoaderMax.activate([ImageLoader, SWFLoader]);
 			LoaderMax.defaultContext = _lc;
 			
+			initCommand();
+			initMediator();
+			initProxy();
+			
+			facade.sendNotification(LoadResourceConfigCommand.LOAD_NOTE);
 		}
 		
 		private function initCommand(): void

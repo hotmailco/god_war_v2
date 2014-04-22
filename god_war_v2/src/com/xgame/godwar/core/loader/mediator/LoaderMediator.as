@@ -1,6 +1,6 @@
 package com.xgame.godwar.core.loader.mediator
 {
-	import game.view.LoaderView;
+	import game.ui.LoaderViewUI;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -10,19 +10,19 @@ package com.xgame.godwar.core.loader.mediator
 	{
 		public static const NAME: String = "LoaderMediator";
 		
-		public static const SHOW_LOADER_NOTE: String = "LoaderMediator.ShowLoaderNote";
-		public static const HIDE_LOADER_NOTE: String = "LoaderMediator.HideLoaderNote";
-		public static const SET_LOADER_TITLE_NOTE: String = "LoaderMediator.SetLoaderTitleNote";
-		public static const SET_LOADER_PERCENT_NOTE: String = "LoaderMediator.SetLoaderPercentNote";
+		public static const SHOW_LOADER_NOTE: String = NAME + ".ShowLoaderNote";
+		public static const HIDE_LOADER_NOTE: String = NAME + ".HideLoaderNote";
+		public static const SET_LOADER_TITLE_NOTE: String = NAME + ".SetLoaderTitleNote";
+		public static const SET_LOADER_PERCENT_NOTE: String = NAME + ".SetLoaderPercentNote";
 		
 		public function LoaderMediator()
 		{
-			super(NAME, new LoaderView());
+			super(NAME, new LoaderViewUI());
 		}
 		
-		public function get component(): LoaderView
+		public function get component(): LoaderViewUI
 		{
-			return viewComponent as LoaderView;
+			return viewComponent as LoaderViewUI;
 		}
 		
 		override public function listNotificationInterests():Array

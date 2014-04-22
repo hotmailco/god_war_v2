@@ -23,13 +23,13 @@ package
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	
-	import game.view.LoaderView;
+	import game.ui.LoaderViewUI;
 	
 	[SWF(width="1200", height="800", backgroundColor="0x000000",frameRate="30")]
 	public class IndexLoader extends Sprite
 	{
 		private var _msgText: TextField;
-		private var _loaderView: LoaderView;
+		private var _loaderView: LoaderViewUI;
 		
 		public function IndexLoader()
 		{
@@ -109,7 +109,7 @@ package
 		{
 			UIManager.init(this);
 			
-			_loaderView = new LoaderView();
+			_loaderView = new LoaderViewUI();
 			addChild(_loaderView);
 			removeChild(_msgText);
 			_msgText = null;
