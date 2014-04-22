@@ -2,7 +2,6 @@ package com.xgame.godwar.core.login.mediator
 {
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Strong;
-	import com.xgame.godwar.core.login.command.ShowLoginMediatorCommand;
 	import com.xgame.godwar.core.login.command.ShowWelcomeMediatorCommand;
 	
 	import flash.events.MouseEvent;
