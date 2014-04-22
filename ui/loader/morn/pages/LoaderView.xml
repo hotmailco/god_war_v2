@@ -1,0 +1,5 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x0" sceneBg="" layers="1,1,0,0,第 1 层">
+  <ProgressBar skin="png.loader.progress" x="470" y="392" layer="1" width="260" height="16" sizeGrid="6,3,6,3" var="progress"/>
+  <Label text="0%" x="555" y="417" layer="1" autoSize="none" color="0xffffff" align="center" font="Microsoft YaHei" size="12" stroke="0xff6600" width="89" height="21" var="lblPercent"/>
+  <Label text="label" x="476" y="358" layer="1" width="247" height="18" align="center" color="0xffffff" var="lblMessage"/>
+</View>

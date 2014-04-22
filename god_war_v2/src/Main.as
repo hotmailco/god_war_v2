@@ -38,7 +38,7 @@ package
 		
 		private function loadComplete():void {
 			//实例化场景
-			UIManager.ui.addChild(new StartView());
+			UIManager.stage.addChild(new StartView());
 		}
 	}
 }
