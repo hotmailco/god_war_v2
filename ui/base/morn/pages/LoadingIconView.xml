@@ -1,0 +1,3 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0xffffff" sceneBg="" layers="1,1,0,0,第 1 层">
+  <FrameClip skin="assets.ui.LoadingIconSkin" x="433.5" y="350.1" layer="1" autoPlay="true"/>
+</View>

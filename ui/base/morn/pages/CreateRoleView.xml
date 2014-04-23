@@ -1,0 +1,6 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
+  <Image url="png.login.role_selected_forward" x="0" y="672" layer="1"/>
+  <Image url="png.login.login_nameinput_BG" x="446" y="581" layer="2"/>
+  <Button skin="png.login.btn_random_name" x="686" y="581" layer="2" var="btnRandName"/>
+  <TextInput x="470" y="600" layer="2" size="16" width="204" height="28" align="left" font="Microsoft YaHei" var="iptName"/>
+</View>

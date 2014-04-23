@@ -2,19 +2,22 @@ package com.xgame.godwar.core.login.command
 {
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.core.LoaderCore;
+	import com.xgame.godwar.core.InitGameSocketCommand;
 	import com.xgame.godwar.core.loader.mediator.LoaderMediator;
 	import com.xgame.godwar.core.login.mediator.LoginMediator;
+	import com.xgame.godwar.core.login.mediator.ServerMediator;
 	import com.xgame.godwar.core.login.proxy.LoginProxy;
+	import com.xgame.godwar.core.login.proxy.ServerListProxy;
 	import com.xgame.manager.ResourceManager;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class ShowLoginMediatorCommand extends SimpleCommand
+	public class ShowServerMediatorCommand extends SimpleCommand
 	{
-		public static const SHOW_NOTE: String = "ShowLoginMediatorCommand.ShowNote";
+		public static const SHOW_NOTE: String = "ShowServerMediatorCommand.ShowNote";
 		
-		public function ShowLoginMediatorCommand()
+		public function ShowServerMediatorCommand()
 		{
 			super();
 		}
@@ -23,15 +26,19 @@ package com.xgame.godwar.core.login.command
 		{
 			facade.removeCommand(SHOW_NOTE);
 			
-			if(!facade.hasProxy(LoginProxy.NAME))
+			if(!facade.hasProxy(ServerListProxy.NAME))
 			{
-				facade.registerProxy(new LoginProxy());
+				facade.registerProxy(new ServerListProxy());
+			}
+			if(!facade.hasCommand(InitGameSocketCommand.CONNECT_SOCKET_NOTE))
+			{
+				facade.registerCommand(InitGameSocketCommand.CONNECT_SOCKET_NOTE, InitGameSocketCommand);
 			}
 			
-			var _mediator: LoginMediator = facade.retrieveMediator(LoginMediator.NAME) as LoginMediator;
+			var _mediator: ServerMediator = facade.retrieveMediator(ServerMediator.NAME) as ServerMediator;
 			if (_mediator != null)
 			{
-				facade.sendNotification(LoginMediator.SHOW_NOTE);
+				facade.sendNotification(ServerMediator.SHOW_NOTE);
 			}
 			else
 			{
@@ -44,8 +51,8 @@ package com.xgame.godwar.core.login.command
 		{
 			facade.sendNotification(LoaderMediator.HIDE_LOADER_NOTE);
 			
-			facade.registerMediator(new LoginMediator());
-			facade.sendNotification(LoginMediator.SHOW_NOTE);
+			facade.registerMediator(new ServerMediator());
+			facade.sendNotification(ServerMediator.SHOW_NOTE);
 		}
 		
 		private function onLoadProgress(evt: LoaderEvent): void

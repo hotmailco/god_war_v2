@@ -2,6 +2,7 @@ package com.xgame.godwar.core.login.mediator
 {
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Strong;
+	import com.xgame.godwar.core.general.mediator.BaseMediator;
 	import com.xgame.godwar.core.login.command.ShowLoginMediatorCommand;
 	import com.xgame.util.UIUtils;
 	
@@ -13,7 +14,7 @@ package com.xgame.godwar.core.login.mediator
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	public class WelcomeMediator extends Mediator implements IMediator
+	public class WelcomeMediator extends BaseMediator
 	{
 		public static const NAME: String = "WelcomeMediator";
 		
@@ -40,42 +41,35 @@ package com.xgame.godwar.core.login.mediator
 			switch(notification.getName())
 			{
 				case SHOW_NOTE:
-					if(!UIManager.stage.contains(component))
-					{
-						UIManager.stage.addChild(component);
-					}
-					
-					component.btnStart.scale = 2;
-					UIUtils.center(component.btnStart);
-					
-					component.btnStart.alpha = 0;
-					component.btnRegister.y += 50;
-					component.btnRegister.alpha = 0;
-					component.btnLogin.y += 50;
-					component.btnLogin.alpha = 0;
-					component.btnStart.addEventListener(MouseEvent.CLICK, onButtonStartClick);
-					component.btnLogin.addEventListener(MouseEvent.CLICK, onButtonLoginClick);
-					
-					TweenLite.to(component.btnStart, .5, {transformAroundCenter: { scale: 1, alpha: 1 }, ease: Strong.easeOut});
-					TweenLite.to(component.btnRegister, .5, {delay: .3, y: "-50", alpha: 1, ease: Strong.easeOut});
-					TweenLite.to(component.btnLogin, .5, {delay: .4, y: "-50", alpha: 1, ease: Strong.easeOut});
+					show(notification.getBody() as Function);
 					break;
 				case HIDE_NOTE:
-					if(UIManager.stage.contains(component))
-					{
-						var callback: Function = notification.getBody() as Function;
-						TweenLite.to(component, .5, {x: -UIManager.stage.stageWidth, ease: Strong.easeIn, onComplete: function(): void
-						{
-							component.remove();
-							component.x = 0;
-							if(callback != null)
-							{
-								callback();
-							}
-						}});
-					}
+					hide(notification.getBody() as Function);
 					break;
 			}
+		}
+		
+		override protected function show(callback:Function=null):void
+		{
+			if(!UIManager.stage.contains(component))
+			{
+				UIManager.stage.addChild(component);
+			}
+			
+			component.btnStart.scale = 2;
+			UIUtils.center(component.btnStart);
+			
+			component.btnStart.alpha = 0;
+			component.btnRegister.y += 50;
+			component.btnRegister.alpha = 0;
+			component.btnLogin.y += 50;
+			component.btnLogin.alpha = 0;
+			component.btnStart.addEventListener(MouseEvent.CLICK, onButtonStartClick);
+			component.btnLogin.addEventListener(MouseEvent.CLICK, onButtonLoginClick);
+			
+			TweenLite.to(component.btnStart, .5, {transformAroundCenter: { scale: 1, alpha: 1 }, ease: Strong.easeOut});
+			TweenLite.to(component.btnRegister, .5, {delay: .3, y: "-50", alpha: 1, ease: Strong.easeOut});
+			TweenLite.to(component.btnLogin, .5, {delay: .4, y: "-50", alpha: 1, ease: Strong.easeOut});
 		}
 		
 		private function onButtonStartClick(evt: MouseEvent): void
@@ -85,7 +79,7 @@ package com.xgame.godwar.core.login.mediator
 		
 		private function onButtonLoginClick(evt: MouseEvent): void
 		{
-			facade.sendNotification(HIDE_NOTE, function(): void
+			hide(function(): void
 			{
 				if(!facade.hasCommand(ShowLoginMediatorCommand.SHOW_NOTE))
 				{

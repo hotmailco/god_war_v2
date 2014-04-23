@@ -8,8 +8,6 @@ package
 	[SWF(width="1200", height="800", backgroundColor="0x000000",frameRate="30")]
 	public class Main extends Sprite
 	{
-		private var _s: Starling;
-		
 		public function Main()
 		{
 			super();
@@ -25,9 +23,6 @@ package
 			}
 			UIManager.init(this);
 			GameFacade.getInstance().start(this);
-			
-			_s = new Starling(Game, stage);
-			_s.start();
 		}
 	}
 }

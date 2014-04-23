@@ -135,6 +135,27 @@ package
 		
 		private function onBaseUILoaded(evt: Event): void
 		{
+			loadCommonUI();
+		}
+		
+		private function loadCommonUI(): void
+		{
+			_loaderView.lblMessage.text = LanguageManager.getInstance().lang("load_base_ui");
+			_loaderView.progress.value = 0;
+			_loaderView.lblPercent.text = "0%";
+			
+			var _loader: Loader = new Loader();
+			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCommonUILoaded);
+			_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onLoadProgress);
+			_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onLoadIOError);
+			
+			var urlRequest: URLRequest = new URLRequest("assets/common.swf");
+			var loaderContext: LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
+			_loader.load(urlRequest, loaderContext);
+		}
+		
+		private function onCommonUILoaded(evt: Event): void
+		{
 			loadFont();
 		}
 		

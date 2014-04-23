@@ -1,0 +1,8 @@
+<View sceneWidth="350" sceneHeight="100" sceneColor="0xffffff" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
+  <Image url="png.login.login_Serverlist_BG" x="22" y="34" layer="1"/>
+  <Image url="png.login.login_hot" x="0" y="0" layer="2" var="imgHot"/>
+  <Image url="png.login.login_ServerStatusNOR" x="304" y="33" layer="2" var="imgStatusNormal"/>
+  <Image url="png.login.login_ServerStatusHOT" x="304" y="33" layer="2" var="imgStatusHot"/>
+  <Image url="png.login.login_ServerStatusBUSY" x="304" y="33" layer="2" var="imgStatusBusy"/>
+  <Label x="62" y="52" layer="2" color="0xe6dcac" width="225" height="27" size="16" autoSize="left" align="left" font="Microsoft YaHei" var="lblName"/>
+</View>

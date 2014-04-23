@@ -4,6 +4,7 @@ package com.xgame.godwar.core.login.command
 	import com.greensock.loading.core.LoaderCore;
 	import com.xgame.godwar.core.InitLoginServerCommand;
 	import com.xgame.godwar.core.loader.mediator.LoaderMediator;
+	import com.xgame.godwar.core.login.mediator.LoginMediator;
 	import com.xgame.godwar.core.login.mediator.StartBackgroundMediator;
 	import com.xgame.godwar.core.login.mediator.WelcomeMediator;
 	import com.xgame.manager.LanguageManager;
@@ -34,6 +35,7 @@ package com.xgame.godwar.core.login.command
 			facade.registerCommand(InitLoginServerCommand.LOAD_NOTE, InitLoginServerCommand);
 			facade.registerMediator(new WelcomeMediator());
 			facade.registerMediator(new StartBackgroundMediator());
+			facade.registerMediator(new LoginMediator());
 			
 			facade.sendNotification(LoaderMediator.HIDE_LOADER_NOTE);
 			facade.sendNotification(InitLoginServerCommand.LOAD_NOTE);

@@ -71,16 +71,6 @@ package com.xgame.godwar.config
 		public static const ACTION_ROUND_ACTION_SPELL: int = 27;
 		public static const ACTION_ROUND_ACTION_REST: int = 28;
 		
-		public static const TYPE_INT: int = 0;
-		public static const TYPE_LONG: int = 1;
-		public static const TYPE_STRING: int = 2;
-		public static const TYPE_FLOAT: int = 3;
-		public static const TYPE_BOOL: int = 4;
-		public static const TYPE_DOUBLE: int = 5;
-		
-		public static const ACK_CONFIRM: int = 1;
-		public static const ACK_ERROR: int = 0;
-		public static const ORDER_CONFIRM: int = 2;
 		//INFO
 		public static const QUICK_START: int = ACTION_QUICK_START << 8 | CONTROLLER_INFO;
 		public static const INFO_LOGIN: int = ACTION_LOGIN << 8 | CONTROLLER_INFO;

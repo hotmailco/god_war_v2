@@ -3,18 +3,18 @@ package com.xgame.godwar.core.login.command
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.core.LoaderCore;
 	import com.xgame.godwar.core.loader.mediator.LoaderMediator;
-	import com.xgame.godwar.core.login.mediator.LoginMediator;
-	import com.xgame.godwar.core.login.proxy.LoginProxy;
+	import com.xgame.godwar.core.login.mediator.CreateRoleMediator;
+	import com.xgame.godwar.core.login.proxy.RoleProxy;
 	import com.xgame.manager.ResourceManager;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class ShowLoginMediatorCommand extends SimpleCommand
+	public class ShowCreateRoleMediatorCommand extends SimpleCommand
 	{
-		public static const SHOW_NOTE: String = "ShowLoginMediatorCommand.ShowNote";
+		public static const SHOW_NOTE: String = "ShowCreateRoleMediatorCommand.ShowNote";
 		
-		public function ShowLoginMediatorCommand()
+		public function ShowCreateRoleMediatorCommand()
 		{
 			super();
 		}
@@ -23,15 +23,15 @@ package com.xgame.godwar.core.login.command
 		{
 			facade.removeCommand(SHOW_NOTE);
 			
-			if(!facade.hasProxy(LoginProxy.NAME))
+			if(!facade.hasProxy(RoleProxy.NAME))
 			{
-				facade.registerProxy(new LoginProxy());
+				facade.registerProxy(new RoleProxy());
 			}
 			
-			var _mediator: LoginMediator = facade.retrieveMediator(LoginMediator.NAME) as LoginMediator;
+			var _mediator: CreateRoleMediator = facade.retrieveMediator(CreateRoleMediator.NAME) as CreateRoleMediator;
 			if (_mediator != null)
 			{
-				facade.sendNotification(LoginMediator.SHOW_NOTE);
+				facade.sendNotification(CreateRoleMediator.SHOW_NOTE);
 			}
 			else
 			{
@@ -44,8 +44,8 @@ package com.xgame.godwar.core.login.command
 		{
 			facade.sendNotification(LoaderMediator.HIDE_LOADER_NOTE);
 			
-			facade.registerMediator(new LoginMediator());
-			facade.sendNotification(LoginMediator.SHOW_NOTE);
+			facade.registerMediator(new CreateRoleMediator());
+			facade.sendNotification(CreateRoleMediator.SHOW_NOTE);
 		}
 		
 		private function onLoadProgress(evt: LoaderEvent): void
