@@ -104,8 +104,10 @@ package com.xgame.godwar.core.login.proxy
 			
 			setData(protocol);
 			accountId = protocol.accountId;
-//			facade.sendNotification(CreateRoleMediator.DISPOSE_NOTE);
-//			facade.sendNotification(ShowChooseModeMediatorCommand.SHOW_NOTE);
+			
+			facade.sendNotification(CreateRoleMediator.HIDE_NOTE);
+			facade.sendNotification(StartBackgroundMediator.HIDE_NOTE);
+			facade.sendNotification(InitSceneCommand.INIT_SCENE_NOTE);
 		}
 	}
 }

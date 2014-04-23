@@ -2,6 +2,7 @@ package com.xgame.godwar.core.login.mediator
 {
 	import com.xgame.godwar.core.InitGameSocketCommand;
 	import com.xgame.godwar.core.general.mediator.BaseMediator;
+	import com.xgame.godwar.core.login.command.ShowWelcomeMediatorCommand;
 	import com.xgame.godwar.core.login.proxy.ServerListProxy;
 	import com.xgame.godwar.parameter.ServerListParameter;
 	
@@ -24,6 +25,8 @@ package com.xgame.godwar.core.login.mediator
 		public function ServerMediator()
 		{
 			super(NAME, new ServerViewUI());
+			
+			component.btnBack.addEventListener(MouseEvent.CLICK, onButtonBackClick);
 		}
 		
 		public function get component(): ServerViewUI
@@ -132,6 +135,18 @@ package com.xgame.godwar.core.login.mediator
 			{
 				facade.sendNotification(InitGameSocketCommand.CONNECT_SOCKET_NOTE, item.parameter);
 			}
+		}
+		
+		private function onButtonBackClick(evt: MouseEvent): void
+		{
+			hide(function(): void
+			{
+				if(!facade.hasCommand(ShowWelcomeMediatorCommand.SHOW_NOTE))
+				{
+					facade.registerCommand(ShowWelcomeMediatorCommand.SHOW_NOTE, ShowWelcomeMediatorCommand);
+				}
+				facade.sendNotification(ShowWelcomeMediatorCommand.SHOW_NOTE);
+			});
 		}
 	}
 }

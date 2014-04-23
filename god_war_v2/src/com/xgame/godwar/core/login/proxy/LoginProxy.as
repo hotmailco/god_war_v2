@@ -10,6 +10,7 @@ package com.xgame.godwar.core.login.proxy
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.login.command.ShowLoginMediatorCommand;
+	import com.xgame.godwar.core.login.command.ShowRegisterMediatorCommand;
 	import com.xgame.godwar.core.login.command.ShowServerMediatorCommand;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.util.StringUtils;
@@ -103,7 +104,7 @@ package com.xgame.godwar.core.login.proxy
 			
 			if(protocol.flag == -1)
 			{
-//				facade.sendNotification(ShowRegisterMediatorCommand.SHOW_NOTE);
+				facade.sendNotification(ShowRegisterMediatorCommand.SHOW_NOTE);
 				return;
 			}
 			facade.registerCommand(ShowServerMediatorCommand.SHOW_NOTE, ShowServerMediatorCommand);

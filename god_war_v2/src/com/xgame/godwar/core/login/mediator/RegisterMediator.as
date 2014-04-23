@@ -2,32 +2,32 @@ package com.xgame.godwar.core.login.mediator
 {
 	import com.xgame.godwar.core.general.mediator.BaseMediator;
 	import com.xgame.godwar.core.login.command.ShowWelcomeMediatorCommand;
-	import com.xgame.godwar.core.login.proxy.RoleProxy;
+	import com.xgame.godwar.core.login.proxy.LoginProxy;
 	
 	import flash.events.MouseEvent;
 	
-	import game.view.CreateRoleView;
+	import game.view.RegisterView;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class CreateRoleMediator extends BaseMediator
+	public class RegisterMediator extends BaseMediator
 	{
-		public static const NAME: String = "CreateRoleMediator";
+		public static const NAME: String = "RegisterView";
 		
 		public static const SHOW_NOTE: String = NAME + ".ShowNote";
 		public static const HIDE_NOTE: String = NAME + ".HideNote";
 		
-		public function CreateRoleMediator()
+		public function RegisterMediator()
 		{
-			super(NAME, new CreateRoleView());
+			super(NAME, new RegisterView());
 			
-			component.btnStart.addEventListener(MouseEvent.CLICK, onButtonStartClick);
 			component.btnBack.addEventListener(MouseEvent.CLICK, onButtonBackClick);
+			component.btnRegister.addEventListener(MouseEvent.CLICK, onButtonRegisterClick);
 		}
 		
-		public function get component(): CreateRoleView
+		public function get component(): RegisterView
 		{
-			return viewComponent as CreateRoleView;
+			return viewComponent as RegisterView;
 		}
 		
 		override public function listNotificationInterests():Array
@@ -48,17 +48,6 @@ package com.xgame.godwar.core.login.mediator
 			}
 		}
 		
-		private function onButtonStartClick(evt: MouseEvent): void
-		{
-			var _proxy: RoleProxy = facade.retrieveProxy(RoleProxy.NAME) as RoleProxy;
-			if(_proxy == null)
-			{
-				_proxy = new RoleProxy();
-				facade.registerProxy(_proxy);
-			}
-			_proxy.registerAccountRole(component.iptName.text);
-		}
-		
 		private function onButtonBackClick(evt: MouseEvent): void
 		{
 			hide(function(): void
@@ -68,6 +57,15 @@ package com.xgame.godwar.core.login.mediator
 					facade.registerCommand(ShowWelcomeMediatorCommand.SHOW_NOTE, ShowWelcomeMediatorCommand);
 				}
 				facade.sendNotification(ShowWelcomeMediatorCommand.SHOW_NOTE);
+			});
+		}
+		
+		private function onButtonRegisterClick(evt: MouseEvent): void
+		{
+			hide(function(): void
+			{
+				var _loginProxy: LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+				_loginProxy.register(component.iptName.text, component.iptPassword.text);
 			});
 		}
 	}

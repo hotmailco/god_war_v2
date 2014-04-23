@@ -4,15 +4,14 @@ package com.xgame.godwar.core.login.mediator
 	import com.greensock.easing.Strong;
 	import com.xgame.godwar.core.general.mediator.BaseMediator;
 	import com.xgame.godwar.core.login.command.ShowLoginMediatorCommand;
+	import com.xgame.godwar.core.login.command.ShowRegisterMediatorCommand;
 	import com.xgame.util.UIUtils;
 	
 	import flash.events.MouseEvent;
 	
 	import game.ui.StartViewUI;
 	
-	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	public class WelcomeMediator extends BaseMediator
 	{
@@ -24,6 +23,10 @@ package com.xgame.godwar.core.login.mediator
 		public function WelcomeMediator()
 		{
 			super(NAME, new StartViewUI());
+			
+			component.btnStart.addEventListener(MouseEvent.CLICK, onButtonStartClick);
+			component.btnLogin.addEventListener(MouseEvent.CLICK, onButtonLoginClick);
+			component.btnRegister.addEventListener(MouseEvent.CLICK, onButtonRegisterClick);
 		}
 		
 		public function get component(): StartViewUI
@@ -64,8 +67,6 @@ package com.xgame.godwar.core.login.mediator
 			component.btnRegister.alpha = 0;
 			component.btnLogin.y += 50;
 			component.btnLogin.alpha = 0;
-			component.btnStart.addEventListener(MouseEvent.CLICK, onButtonStartClick);
-			component.btnLogin.addEventListener(MouseEvent.CLICK, onButtonLoginClick);
 			
 			TweenLite.to(component.btnStart, .5, {transformAroundCenter: { scale: 1, alpha: 1 }, ease: Strong.easeOut});
 			TweenLite.to(component.btnRegister, .5, {delay: .3, y: "-50", alpha: 1, ease: Strong.easeOut});
@@ -86,6 +87,18 @@ package com.xgame.godwar.core.login.mediator
 					facade.registerCommand(ShowLoginMediatorCommand.SHOW_NOTE, ShowLoginMediatorCommand);
 				}
 				facade.sendNotification(ShowLoginMediatorCommand.SHOW_NOTE);
+			});
+		}
+		
+		private function onButtonRegisterClick(evt: MouseEvent): void
+		{
+			hide(function(): void
+			{
+				if(!facade.hasCommand(ShowRegisterMediatorCommand.SHOW_NOTE))
+				{
+					facade.registerCommand(ShowRegisterMediatorCommand.SHOW_NOTE, ShowRegisterMediatorCommand);
+				}
+				facade.sendNotification(ShowRegisterMediatorCommand.SHOW_NOTE);
 			});
 		}
 	}

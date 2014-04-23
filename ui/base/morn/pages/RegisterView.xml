@@ -1,0 +1,9 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" var="btnStart" layers="1,1,0,0,第 1 层">
+  <Image url="png.login.login_panel_bg" x="375.5" y="245.5" layer="1"/>
+  <TextInput skin="png.base.textinput" x="499" y="374" layer="1" width="270" height="46" margin="20,10,10,10" size="16" asPassword="true" var="iptPassword"/>
+  <Button label="注册" skin="png.base.button" x="626" y="454" layer="1" labelFont="Microsoft YaHei" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" var="btnRegister"/>
+  <Button label="返回" skin="png.base.button" x="432" y="454" layer="1" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" labelFont="Microsoft YaHei" var="btnBack"/>
+  <Label text="用户名" x="431" y="320" layer="2" color="0xffffff" font="Microsoft YaHei" size="16"/>
+  <TextInput skin="png.base.textinput" x="499" y="311" layer="2" width="270" height="46" font="Microsoft YaHei" size="16" margin="20,10,10,10" var="iptName"/>
+  <Label text="密码" x="447" y="383" layer="2" color="0xffffff" font="Microsoft YaHei" size="16"/>
+</View>
