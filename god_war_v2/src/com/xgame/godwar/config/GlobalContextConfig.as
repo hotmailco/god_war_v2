@@ -1,7 +1,6 @@
 package com.xgame.godwar.config
 {
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Stage;
 	import flash.errors.IllegalOperationError;
 	
 	/**

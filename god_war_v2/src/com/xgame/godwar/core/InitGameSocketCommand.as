@@ -35,9 +35,9 @@ package com.xgame.godwar.core
 				SocketContextConfig.server_port = _parameter.port;
 			}
 			
-			var _commandCenter: CommandManager = CommandManager.instance;
+			var _commandCenter: CommandManager = CommandManager.getInstance();
 			_commandCenter.dispose();
-			_commandCenter = CommandManager.instance;
+			_commandCenter = CommandManager.getInstance();
 			_commandCenter.addEventListener(CommandEvent.CLOSED_EVENT, onClosed);
 			_commandCenter.addEventListener(CommandEvent.CONNECTED_EVENT, onConnected);
 			_commandCenter.addEventListener(CommandEvent.IOERROR_EVENT, onIOError);

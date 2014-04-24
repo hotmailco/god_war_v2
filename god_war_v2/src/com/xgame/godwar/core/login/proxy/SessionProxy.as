@@ -38,16 +38,16 @@ package com.xgame.godwar.core.login.proxy
 				var _protocol: Receive_Info_Account = _proxy.getData() as Receive_Info_Account;
 				if(_protocol != null)
 				{
-					if(CommandManager.instance.connected)
+					if(CommandManager.getInstance().connected)
 					{
 						sendNotification(LoadingIconMediator.SHOW_NOTE);
 						
-						ProtocolList.instance.bind(SocketContextConfig.INFO_BIND_SESSION, Receive_Info_BindSession);
-						CommandManager.instance.add(SocketContextConfig.INFO_BIND_SESSION, onBindSession);
+						ProtocolList.getInstance().bind(SocketContextConfig.INFO_BIND_SESSION, Receive_Info_BindSession);
+						CommandManager.getInstance().add(SocketContextConfig.INFO_BIND_SESSION, onBindSession);
 						
 						var _send: Send_Info_BindSession = new Send_Info_BindSession();
 						_send.accountName = _protocol.accountName;
-						CommandManager.instance.send(_send);
+						CommandManager.getInstance().send(_send);
 					}
 				}
 				else

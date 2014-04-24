@@ -23,7 +23,7 @@ package com.xgame.core.protocol
 		public function fill():void
 		{
 			_byteData.clear();
-			_byteData.writeShort(protocolId);
+			_byteData.writeInt(protocolId);
 		}
 		
 		public function fillTimestamp(): void
@@ -35,11 +35,6 @@ package com.xgame.core.protocol
 			_byteData.writeByte(TYPE_LONG);
 			_byteData.writeInt(time64.high);
 			_byteData.writeUnsignedInt(time64.low);
-		}
-		
-		public function get protocolName():String
-		{
-			return "SendingBase";
 		}
 	}
 }

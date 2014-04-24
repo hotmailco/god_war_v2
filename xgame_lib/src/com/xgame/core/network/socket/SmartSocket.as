@@ -9,7 +9,6 @@ package com.xgame.core.network.socket
 	import flash.net.Socket;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
-	import flash.utils.Endian;
 	
 	public class SmartSocket extends Socket
 	{
@@ -121,10 +120,10 @@ package com.xgame.core.network.socket
 			{
 				_byteArray2 = new ByteArray();
 //				_byteArray2.endian = Endian.LITTLE_ENDIAN;
-				_protocolId = data.readShort();
- 				if(_contentLength - 2 > 0)
+				_protocolId = data.readInt();
+ 				if(_contentLength - 4 > 0)
 				{
-					data.readBytes(_byteArray2, 0, _contentLength - 2);
+					data.readBytes(_byteArray2, 0, _contentLength - 4);
 				}
 				_byteArray2.position = 0;
 				_contentLength = 0;

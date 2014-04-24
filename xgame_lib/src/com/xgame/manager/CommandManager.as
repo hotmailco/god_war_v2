@@ -37,10 +37,10 @@ package com.xgame.manager
 			_socket.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
 			_socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 			
-			_commandList = ProtocolList.instance;
+			_commandList = ProtocolList.getInstance();
 		}
 		
-		public static function get instance(): CommandManager
+		public static function getInstance(): CommandManager
 		{
 			if(_instance == null)
 			{

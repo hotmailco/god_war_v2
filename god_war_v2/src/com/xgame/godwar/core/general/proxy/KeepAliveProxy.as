@@ -31,9 +31,9 @@ package com.xgame.godwar.core.general.proxy
 		
 		private function onHeartbeat(): void
 		{
-			if(CommandManager.instance.connected)
+			if(CommandManager.getInstance().connected)
 			{
-				CommandManager.instance.send(sendProtocol);
+				CommandManager.getInstance().send(sendProtocol);
 			}
 		}
 	}

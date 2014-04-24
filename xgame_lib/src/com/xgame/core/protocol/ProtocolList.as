@@ -16,7 +16,7 @@ package com.xgame.core.protocol
 			}
 		}
 		
-		public static function get instance(): ProtocolList
+		public static function getInstance(): ProtocolList
 		{
 			if(_instance == null)
 			{
