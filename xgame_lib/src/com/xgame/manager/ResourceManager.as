@@ -5,6 +5,7 @@ package com.xgame.manager
 	import com.greensock.loading.SWFLoader;
 	import com.greensock.loading.core.LoaderCore;
 	import com.greensock.loading.utils.LoaderUtils;
+	import com.xgame.common.display.BitmapFrame;
 	import com.xgame.util.Reflection;
 	import com.xgame.util.debug.Debug;
 	
@@ -46,13 +47,9 @@ package com.xgame.manager
 			return _instance;
 		}
 		
-		public function add(key:Object, value:Object, callback:Function=null):void
+		public function add(key:Object, value:Object):void
 		{
 			_pool[key] = value;
-			if(callback != null)
-			{
-				callback();
-			}
 		}
 		
 		public function get(key:Object):Object
@@ -100,6 +97,16 @@ package com.xgame.manager
 				}
 			}
 			return _cache;
+		}
+		
+		public function getBitmapClip(name: String, domain: ApplicationDomain = null): Vector.<Vector.<BitmapFrame>>
+		{
+			return get(name) as Vector.<Vector.<BitmapFrame>>
+		}
+		
+		public function cacheBitmapClip(name: String, value: Vector.<Vector.<BitmapFrame>>): void
+		{
+			add(name, value);
 		}
 		
 		public function load(
