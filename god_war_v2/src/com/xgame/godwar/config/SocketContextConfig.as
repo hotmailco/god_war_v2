@@ -17,7 +17,7 @@ package com.xgame.godwar.config
 		public static var logic_port: int = 0;
 		public static var auth_key: String;
 		
-		public static const CONTROLLER_HALL: int = 5;
+		public static const CONTROLLER_SCENE: int = 5;
 		public static const CONTROLLER_BASE: int = 4;
 		public static const CONTROLLER_BATTLEROOM: int = 3;
 		public static const CONTROLLER_MSG: int = 2;
@@ -38,15 +38,16 @@ package com.xgame.godwar.config
 		public static const ACTION_SAVE_CARD_GROUP: int = 12;
 		public static const ACTION_HEART_BEAT: int = 127;
 		//BASE
+		public static const ACTION_VERIFY_MAP: int = 0;
 		public static const ACTION_LOGIC_SERVER_INFO: int = 4;
 		public static const ACTION_CONNECT_LOGIC_SERVER: int = 5;
-		//HALL
+		//SCENE
 		public static const ACTION_REQUEST_ROOM: int = 0;
 		public static const ACTION_SHOW_ROOMLIST: int = 1;
 		public static const ACTION_ROOM_CREATED: int = 2;
 		public static const ACTION_REQUEST_ENTER_ROOM: int = 3;
 		public static const ACTION_REQUEST_ENTER_ROOM_LOGICSERVER: int = 4;
-		
+		public static const ACTION_SHOW_PLAYER: int = 5;
 		//BATTLE ROOM
 		public static const ACTION_INIT_ROOM_DATA: int = 0;
 		public static const ACTION_PLAYER_ENTER_ROOM_NOTICE: int = 1;
@@ -87,14 +88,16 @@ package com.xgame.godwar.config
 		public static const INFO_SAVE_CARD_GROUP: int = ACTION_SAVE_CARD_GROUP << 8 | CONTROLLER_INFO;
 		public static const INFO_HEART_BEAT: int = ACTION_HEART_BEAT << 8 | CONTROLLER_INFO;
 		//BASE
+		public static const BASE_VERIFY_MAP: int = ACTION_VERIFY_MAP << 8 | CONTROLLER_BASE;
 		public static const BASE_LOGIC_SERVER_INFO: int = ACTION_LOGIC_SERVER_INFO << 8 | CONTROLLER_BASE;
 		public static const BASE_CONNECT_LOGIC_SERVER: int = ACTION_CONNECT_LOGIC_SERVER << 8 | CONTROLLER_BASE;
-		//HALL
-		public static const HALL_REQUEST_ROOM: int = ACTION_REQUEST_ROOM << 8 | CONTROLLER_HALL;
-		public static const HALL_SHOW_ROOM_LIST: int = ACTION_SHOW_ROOMLIST << 8 | CONTROLLER_HALL;
-		public static const HALL_ROOM_CREATED: int = ACTION_ROOM_CREATED << 8 | CONTROLLER_HALL;
-		public static const HALL_REQUEST_ENTER_ROOM: int = ACTION_REQUEST_ENTER_ROOM << 8 | CONTROLLER_HALL;
-		public static const HALL_REQUEST_ENTER_ROOM_LOGICSERVER: int = ACTION_REQUEST_ENTER_ROOM_LOGICSERVER << 8 | CONTROLLER_HALL;
+		//SCENE
+		public static const HALL_REQUEST_ROOM: int = ACTION_REQUEST_ROOM << 8 | CONTROLLER_SCENE;
+		public static const HALL_SHOW_ROOM_LIST: int = ACTION_SHOW_ROOMLIST << 8 | CONTROLLER_SCENE;
+		public static const HALL_ROOM_CREATED: int = ACTION_ROOM_CREATED << 8 | CONTROLLER_SCENE;
+		public static const HALL_REQUEST_ENTER_ROOM: int = ACTION_REQUEST_ENTER_ROOM << 8 | CONTROLLER_SCENE;
+		public static const HALL_REQUEST_ENTER_ROOM_LOGICSERVER: int = ACTION_REQUEST_ENTER_ROOM_LOGICSERVER << 8 | CONTROLLER_SCENE;
+		public static const SCENE_SHOW_PLAYER: int = ACTION_SHOW_PLAYER << 8 | CONTROLLER_SCENE;
 		//BATTLE ROOM
 		public static const BATTLEROOM_INIT_ROOM: int = ACTION_INIT_ROOM_DATA << 8 | CONTROLLER_BATTLEROOM;
 		public static const BATTLEROOM_PLAYER_ENTER_ROOM: int = ACTION_PLAYER_ENTER_ROOM_NOTICE << 8 | CONTROLLER_BATTLEROOM;

@@ -5,6 +5,7 @@ package com.xgame.godwar.core
 	import com.greensock.loading.SWFLoader;
 	import com.greensock.plugins.TransformAroundCenterPlugin;
 	import com.greensock.plugins.TweenPlugin;
+	import com.xgame.godwar.core.city.proxy.MapProxy;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.loader.mediator.LoaderMediator;
 	
@@ -51,7 +52,7 @@ package com.xgame.godwar.core
 		
 		private function initProxy(): void
 		{
-			
+			facade.registerProxy(new MapProxy());
 		}
 	}
 }

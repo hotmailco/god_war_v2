@@ -3,9 +3,9 @@ package
 	import starling.display.Quad;
 	import starling.events.Event;
 
-	public class Scene extends SceneManager
+	public class StarlingScene extends SceneManager
 	{
-		public function Scene()
+		public function StarlingScene()
 		{
 			super();
 		}
