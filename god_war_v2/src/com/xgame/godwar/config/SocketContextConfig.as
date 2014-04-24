@@ -21,7 +21,7 @@ package com.xgame.godwar.config
 		public static const CONTROLLER_BASE: int = 4;
 		public static const CONTROLLER_BATTLEROOM: int = 3;
 		public static const CONTROLLER_MSG: int = 2;
-		public static const CONTROLLER_INFO: int = 0
+		public static const CONTROLLER_INFO: int = 0;
 		//INFO
 		public static const ACTION_LOGIN: int = 0;
 		public static const ACTION_LOGOUT: int = 1;
