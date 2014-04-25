@@ -2,6 +2,7 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.xgame.Global"/>
+    <classEntry path="com.xgame.manager.SmartEventDispatcher"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

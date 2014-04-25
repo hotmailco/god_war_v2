@@ -25,51 +25,51 @@ package com.xgame.godwar.core.login.proxy
 		public function LoginProxy(data:Object=null)
 		{
 			super(NAME, data);
-			ProtocolList.getInstance().bind(SocketContextConfig.QUICK_START, Receive_Info_Account);
-			CommandManager.getInstance().add(SocketContextConfig.QUICK_START, onAccount);
+			ProtocolList.instance.bind(SocketContextConfig.QUICK_START, Receive_Info_Account);
+			CommandManager.instance.add(SocketContextConfig.QUICK_START, onAccount);
 			
-			ProtocolList.getInstance().bind(SocketContextConfig.INFO_LOGIN, Receive_Info_Account);
-			CommandManager.getInstance().add(SocketContextConfig.INFO_LOGIN, onAccountLogin);
+			ProtocolList.instance.bind(SocketContextConfig.INFO_LOGIN, Receive_Info_Account);
+			CommandManager.instance.add(SocketContextConfig.INFO_LOGIN, onAccountLogin);
 			
-			ProtocolList.getInstance().bind(SocketContextConfig.INFO_REGISTER, Receive_Info_Account);
-			CommandManager.getInstance().add(SocketContextConfig.INFO_REGISTER, onAccountRegister);
+			ProtocolList.instance.bind(SocketContextConfig.INFO_REGISTER, Receive_Info_Account);
+			CommandManager.instance.add(SocketContextConfig.INFO_REGISTER, onAccountRegister);
 		}
 		
 		public function quickStart(): void
 		{
-			if(CommandManager.getInstance().connected)
+			if(CommandManager.instance.connected)
 			{
 				sendNotification(LoadingIconMediator.SHOW_NOTE);
 				
 				var _protocol: Send_Info_QuickStart = new Send_Info_QuickStart();
 				_protocol.GameId = GlobalContextConfig.GameId;
-				CommandManager.getInstance().send(_protocol);
+				CommandManager.instance.send(_protocol);
 			}
 		}
 		
 		public function login(userName: String, userPass: String): void
 		{
-			if(CommandManager.getInstance().connected && !StringUtils.empty(userName) && !StringUtils.empty(userPass))
+			if(CommandManager.instance.connected && !StringUtils.empty(userName) && !StringUtils.empty(userPass))
 			{
 				sendNotification(LoadingIconMediator.SHOW_NOTE);
 				
 				var _protocol: Send_Info_Login = new Send_Info_Login();
 				_protocol.userName = userName;
 				_protocol.userPass = userPass;
-				CommandManager.getInstance().send(_protocol);
+				CommandManager.instance.send(_protocol);
 			}
 		}
 		
 		public function register(userName: String, userPass: String): void
 		{
-			if(CommandManager.getInstance().connected && !StringUtils.empty(userName) && !StringUtils.empty(userPass))
+			if(CommandManager.instance.connected && !StringUtils.empty(userName) && !StringUtils.empty(userPass))
 			{
 				sendNotification(LoadingIconMediator.SHOW_NOTE);
 				
 				var _protocol: Send_Info_Register = new Send_Info_Register();
 				_protocol.userName = userName;
 				_protocol.userPass = userPass;
-				CommandManager.getInstance().send(_protocol);
+				CommandManager.instance.send(_protocol);
 			}
 		}
 		

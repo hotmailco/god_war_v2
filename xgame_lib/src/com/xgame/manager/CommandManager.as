@@ -37,10 +37,10 @@ package com.xgame.manager
 			_socket.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
 			_socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 			
-			_commandList = ProtocolList.getInstance();
+			_commandList = ProtocolList.instance;
 		}
 		
-		public static function getInstance(): CommandManager
+		public static function get instance(): CommandManager
 		{
 			if(_instance == null)
 			{
@@ -58,6 +58,10 @@ package com.xgame.manager
 		
 		private function onClosed(event: Event): void
 		{
+			CONFIG::DebugMode
+			{
+				Debug.info(this, "服务器已断开连接");
+			}
 			dispatchEvent(new CommandEvent(CommandEvent.CLOSED_EVENT));
 		}
 		
@@ -95,6 +99,15 @@ package com.xgame.manager
 				Debug.info(this, "服务器连接中...(IP=" + host + ", Port=" + port + ")");
 			}
 			_socket.connect(host, port);
+		}
+		
+		public function close(): void
+		{
+			removeEventListeners();
+			if(_socket.connected)
+			{
+				_socket.close();
+			}
 		}
 		
 		private function process(protocolId: uint, data: ByteArray): void

@@ -40,19 +40,19 @@ package com.xgame.godwar.core.login.proxy
 		
 		public function requestAccountRole(): void
 		{
-			if(CommandManager.getInstance().connected)
+			if(CommandManager.instance.connected)
 			{
 				var protocol: Receive_Info_Account = facade.retrieveProxy(LoginProxy.NAME).getData() as Receive_Info_Account;
 				if(protocol != null || protocol.GUID != null)
 				{
 					sendNotification(LoadingIconMediator.SHOW_NOTE);
 					
-					ProtocolList.getInstance().bind(SocketContextConfig.REQUEST_ACCOUNT_ROLE, Receive_Info_AccountRole);
-					CommandManager.getInstance().add(SocketContextConfig.REQUEST_ACCOUNT_ROLE, onRequestAccountRole);
+					ProtocolList.instance.bind(SocketContextConfig.REQUEST_ACCOUNT_ROLE, Receive_Info_AccountRole);
+					CommandManager.instance.add(SocketContextConfig.REQUEST_ACCOUNT_ROLE, onRequestAccountRole);
 					
 					var data: Send_Info_RequestAccountRole = new Send_Info_RequestAccountRole();
 					data.GUID = protocol.GUID;
-					CommandManager.getInstance().send(data);
+					CommandManager.instance.send(data);
 				}
 			}
 		}
@@ -80,20 +80,20 @@ package com.xgame.godwar.core.login.proxy
 		
 		public function registerAccountRole(roleName: String): void
 		{
-			if(CommandManager.getInstance().connected)
+			if(CommandManager.instance.connected)
 			{
 				var protocol: Receive_Info_Account = facade.retrieveProxy(LoginProxy.NAME).getData() as Receive_Info_Account;
 				if(protocol != null || protocol.GUID != null)
 				{
 					sendNotification(LoadingIconMediator.SHOW_NOTE);
 					
-					ProtocolList.getInstance().bind(SocketContextConfig.REGISTER_ACCOUNT_ROLE, Receive_Info_AccountRole);
-					CommandManager.getInstance().add(SocketContextConfig.REGISTER_ACCOUNT_ROLE, onRegisterAccountRole);
+					ProtocolList.instance.bind(SocketContextConfig.REGISTER_ACCOUNT_ROLE, Receive_Info_AccountRole);
+					CommandManager.instance.add(SocketContextConfig.REGISTER_ACCOUNT_ROLE, onRegisterAccountRole);
 					
 					var data: Send_Info_RegisterAccountRole = new Send_Info_RegisterAccountRole();
 					data.GUID = protocol.GUID;
 					data.nickName = roleName;
-					CommandManager.getInstance().send(data);
+					CommandManager.instance.send(data);
 				}
 			}
 		}

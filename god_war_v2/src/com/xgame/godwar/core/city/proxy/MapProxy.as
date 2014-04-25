@@ -17,8 +17,8 @@ package com.xgame.godwar.core.city.proxy
 		public function MapProxy(data:Object=null)
 		{
 			super(NAME, data);
-			ProtocolList.getInstance().bind(SocketContextConfig.BASE_VERIFY_MAP, Receive_Base_VerifyMap);
-			CommandManager.getInstance().add(SocketContextConfig.BASE_VERIFY_MAP, onMapDataReceive);
+			ProtocolList.instance.bind(SocketContextConfig.BASE_VERIFY_MAP, Receive_Base_VerifyMap);
+			CommandManager.instance.add(SocketContextConfig.BASE_VERIFY_MAP, onMapDataReceive);
 		}
 		
 		private function onMapDataReceive(protocol: Receive_Base_VerifyMap): void

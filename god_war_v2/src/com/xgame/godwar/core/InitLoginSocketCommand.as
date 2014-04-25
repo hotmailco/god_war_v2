@@ -22,9 +22,8 @@ package com.xgame.godwar.core
 		
 		override public function execute(notification:INotification):void
 		{
-			var _commandCenter: CommandManager = CommandManager.getInstance();
-			_commandCenter.dispose();
-			_commandCenter = CommandManager.getInstance();
+			var _commandCenter: CommandManager = CommandManager.instance;
+			_commandCenter.close();
 			_commandCenter.addEventListener(CommandEvent.CLOSED_EVENT, onClosed);
 			_commandCenter.addEventListener(CommandEvent.CONNECTED_EVENT, onConnected);
 			_commandCenter.addEventListener(CommandEvent.IOERROR_EVENT, onIOError);

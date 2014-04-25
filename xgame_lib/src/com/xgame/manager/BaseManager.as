@@ -5,11 +5,10 @@ package com.xgame.manager
 	 * 提供触发器注册与反注册与触发等操作
 	 */
 	
-	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	import flash.utils.Dictionary;
 	
-	public class BaseManager extends EventDispatcher
+	public class BaseManager extends SmartEventDispatcher
 	{
 		private var _trigger: Dictionary;
 		
