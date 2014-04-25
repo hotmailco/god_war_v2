@@ -22,7 +22,7 @@ package com.xgame.godwar.core.login.proxy
 	{
 		public static const NAME: String = "RequestRoleProxy";
 		
-		public var accountId: Int64;
+		public var roleId: Int64;
 		
 		public function RoleProxy(data:Object=null)
 		{
@@ -63,9 +63,9 @@ package com.xgame.godwar.core.login.proxy
 //			facade.registerCommand(LoadAvatarConfigCommand.LOAD_NOTE, LoadAvatarConfigCommand);
 			
 			setData(protocol);
-			accountId = protocol.accountId;
+			roleId = protocol.roleId;
 			
-			if(protocol.accountId.toNumber() == -1)
+			if(protocol.roleId.toNumber() == -1)
 			{
 				facade.sendNotification(ShowCreateRoleMediatorCommand.SHOW_NOTE);
 			}
@@ -103,7 +103,7 @@ package com.xgame.godwar.core.login.proxy
 			sendNotification(LoadingIconMediator.HIDE_NOTE);
 			
 			setData(protocol);
-			accountId = protocol.accountId;
+			roleId = protocol.roleId;
 			
 			facade.sendNotification(CreateRoleMediator.HIDE_NOTE);
 			facade.sendNotification(StartBackgroundMediator.HIDE_NOTE);

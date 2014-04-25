@@ -171,7 +171,7 @@ package com.xgame.common.display
 			}
 		}
 		
-		protected function rebuild(): void
+		public function rebuild(): void
 		{
 			setBufferPos();
 		}
@@ -212,6 +212,7 @@ package com.xgame.common.display
 		public function set graphic(value:ResourceData):void
 		{
 			_graphic = value;
+			value.target = this;
 			_graphic.currentAction = 0;
 			rebuild();
 		}

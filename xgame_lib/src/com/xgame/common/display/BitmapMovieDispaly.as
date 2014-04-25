@@ -32,7 +32,7 @@ package com.xgame.common.display
 			_playTime = _graphic.fps == 0 ? 0 : (1000 / _graphic.fps);
 		}
 		
-		override protected function rebuild():void
+		override public function rebuild():void
 		{
 			super.rebuild();
 			updateFPS();

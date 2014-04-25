@@ -27,9 +27,9 @@ package com.xgame.common.display
 		protected var _characterName: String;
 		protected var _characterLevel: uint;
 		
-		public function PlayerDisplay()
+		public function PlayerDisplay(behavoir: Behavior = null)
 		{
-			super(new Behavior());
+			super(behavoir == null ? new Behavior() : behavoir);
 			canBeAttack = true;
 		}
 		

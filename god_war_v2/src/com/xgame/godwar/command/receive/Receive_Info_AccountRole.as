@@ -11,12 +11,21 @@ package com.xgame.godwar.command.receive
 	public class Receive_Info_AccountRole extends ReceiveBase
 	{
 		public var guid: String;
+		public var roleId: Int64;
 		public var accountId: Int64;
 		public var nickName: String;
 		public var level: int = int.MIN_VALUE;
 		public var accountCash: Int64;
-		public var energy: int = int.MIN_VALUE;
 		public var rolePicture: String;
+		public var speed: Number = Number.MIN_VALUE;
+		public var honor: int = int.MIN_VALUE;
+		public var energy: int = int.MIN_VALUE;
+		public var energyMax: int = int.MIN_VALUE;
+		public var direction: int = int.MIN_VALUE;
+		public var action: int = int.MIN_VALUE;
+		public var mapId: int = int.MIN_VALUE;
+		public var x: Number = Number.MIN_VALUE;
+		public var y: Number = Number.MIN_VALUE;
 		
 		public function Receive_Info_AccountRole()
 		{
@@ -38,7 +47,13 @@ package com.xgame.godwar.command.receive
 					switch(type)
 					{
 						case TYPE_LONG:
-							if (accountId == null)
+							if (roleId == null)
+							{
+								roleId = new Int64();
+								roleId.high = data.readInt();
+								roleId.low = data.readUnsignedInt();
+							}
+							else if (accountId == null)
 							{
 								accountId = new Int64();
 								accountId.high = data.readInt();
@@ -70,9 +85,45 @@ package com.xgame.godwar.command.receive
 							{
 								level = data.readInt();
 							}
+							else if(honor == int.MIN_VALUE)
+							{
+								honor = data.readInt();
+							}
 							else if(energy == int.MIN_VALUE)
 							{
 								energy = data.readInt();
+							}
+							else if(energyMax == int.MIN_VALUE)
+							{
+								energyMax = data.readInt();
+							}
+							else if(direction == int.MIN_VALUE)
+							{
+								direction = data.readInt();
+							}
+							else if(action == int.MIN_VALUE)
+							{
+								action = data.readInt();
+							}
+							else if(mapId == int.MIN_VALUE)
+							{
+								mapId = data.readInt();
+							}
+							break;
+						case TYPE_FLOAT:
+							if(speed == Number.MIN_VALUE)
+							{
+								speed = data.readFloat();
+							}
+							break;
+						case TYPE_DOUBLE:
+							if(x == Number.MIN_VALUE)
+							{
+								x = data.readDouble();
+							}
+							else if(y == Number.MIN_VALUE)
+							{
+								y = data.readDouble();
 							}
 							break;
 					}

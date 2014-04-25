@@ -11,6 +11,7 @@ package com.xgame.common.display
 	
 	public class ResourceData
 	{
+		protected var _target: BitmapDisplay;
 		protected var _bitmap: BitmapData;
 		protected var _bitmapDictionary: Dictionary;
 		protected var _actionDataDictionary: Dictionary;
@@ -23,8 +24,9 @@ package com.xgame.common.display
 		private var _frameWidth: uint = 0;
 		private var _frameHeight: uint = 0;
 		
-		public function ResourceData()
+		public function ResourceData(target: BitmapDisplay = null)
 		{
+			this._target = _target;
 			_bitmapDictionary = new Dictionary();
 			_actionDataDictionary = new Dictionary();
 		}
@@ -113,35 +115,8 @@ package com.xgame.common.display
 				var bmArray: Vector.<Vector.<BitmapFrame>> = ResourceManager.instance.getBitmapClip(name);
 				if(bmArray == null)
 				{
-					bmArray = new Vector.<Vector.<BitmapFrame>>();
-					for(var y: uint = 0; y < _frameLine; y++)
-					{
-						var line: Vector.<BitmapFrame> = new Vector.<BitmapFrame>();
-						for(var x: uint = 0; x < _frameTotal; x++)
-						{
-							var bm: BitmapData = new BitmapData(_frameWidth, _frameHeight, true, 0x00000000);
-							var rect: Rectangle = new Rectangle(x * _frameWidth, y * _frameHeight, _frameWidth, _frameHeight);
-							bm.copyPixels(_bitmap, rect, new Point(), null, null, true);
-							
-							var _frame: BitmapFrame = new BitmapFrame();
-							_frame.bitmapData = bm;
-							
-							if(frameConfig != null)
-							{
-								_frame.offsetX = frameConfig[y][x].offsetX;
-								_frame.offsetY = frameConfig[y][x].offsetY;
-								_frame.label = frameConfig[y][x].label;
-							}
-							else
-							{
-								_frame.offsetX = 0;
-								_frame.offsetY = 0;
-								_frame.label = "";
-							}
-							line.push(_frame);
-						}
-						bmArray.push(line);
-					}
+					bmArray = ResourceManager.clipBitmapData(_bitmap, _frameLine, _frameTotal, _frameWidth, _frameHeight, frameConfig);
+					ResourceManager.instance.cacheBitmapClip(name, bmArray);
 				}
 				return bmArray;
 			}
@@ -238,6 +213,36 @@ package com.xgame.common.display
 				}
 			}
 		}
+		
+		public function syncActionResource(): void
+		{
+			if(_bitmapDictionary[_currentAction] != null)
+			{
+				_frameArray = _bitmapDictionary[_currentAction];
+				var actionData: ActionData = _actionDataDictionary[_currentAction];
+				if(actionData != null)
+				{
+					_frameLine = actionData.lineTotal;
+					_frameTotal = actionData.frameTotal;
+					_fps = actionData.fps;
+				}
+				else
+				{
+					throw new IllegalOperationError("该动作位图资源与配置数据不一致");
+				}
+			}
+		}
+
+		public function get target():BitmapDisplay
+		{
+			return _target;
+		}
+
+		public function set target(value:BitmapDisplay):void
+		{
+			_target = value;
+		}
+
 
 	}
 }

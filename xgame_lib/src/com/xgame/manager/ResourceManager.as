@@ -6,11 +6,14 @@ package com.xgame.manager
 	import com.greensock.loading.core.LoaderCore;
 	import com.greensock.loading.utils.LoaderUtils;
 	import com.xgame.common.display.BitmapFrame;
+	import com.xgame.common.display.ResourceData;
 	import com.xgame.util.Reflection;
 	import com.xgame.util.debug.Debug;
 	
 	import flash.display.BitmapData;
 	import flash.errors.IllegalOperationError;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.system.ApplicationDomain;
 	import flash.utils.Dictionary;
 
@@ -99,6 +102,45 @@ package com.xgame.manager
 			return _cache;
 		}
 		
+		public function getResourceData(name: String): ResourceData
+		{
+			var _resourceData: ResourceData = new ResourceData();
+			var _bitmapData: BitmapData;
+			for(var i: int = 0; i < 9; i++)
+			{
+				_bitmapData = getBitmapData(name + "_" + i);
+				if(_bitmapData != null)
+				{
+					_resourceData.getResource(_bitmapData, i, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
+				}
+				else
+				{
+					load(name + "_" + i, {resource: _resourceData, action: i}, onResourceDataLoaded);
+				}
+			}
+			return _resourceData;
+		}
+		
+		private function onResourceDataLoaded(evt: LoaderEvent): void
+		{
+			var _item: LoaderCore = evt.target as LoaderCore;
+			var vars: Object = _item.vars;
+			var resource: ResourceData = vars.vars.resource as ResourceData;
+			
+			if(resource != null)
+			{
+				var name: String = _item.name;
+				var action: int = int(vars.vars.action);
+				var _bitmapData: BitmapData = getBitmapData(name);
+				if(_bitmapData != null)
+				{
+					resource.getResource(_bitmapData, action, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
+					resource.syncActionResource();
+					resource.target.rebuild();
+				}
+			}
+		}
+		
 		public function getBitmapClip(name: String, domain: ApplicationDomain = null): Vector.<Vector.<BitmapFrame>>
 		{
 			return get(name) as Vector.<Vector.<BitmapFrame>>
@@ -107,6 +149,40 @@ package com.xgame.manager
 		public function cacheBitmapClip(name: String, value: Vector.<Vector.<BitmapFrame>>): void
 		{
 			add(name, value);
+		}
+		
+		public static function clipBitmapData(data: BitmapData, frameLine: int, frameTotal: int, frameWidth: int, frameHeight: int, frameConfig: Array = null): Vector.<Vector.<BitmapFrame>>
+		{
+			var bmArray: Vector.<Vector.<BitmapFrame>> = new Vector.<Vector.<BitmapFrame>>();
+			for(var y: uint = 0; y < frameLine; y++)
+			{
+				var line: Vector.<BitmapFrame> = new Vector.<BitmapFrame>();
+				for(var x: uint = 0; x < frameTotal; x++)
+				{
+					var bm: BitmapData = new BitmapData(frameWidth, frameHeight, true, 0x00000000);
+					var rect: Rectangle = new Rectangle(x * frameWidth, y * frameHeight, frameWidth, frameHeight);
+					bm.copyPixels(data, rect, new Point(), null, null, true);
+					
+					var _frame: BitmapFrame = new BitmapFrame();
+					_frame.bitmapData = bm;
+					
+					if(frameConfig != null)
+					{
+						_frame.offsetX = frameConfig[y][x].offsetX;
+						_frame.offsetY = frameConfig[y][x].offsetY;
+						_frame.label = frameConfig[y][x].label;
+					}
+					else
+					{
+						_frame.offsetX = 0;
+						_frame.offsetY = 0;
+						_frame.label = "";
+					}
+					line.push(_frame);
+				}
+				bmArray.push(line);
+			}
+			return bmArray;
 		}
 		
 		public function load(
@@ -140,6 +216,10 @@ package com.xgame.manager
 				}
 				else
 				{
+					CONFIG::DebugMode
+					{
+						Debug.error(this, "加载资源失败 ( " + name + " )");
+					}
 					return;
 				}
 			}

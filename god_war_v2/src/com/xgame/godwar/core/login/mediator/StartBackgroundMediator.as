@@ -42,19 +42,19 @@ package com.xgame.godwar.core.login.mediator
 			switch(notification.getName())
 			{
 				case SHOW_NOTE:
-					if(!UIManager.uiLayer.contains(component))
-					{
-						UIManager.uiLayer.addChild(component);
-					}
-					component.visible = true;
-					hideCurrentBack();
-					
-					var id: int = int(notification.getBody());
-					if(id == 0)
-					{
-						currentBack = component.imgBack;
-					}
-					showCurrentBack();
+//					if(!UIManager.uiLayer.contains(component))
+//					{
+//						UIManager.uiLayer.addChild(component);
+//					}
+//					component.visible = true;
+//					hideCurrentBack();
+//					
+//					var id: int = int(notification.getBody());
+//					if(id == 0)
+//					{
+//						currentBack = component.imgBack;
+//					}
+//					showCurrentBack();
 					break;
 				case HIDE_NOTE:
 					if(UIManager.uiLayer.contains(component))

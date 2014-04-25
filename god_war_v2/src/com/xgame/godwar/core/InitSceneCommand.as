@@ -7,6 +7,7 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.core.city.proxy.MapProxy;
 	import com.xgame.godwar.core.city.proxy.SceneProxy;
 	import com.xgame.util.debug.Debug;
+	import com.xgame.util.debug.Stats;
 	
 	import flash.display.Sprite;
 	
@@ -22,6 +23,11 @@ package com.xgame.godwar.core
 		public function InitSceneCommand()
 		{
 			super();
+			
+			if(!facade.hasCommand(StartGameCommand.START_GAME_NOTE))
+			{
+				facade.registerCommand(StartGameCommand.START_GAME_NOTE, StartGameCommand);
+			}
 		}
 		
 		override public function execute(notification:INotification):void
@@ -53,16 +59,26 @@ package com.xgame.godwar.core
 		
 		private function onSceneReady(evt: SceneEvent): void
 		{
+			loadDebug();
+			
 			var _scene: Scene = evt.currentTarget as Scene;
 			_scene.removeEventListener(SceneEvent.SCENE_READY, onSceneReady);
 			
-//			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
+			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
 			
 			var _proxy: SceneProxy = facade.retrieveProxy(SceneProxy.NAME) as SceneProxy;
 			if(_proxy != null)
 			{
 				_proxy.updatePlayerStatus();
 			}
+		}
+		
+		private function loadDebug(): void
+		{
+			var _debugLayer: Sprite = new Sprite();
+			var _debugStats: Stats = new Stats();
+			_debugLayer.addChild(_debugStats);
+			UIManager.stage.addChild(_debugLayer);
 		}
 	}
 }
