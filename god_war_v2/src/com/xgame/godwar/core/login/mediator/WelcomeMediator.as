@@ -54,9 +54,9 @@ package com.xgame.godwar.core.login.mediator
 		
 		override protected function show(callback:Function=null):void
 		{
-			if(!UIManager.stage.contains(component))
+			if(!UIManager.uiLayer.contains(component))
 			{
-				UIManager.stage.addChild(component);
+				UIManager.uiLayer.addChild(component);
 			}
 			
 			component.btnStart.scale = 2;

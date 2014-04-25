@@ -46,7 +46,7 @@ package com.xgame.godwar.core.general.mediator
 		
 		private function show(): void
 		{
-			UIManager.stage.addChild(component);
+			UIManager.uiLayer.addChild(component);
 			component.alpha = 0;
 			TweenLite.to(component, .5, {alpha: 1, ease: Strong.easeOut});
 		}

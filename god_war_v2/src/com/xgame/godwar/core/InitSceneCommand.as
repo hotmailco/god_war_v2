@@ -45,9 +45,7 @@ package com.xgame.godwar.core
 				return;
 			}
 			
-			var _gameLayer: Sprite = new Sprite();
-			UIManager.stage.addChild(_gameLayer);
-			var _scene: Scene = Scene.initialization(UIManager.stage, _gameLayer);
+			var _scene: Scene = Scene.initialization(UIManager.stage, UIManager.sceneLayer);
 			Camera.initialization(_scene);
 			_scene.addEventListener(SceneEvent.SCENE_READY, onSceneReady);
 			_scene.initializeMap(_protocol.mapId);

@@ -35,17 +35,17 @@ package com.xgame.godwar.core.loader.mediator
 			switch(notification.getName())
 			{
 				case SHOW_LOADER_NOTE:
-					if(!UIManager.stage.contains(component))
+					if(!UIManager.uiLayer.contains(component))
 					{
-						UIManager.stage.addChild(component);
+						UIManager.uiLayer.addChild(component);
 					}
 					component.visible = true;
 					setZero();
 					break;
 				case HIDE_LOADER_NOTE:
-					if(UIManager.stage.contains(component))
+					if(UIManager.uiLayer.contains(component))
 					{
-						UIManager.stage.removeChild(component);
+						UIManager.uiLayer.removeChild(component);
 					}
 					break;
 				case SET_LOADER_TITLE_NOTE:

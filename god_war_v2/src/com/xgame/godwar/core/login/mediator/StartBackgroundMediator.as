@@ -42,9 +42,9 @@ package com.xgame.godwar.core.login.mediator
 			switch(notification.getName())
 			{
 				case SHOW_NOTE:
-					if(!UIManager.stage.contains(component))
+					if(!UIManager.uiLayer.contains(component))
 					{
-						UIManager.stage.addChild(component);
+						UIManager.uiLayer.addChild(component);
 					}
 					component.visible = true;
 					hideCurrentBack();
@@ -57,7 +57,7 @@ package com.xgame.godwar.core.login.mediator
 					showCurrentBack();
 					break;
 				case HIDE_NOTE:
-					if(UIManager.stage.contains(component))
+					if(UIManager.uiLayer.contains(component))
 					{
 						TweenLite.to(component, .5, {alpha: 0, onComplete: function(): void
 						{

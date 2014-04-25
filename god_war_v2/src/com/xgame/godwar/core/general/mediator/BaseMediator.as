@@ -24,9 +24,9 @@ package com.xgame.godwar.core.general.mediator
 		
 		protected function show(callback: Function = null): void
 		{
-			if(!UIManager.stage.contains(view))
+			if(!UIManager.uiLayer.contains(view))
 			{
-				UIManager.stage.addChild(view);
+				UIManager.uiLayer.addChild(view);
 			}
 			
 			view.x = UIManager.stage.stageWidth;
@@ -36,7 +36,7 @@ package com.xgame.godwar.core.general.mediator
 		
 		protected function hide(callback: Function = null): void
 		{
-			if(UIManager.stage.contains(view))
+			if(UIManager.uiLayer.contains(view))
 			{
 				TweenLite.to(view, .5, {x: -UIManager.stage.stageWidth, ease: Strong.easeIn, onComplete: function(): void
 				{
