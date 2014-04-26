@@ -2,7 +2,6 @@ package com.xgame.core.map
 {
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.ImageLoader;
-	import com.greensock.loading.LoaderMax;
 	import com.greensock.loading.XMLLoader;
 	import com.greensock.loading.core.LoaderCore;
 	import com.greensock.loading.utils.LoaderUtils;
@@ -16,7 +15,6 @@ package com.xgame.core.map
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Shape;
-	import flash.display.Sprite;
 	import flash.errors.IllegalOperationError;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -444,7 +442,6 @@ package com.xgame.core.map
 			else
 			{
 				_mapDrawArea.cacheAsBitmap = true;
-				dispatchEvent(new MapEvent(MapEvent.COMPLETE));
 			}
 		}
 		

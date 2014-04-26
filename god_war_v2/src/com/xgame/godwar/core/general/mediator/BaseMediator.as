@@ -6,7 +6,6 @@ package com.xgame.godwar.core.general.mediator
 	import flash.display.DisplayObject;
 	
 	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	public class BaseMediator extends Mediator implements IMediator

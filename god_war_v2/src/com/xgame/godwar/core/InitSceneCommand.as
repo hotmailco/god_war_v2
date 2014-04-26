@@ -4,8 +4,8 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
+	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
-	import com.xgame.godwar.core.scene.mediator.SceneMediator;
 	import com.xgame.godwar.core.scene.proxy.MapProxy;
 	import com.xgame.godwar.core.scene.proxy.SceneProxy;
 	import com.xgame.util.debug.Debug;
@@ -15,8 +15,6 @@ package com.xgame.godwar.core
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	
-	import starling.core.Starling;
 	
 	public class InitSceneCommand extends SimpleCommand
 	{
@@ -33,6 +31,10 @@ package com.xgame.godwar.core
 			if(!facade.hasCommand(ShowSceneMediatorCommand.SHOW_NOTE))
 			{
 				facade.registerCommand(ShowSceneMediatorCommand.SHOW_NOTE, ShowSceneMediatorCommand);
+			}
+			if(!facade.hasCommand(ShowCardMediatorCommand.SHOW_NOTE))
+			{
+				facade.registerCommand(ShowCardMediatorCommand.SHOW_NOTE, ShowCardMediatorCommand);
 			}
 		}
 		

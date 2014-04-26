@@ -1,0 +1,7 @@
+<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0xffffff" sceneBg="morn/views/窗口/CardDialog.jpg" layers="3,1,0,1,第 3 层;2,1,0,0,第 2 层;1,1,0,0,第 1 层">
+  <Image url="png.base.dialog_bg" x="164.5" y="105.5" layer="1" sizeGrid="40,40,40,40" width="871" height="589"/>
+  <Image url="png.base.dialog_title" x="431.5" y="89" layer="2"/>
+  <Label text="卡牌" x="513" y="99" layer="2" width="172" height="23" align="center" color="0xff9900" font="Microsoft YaHei" size="16"/>
+  <Button skin="png.base.btn_close" x="996" y="95" layer="2" var="btnClose"/>
+  <Image url="png.base.blank" x="485" y="92" layer="3" width="229" height="37" var="imgBlank" name="drag"/>
+</Dialog>

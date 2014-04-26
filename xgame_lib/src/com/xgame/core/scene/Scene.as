@@ -103,12 +103,8 @@ package com.xgame.core.scene
 		{
 			_map.initializeBuffer();
 			_map.mapDrawArea = _mapGround;
-			_map.addEventListener(MapEvent.COMPLETE, onMapComplete);
 			_map.prepareMap();
-		}
-		
-		private function onMapComplete(evt: MapEvent): void
-		{
+			
 			Global.Timer = getTimer();
 			dispatchEvent(new SceneEvent(SceneEvent.SCENE_READY));
 			_container.addChild(_mapGround);

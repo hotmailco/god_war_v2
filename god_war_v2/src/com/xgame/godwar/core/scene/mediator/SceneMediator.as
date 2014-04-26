@@ -2,10 +2,11 @@ package com.xgame.godwar.core.scene.mediator
 {
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Strong;
+	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	
 	import flash.events.MouseEvent;
 	
-	import game.view.SceneView;
+	import game.view.scene.SceneView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,6 +28,7 @@ package com.xgame.godwar.core.scene.mediator
 			component.boxRole.x = -component.boxRole.width;
 			
 			component.addEventListener(MouseEvent.CLICK, onSceneUIClick);
+			component.btnCard.addEventListener(MouseEvent.CLICK, onButtonCardClick);
 		}
 		
 		public function get component(): SceneView
@@ -87,6 +89,11 @@ package com.xgame.godwar.core.scene.mediator
 		private function onSceneUIClick(evt: MouseEvent): void
 		{
 			evt.stopImmediatePropagation();
+		}
+		
+		private function onButtonCardClick(evt: MouseEvent): void
+		{
+			facade.sendNotification(ShowCardMediatorCommand.SHOW_NOTE);
 		}
 	}
 }
