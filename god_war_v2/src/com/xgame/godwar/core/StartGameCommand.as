@@ -11,7 +11,7 @@ package com.xgame.godwar.core
 	import com.xgame.event.scene.InteractionEvent;
 	import com.xgame.godwar.command.send.Send_Move_RequestFindPath;
 	import com.xgame.godwar.config.GlobalContextConfig;
-	import com.xgame.godwar.core.city.proxy.MoveProxy;
+	import com.xgame.godwar.core.scene.proxy.MoveProxy;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
 	import com.xgame.manager.CommandManager;

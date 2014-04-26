@@ -1,0 +1,24 @@
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,菜单">
+  <Box layers="1,1,0" layer="1" x="622" y="713" var="boxMenu">
+    <Image url="png.scene.menu_bg" y="12" layer="1"/>
+    <Button skin="png.scene.btn_menu_role" x="18" layer="1" var="btnRole"/>
+    <Button skin="png.scene.btn_menu_package" x="88" layer="1" var="btnPackage"/>
+    <Button skin="png.scene.btn_menu_force" x="158" layer="1" var="btnForce"/>
+    <Button skin="png.scene.btn_menu_instance" x="228" layer="1" var="btnInstance"/>
+    <Button skin="png.scene.btn_menu_card" x="298" layer="1" var="btnCard"/>
+    <Button skin="png.scene.btn_menu_strengthen" x="368" layer="1" var="btnStrengthen"/>
+    <Button skin="png.scene.btn_menu_social" x="438" layer="1" var="btnSocial"/>
+    <Button skin="png.scene.btn_menu_mall" x="508" layer="1" var="btnMall"/>
+  </Box>
+  <Box layers="1,1,0" layer="2" x="0" y="446" var="boxChat">
+    <Image url="png.scene.chat_bg" layer="1" sizeGrid="0,50,0,120" visible="false"/>
+    <TextInput skin="png.scene.input_chat" x="62" y="313" layer="1" width="215" height="26" color="0xff9900" font="Microsoft YaHei" size="12" margin="5,1,5,1" selectable="true" var="iptMessage"/>
+    <Button label="发送" skin="png.scene.btn_send_message" x="277" y="312" layer="1" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" labelFont="Microsoft YaHei" labelSize="11" labelBold="true" var="btnSend"/>
+  </Box>
+  <Box layers="4,1,0,0,第 4 层;3,1,0,1,第 3 层;2,1,0,0,第 2 层;1,1,0,1,第 1 层" layer="2" x="0" y="0" var="boxRole">
+    <Image url="png.scene.avatar_down_bg" x="11" y="10" layer="1"/>
+    <Image url="png.scene.avatar_up_bg" layer="3" x="0" y="0"/>
+    <Image url="png.scene.level_bg" x="115" y="10" layer="4"/>
+    <Label text="1" x="122" y="17" layer="4" font="Microsoft YaHei" size="16" color="0xff9900" width="27" height="25" align="center" bold="true" stroke="0" var="lblLevel"/>
+  </Box>
+</View>

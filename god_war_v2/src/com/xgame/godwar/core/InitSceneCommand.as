@@ -4,8 +4,10 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
-	import com.xgame.godwar.core.city.proxy.MapProxy;
-	import com.xgame.godwar.core.city.proxy.SceneProxy;
+	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
+	import com.xgame.godwar.core.scene.mediator.SceneMediator;
+	import com.xgame.godwar.core.scene.proxy.MapProxy;
+	import com.xgame.godwar.core.scene.proxy.SceneProxy;
 	import com.xgame.util.debug.Debug;
 	import com.xgame.util.debug.Stats;
 	
@@ -27,6 +29,10 @@ package com.xgame.godwar.core
 			if(!facade.hasCommand(StartGameCommand.START_GAME_NOTE))
 			{
 				facade.registerCommand(StartGameCommand.START_GAME_NOTE, StartGameCommand);
+			}
+			if(!facade.hasCommand(ShowSceneMediatorCommand.SHOW_NOTE))
+			{
+				facade.registerCommand(ShowSceneMediatorCommand.SHOW_NOTE, ShowSceneMediatorCommand);
 			}
 		}
 		
@@ -65,6 +71,7 @@ package com.xgame.godwar.core
 			_scene.removeEventListener(SceneEvent.SCENE_READY, onSceneReady);
 			
 			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
+			facade.sendNotification(ShowSceneMediatorCommand.SHOW_NOTE);
 			
 			var _proxy: SceneProxy = facade.retrieveProxy(SceneProxy.NAME) as SceneProxy;
 			if(_proxy != null)
