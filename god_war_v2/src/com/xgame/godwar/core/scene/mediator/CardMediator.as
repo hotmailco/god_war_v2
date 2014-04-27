@@ -20,6 +20,13 @@ package com.xgame.godwar.core.scene.mediator
 			super(NAME, new CardDialog());
 			
 			component.btnClose.addEventListener(MouseEvent.CLICK, onButtonCloseClick);
+			
+			var test: Array = new Array();
+			for(var i: int = 0; i<10; i++)
+			{
+				test.push({label: "test" + i});
+			}
+			component.lstGroup.array = test;
 		}
 		
 		public function get component(): CardDialog

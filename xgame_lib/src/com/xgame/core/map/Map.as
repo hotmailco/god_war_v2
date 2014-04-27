@@ -375,7 +375,7 @@ package com.xgame.core.map
 			{
 				return;
 			}
-			_mapDrawArea.cacheAsBitmap = false;
+//			_mapDrawArea.cacheAsBitmap = false;
 			var _bm: BitmapData;
 			var _temp: Array;
 			for(var i: int = 0; i < _tileToLoad.length; i++)
@@ -413,10 +413,18 @@ package com.xgame.core.map
 			{
 				return;
 			}
-			var _loader: LoaderCore = _loaderList[0];
-			_loader.addEventListener(LoaderEvent.COMPLETE, onTileLoadComplete);
-			_loader.load();
-			_loaderList.splice(0, 1);
+			
+			for(var i: int = 0; i<_loaderList.length; i++)
+			{
+				var _loader: LoaderCore = _loaderList[0];
+				_loader.addEventListener(LoaderEvent.COMPLETE, onTileLoadComplete);
+				_loader.load();
+				_loaderList.splice(0, 1);
+			}
+//			var _loader: LoaderCore = _loaderList[0];
+//			_loader.addEventListener(LoaderEvent.COMPLETE, onTileLoadComplete);
+//			_loader.load();
+//			_loaderList.splice(0, 1);
 		}
 		
 		protected function onTileLoadComplete(evt: LoaderEvent): void
@@ -435,14 +443,14 @@ package com.xgame.core.map
 			_loader.unload();
 			_loader.dispose();
 			_loader = null;
-			if(_loaderList.length > 0)
-			{
-				startLoad();
-			}
-			else
-			{
-				_mapDrawArea.cacheAsBitmap = true;
-			}
+//			if(_loaderList.length > 0)
+//			{
+//				startLoad();
+//			}
+//			else
+//			{
+//				_mapDrawArea.cacheAsBitmap = true;
+//			}
 		}
 		
 		public function inAlphaArea(x: uint, y: uint): Boolean
