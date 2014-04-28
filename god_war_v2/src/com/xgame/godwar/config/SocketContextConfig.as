@@ -17,73 +17,76 @@ package com.xgame.godwar.config
 		public static var logic_port: int = 0;
 		public static var auth_key: String;
 		
-		public static const	CONTROLLER_SCENE: int							= 5;
+		public static const	CONTROLLER_SCENE: int								= 5;
 		public static const	CONTROLLER_BASE: int								= 4;
-		public static const	CONTROLLER_BATTLEROOM: int						= 3;
-		public static const	CONTROLLER_MSG: int								= 2;
+		public static const	CONTROLLER_BATTLEROOM: int							= 3;
+		public static const	CONTROLLER_MSG: int									= 2;
 		public static const	CONTROLLER_MOVE: int								= 1;
 		public static const	CONTROLLER_INFO: int								= 0;
 		// MOVE
 		public static const	ACTION_REQUEST_FINDPATH: int						= 0;
-		public static const	ACTION_VERIFY_MOVE: int							= 1;
-		public static const	ACTION_SEND_PATH: int							= 2;
+		public static const	ACTION_SYNC_MOVE: int								= 1;
+		public static const	ACTION_SEND_PATH: int								= 2;
 		// INFO
-		public static const	ACTION_LOGIN: int								= 0;
-		public static const	ACTION_LOGOUT: int								= 1;
-		public static const	ACTION_QUICK_START: int							= 2;
+		public static const	ACTION_LOGIN: int									= 0;
+		public static const	ACTION_LOGOUT: int									= 1;
+		public static const	ACTION_QUICK_START: int								= 2;
 		public static const	ACTION_REGISTER: int								= 3;
-		public static const	ACTION_REQUEST_CHARACTER: int					= 4;
-		public static const	ACTION_REGISTER_CHARACTER: int					= 5;
+		public static const	ACTION_REQUEST_CHARACTER: int						= 4;
+		public static const	ACTION_REGISTER_CHARACTER: int						= 5;
 		public static const	ACTION_LOGICSERVER_BIND_SESSION: int				= 6;
-		public static const	ACTION_BIND_SESSION: int						= 7;
-		public static const	ACTION_REQUEST_CARD_GROUP: int					= 8;
-		public static const	ACTION_REQUEST_CARD_LIST: int					= 9;
+		public static const	ACTION_BIND_SESSION: int							= 7;
+		public static const	ACTION_REQUEST_CARD_GROUP: int						= 8;
+		public static const	ACTION_REQUEST_CARD_LIST: int						= 9;
 		public static const	ACTION_CREATE_GROUP: int							= 10;
 		public static const	ACTION_DELETE_GROUP: int							= 11;
-		public static const	ACTION_SAVE_CARD_GROUP: int						= 12;
-		public static const	ACTION_HEART_BEAT: int							= 127;
+		public static const	ACTION_SAVE_CARD_GROUP: int							= 12;
+		public static const	ACTION_HEART_BEAT: int								= 126;
+		public static const	ACTION_HEART_BEAT_ECHO: int							= 127;
 		// BASE
-		public static const	ACTION_REGISTER_LOGIC_SERVER: int				= 0;
-		public static const	ACTION_REGISTER_LOGIC_SERVER_CONFIRM: int		= 1;
-		public static const	ACTION_REQUEST_LOGIC_SERVER_ROOM: int			= 2;
-		public static const	ACTION_REQUEST_LOGIC_SERVER_ROOM_CONFIRM: int	= 3;
-		public static const	ACTION_LOGIC_SERVER_INFO: int					= 4;
+		public static const	ACTION_REGISTER_LOGIC_SERVER: int					= 0;
+		public static const	ACTION_REGISTER_LOGIC_SERVER_CONFIRM: int			= 1;
+		public static const	ACTION_REQUEST_LOGIC_SERVER_ROOM: int				= 2;
+		public static const	ACTION_REQUEST_LOGIC_SERVER_ROOM_CONFIRM: int		= 3;
+		public static const	ACTION_LOGIC_SERVER_INFO: int						= 4;
 		public static const	ACTION_CONNECT_LOGIC_SERVER: int					= 5;
-		public static const	ACTION_VERIFY_MAP: int							= 6;
-		public static const	ACTION_UPDATE_STATUS: int						= 7;
+		public static const	ACTION_VERIFY_MAP: int								= 6;
+		public static const	ACTION_UPDATE_STATUS: int							= 7;
 		// SCENE
 		public static const	ACTION_REQUEST_ROOM: int							= 0;
-		public static const	ACTION_SHOW_ROOMLIST: int						= 1;
+		public static const	ACTION_SHOW_ROOMLIST: int							= 1;
 		public static const	ACTION_ROOM_CREATED: int							= 2;
-		public static const	ACTION_REQUEST_ENTER_ROOM: int					= 3;
-		public static const	ACTION_REQUEST_ENTER_ROOM_LOGICSERVER: int		= 4;
-		public static const	ACTION_SHOW_PLAYER: int							= 5;
+		public static const	ACTION_REQUEST_ENTER_ROOM: int						= 3;
+		public static const	ACTION_REQUEST_ENTER_ROOM_LOGICSERVER: int			= 4;
+		public static const	ACTION_SHOW_PLAYER: int								= 5;
 		// BATTLE ROOM
-		public static const	ACTION_INIT_ROOM_DATA: int						= 0;
+		public static const	ACTION_INIT_ROOM_DATA: int							= 0;
 		public static const	ACTION_PLAYER_ENTER_ROOM_NOTICE: int				= 1;
-		public static const	ACTION_PLAYER_SELETED_HERO: int					= 2;
+		public static const	ACTION_PLAYER_SELETED_HERO: int						= 2;
 		public static const	ACTION_PLAYER_READY: int							= 3;
 		public static const	ACTION_PLAYER_LEAVE_ROOM_NOTICE: int				= 4;
 		public static const	ACTION_REQUEST_START_BATTLE: int					= 5;
-		public static const	ACTION_INIT_ROOM_DATA_LOGICSERVER: int			= 6;
+		public static const	ACTION_INIT_ROOM_DATA_LOGICSERVER: int				= 6;
 		public static const	ACTION_PLAYER_ENTER_ROOM_NOTICE_LOGICSERVER: int	= 7;
-		public static const	ACTION_START_BATTLE_TIMER: int					= 8;
+		public static const	ACTION_START_BATTLE_TIMER: int						= 8;
 		public static const	ACTION_START_ROOM_TIMER: int						= 9;
-		public static const	ACTION_FIRST_CHOUPAI: int						= 10;
-		public static const	ACTION_PLAYER_READY_ERROR: int					= 11;
-		public static const	ACTION_DEPLOY_COMPLETE: int						= 12;
-		public static const	ACTION_START_DICE: int							= 13;
-		public static const	ACTION_ROUND_STANDBY: int						= 14;
-		public static const	ACTION_ROUND_STANDBY_CONFIRM: int				= 15;
-		public static const	ACTION_ROUND_STANDBY_CHANGE_FORMATION: int		= 16;
-		public static const	ACTION_ROUND_STANDBY_EQUIP: int					= 17;
+		public static const	ACTION_FIRST_CHOUPAI: int							= 10;
+		public static const	ACTION_PLAYER_READY_ERROR: int						= 11;
+		public static const	ACTION_DEPLOY_COMPLETE: int							= 12;
+		public static const	ACTION_START_DICE: int								= 13;
+		public static const	ACTION_ROUND_STANDBY: int							= 14;
+		public static const	ACTION_ROUND_STANDBY_CONFIRM: int					= 15;
+		public static const	ACTION_ROUND_STANDBY_CHANGE_FORMATION: int			= 16;
+		public static const	ACTION_ROUND_STANDBY_EQUIP: int						= 17;
 		public static const	ACTION_ROUND_ACTION: int							= 25;
-		public static const	ACTION_ROUND_ACTION_ATTACK: int					= 26;
-		public static const	ACTION_ROUND_ACTION_SPELL: int					= 27;
-		public static const	ACTION_ROUND_ACTION_REST: int					= 28;
+		public static const	ACTION_ROUND_ACTION_ATTACK: int						= 26;
+		public static const	ACTION_ROUND_ACTION_SPELL: int						= 27;
+		public static const	ACTION_ROUND_ACTION_REST: int						= 28;
 		
 		// MOVE
 		public static const	REQUEST_FIND_PATH: int							= ACTION_REQUEST_FINDPATH << 8
+			| CONTROLLER_MOVE;
+		public static const	SYNC_MOVE: int									= ACTION_SYNC_MOVE << 8
 			| CONTROLLER_MOVE;
 		public static const	SEND_PATH: int									= ACTION_SEND_PATH << 8
 			| CONTROLLER_MOVE;
@@ -115,6 +118,8 @@ package com.xgame.godwar.config
 		public static const	INFO_SAVE_CARD_GROUP: int						= ACTION_SAVE_CARD_GROUP << 8
 			| CONTROLLER_INFO;
 		public static const	INFO_HEART_BEAT: int								= ACTION_HEART_BEAT << 8
+			| CONTROLLER_INFO;
+		public static const	INFO_HEART_BEAT_ECHO: int							= ACTION_HEART_BEAT_ECHO << 8
 			| CONTROLLER_INFO;
 		// BASE
 		public static const	BASE_VERIFY_MAP: int								= ACTION_VERIFY_MAP << 8

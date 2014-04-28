@@ -7,6 +7,7 @@ package com.xgame.core.protocol
 	
 	public class SendBase extends ProtocolBase implements ISending
 	{
+		public var timestamp: Number;
 		protected var _byteData: ByteArray;
 		
 		public function SendBase(protocolId:uint)
@@ -28,8 +29,8 @@ package com.xgame.core.protocol
 		
 		public function fillTimestamp(): void
 		{
-			var time: Number = new Date().time;
-			var time64: Int64 = Int64.fromNumber(time);
+			timestamp = new Date().time;
+			var time64: Int64 = Int64.fromNumber(timestamp);
 			
 			_byteData.writeInt(8);
 			_byteData.writeByte(TYPE_LONG);

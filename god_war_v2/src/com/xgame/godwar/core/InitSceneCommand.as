@@ -76,10 +76,12 @@ package com.xgame.godwar.core
 			facade.sendNotification(ShowSceneMediatorCommand.SHOW_NOTE);
 			
 			var _proxy: SceneProxy = facade.retrieveProxy(SceneProxy.NAME) as SceneProxy;
-			if(_proxy != null)
+			if(_proxy == null)
 			{
-				_proxy.updatePlayerStatus();
+				_proxy = new SceneProxy();
+				facade.registerProxy(_proxy);
 			}
+			_proxy.updatePlayerStatus();
 		}
 		
 		private function loadDebug(): void

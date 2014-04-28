@@ -1,7 +1,10 @@
 package com.xgame.godwar.core.general.proxy
 {
 	
+	import com.xgame.core.protocol.ProtocolList;
+	import com.xgame.godwar.command.receive.Receive_Info_HeartBeatEcho;
 	import com.xgame.godwar.command.send.Send_Info_HeartBeat;
+	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.manager.TimerManager;
 	
@@ -11,12 +14,17 @@ package com.xgame.godwar.core.general.proxy
 	public class KeepAliveProxy extends Proxy implements IProxy
 	{
 		public static const NAME: String = "KeepAliveProxy";
+		public static var delay_time: int = 0;
+		
 		private var sendProtocol: Send_Info_HeartBeat;
 		
 		public function KeepAliveProxy()
 		{
 			super(NAME, null);
 			sendProtocol = new Send_Info_HeartBeat();
+			
+			ProtocolList.instance.bind(SocketContextConfig.INFO_HEART_BEAT_ECHO, Receive_Info_HeartBeatEcho);
+			CommandManager.instance.add(SocketContextConfig.INFO_HEART_BEAT_ECHO, onHeartbeatEcho);
 		}
 		
 		public function startHeatbeat(): void
@@ -33,7 +41,19 @@ package com.xgame.godwar.core.general.proxy
 		{
 			if(CommandManager.instance.connected)
 			{
+				sendProtocol.flag++;
 				CommandManager.instance.send(sendProtocol);
+			}
+		}
+		
+		private function onHeartbeatEcho(protocol: Receive_Info_HeartBeatEcho): void
+		{
+			if(sendProtocol.flag == protocol.flag)
+			{
+				var lastTime: Number = protocol.stamp.toNumber();
+				var currentTime: Number = new Date().time;
+				delay_time = currentTime - lastTime;
+				trace(delay_time);
 			}
 		}
 	}
