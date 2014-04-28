@@ -133,7 +133,10 @@ package com.xgame.godwar.core.login.mediator
 			var item: ServerListView = evt.currentTarget as ServerListView;
 			if(item != null)
 			{
-				facade.sendNotification(InitGameSocketCommand.CONNECT_SOCKET_NOTE, item.parameter);
+				hide(function(): void
+				{
+					facade.sendNotification(InitGameSocketCommand.CONNECT_SOCKET_NOTE, item.parameter);
+				});
 			}
 		}
 		

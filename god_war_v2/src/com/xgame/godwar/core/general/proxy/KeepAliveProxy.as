@@ -7,6 +7,7 @@ package com.xgame.godwar.core.general.proxy
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.manager.TimerManager;
+	import com.xgame.util.debug.Stats;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -53,7 +54,7 @@ package com.xgame.godwar.core.general.proxy
 				var lastTime: Number = protocol.stamp.toNumber();
 				var currentTime: Number = new Date().time;
 				delay_time = currentTime - lastTime;
-				trace(delay_time);
+				Stats.ping = delay_time;
 			}
 		}
 	}

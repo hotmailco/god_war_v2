@@ -3,6 +3,7 @@
 	<name>god_war_v2</name>
 	<comment></comment>
 	<projects>
+		<project>xgame_lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

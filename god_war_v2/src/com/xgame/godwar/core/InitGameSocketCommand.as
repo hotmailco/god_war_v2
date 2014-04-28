@@ -9,10 +9,6 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.parameter.ServerListParameter;
 	import com.xgame.manager.CommandManager;
 	
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.SecurityErrorEvent;
-	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
@@ -57,7 +53,6 @@ package com.xgame.godwar.core
 			facade.removeCommand(CONNECT_SOCKET_NOTE);
 			
 			facade.sendNotification(LoadingIconMediator.HIDE_NOTE);
-			facade.sendNotification(ServerMediator.HIDE_NOTE);
 			
 			if(!facade.hasCommand(RequestBindSessionCommand.NAME))
 			{

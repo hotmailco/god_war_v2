@@ -9,7 +9,6 @@ package com.xgame.core.scene
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.ns.NSCamera;
 	
-	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
@@ -19,10 +18,12 @@ package com.xgame.core.scene
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 
 	public class Scene implements IEventDispatcher
 	{
+		protected var _objectIndex: Dictionary;
 		protected var _objectList: Array;
 		protected var _renderList: Array;
 		protected var _map: Map;
@@ -54,6 +55,7 @@ package com.xgame.core.scene
 				_container = container == null ? stage : container;
 				_eventDispatcher = new EventDispatcher(this);
 				
+				_objectIndex = new Dictionary();
 				_objectList = new Array();
 				_renderList = new Array();
 				
@@ -118,6 +120,7 @@ package com.xgame.core.scene
 			{
 				return;
 			}
+			_objectIndex[value.objectId] = value;
 			_objectList.push(value);
 			if(Camera.instance.cameraView.contains(value.positionX, value.positionY))
 			{
@@ -130,6 +133,8 @@ package com.xgame.core.scene
 			var index: int = _objectList.indexOf(value);
 			if(index > -1)
 			{
+				_objectIndex[value.objectId] = null;
+				delete _objectIndex[value.objectId];
 				_objectList.splice(index, 1);
 			}
 			pullRenderList(value);
@@ -176,15 +181,7 @@ package com.xgame.core.scene
 		
 		public function getDisplayByGuid(value: String): BitmapDisplay
 		{
-			var display: BitmapDisplay;
-			for each(display in _objectList)
-			{
-				if(display.objectId == value)
-				{
-					return display;
-				}
-			}
-			return null;
+			return _objectIndex[value] as BitmapDisplay;
 		}
 		
 		public function get objectList(): Array
@@ -329,6 +326,7 @@ package com.xgame.core.scene
 		
 		public function dispose(): void
 		{
+			_objectIndex = null;
 			_objectList.splice(0, _objectList.length);
 			
 			while(_layerDisplay.numChildren > 0)

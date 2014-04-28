@@ -17,10 +17,11 @@ package com.xgame.util.debug
 		private var graph : BitmapData;
 		private var ver : Sprite;
 		
-		private var fpsText : TextField, msText : TextField, memText : TextField, verText : TextField, format : TextFormat;
+		private var fpsText : TextField, msText : TextField, memText : TextField, pingText: TextField, verText : TextField, format : TextFormat;
 		
 		private var fps :int, timer : int, ms : int, msPrev	: int = 0;
 		private var mem : Number = 0;
+		private static var _ping: int = 0;
 		
 		private var rectangle : Rectangle;
 		
@@ -34,14 +35,14 @@ package com.xgame.util.debug
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		
 			graphics.beginFill(0x33 );
-			graphics.drawRect( 0, 0, 65, 40 );
+			graphics.drawRect( 0, 0, 65, 60 );
 			graphics.endFill();
 		
 			ver = new Sprite();
 			ver.graphics.beginFill( 0x33 );
 			ver.graphics.drawRect( 0, 0, 65, 30 );
 			ver.graphics.endFill();
-			ver.y = 90;
+			ver.y = 100;
 			ver.visible = false;
 			addChild(ver);
 			
@@ -49,12 +50,13 @@ package com.xgame.util.debug
 			fpsText = new TextField();
 			msText = new TextField();
 			memText = new TextField();
+			pingText = new TextField();
 			
 			format = new TextFormat( "_sans", 9 );
 			
-			verText.defaultTextFormat = fpsText.defaultTextFormat = msText.defaultTextFormat = memText.defaultTextFormat = format;
-			verText.width = fpsText.width = msText.width = memText.width = 65;
-			verText.selectable = fpsText.selectable = msText.selectable = memText.selectable = false;
+			verText.defaultTextFormat = fpsText.defaultTextFormat = msText.defaultTextFormat = memText.defaultTextFormat = pingText.defaultTextFormat = format;
+			verText.width = fpsText.width = msText.width = memText.width = pingText.width = 65;
+			verText.selectable = fpsText.selectable = msText.selectable = memText.selectable = pingText.selectable = false;
 			
 			verText.textColor = 0xFFFFFF;
 			verText.text = Capabilities.version.split(" ")[0] + "\n" + Capabilities.version.split(" ")[1];
@@ -74,9 +76,14 @@ package com.xgame.util.debug
 			memText.text = "MEM: ";
 			addChild(memText);
 			
+			pingText.y = 30;
+			pingText.textColor = 0xFF00FF;
+			pingText.text = "PING: ";
+			addChild(pingText);
+			
 			graph = new BitmapData( 65, 50, false, 0x33 );
 			var gBitmap:Bitmap = new Bitmap( graph);
-			gBitmap.y = 40;
+			gBitmap.y = 50;
 			addChild(gBitmap);
 			
 			rectangle = new Rectangle( 0, 0, 1, graph.height );
@@ -111,6 +118,7 @@ package com.xgame.util.debug
 				
 				fpsText.text = "FPS: " + fps + " / " + stage.frameRate;
 				memText.text = "MEM: " + mem;
+				pingText.text = "PING: " + _ping + "ms";
 				
 				fps = 0;
 			}
@@ -134,5 +142,11 @@ package com.xgame.util.debug
 		{
 			ver.visible = false;
 		}
+
+		public static function set ping(value:int):void
+		{
+			_ping = value;
+		}
+
 	}
 }
