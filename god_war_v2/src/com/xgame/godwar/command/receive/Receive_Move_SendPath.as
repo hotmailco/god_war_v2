@@ -35,7 +35,7 @@ package com.xgame.godwar.command.receive
 					switch(type)
 					{
 						case TYPE_STRING:
-							if(StringUtils(guid))
+							if(StringUtils.empty(guid))
 							{
 								guid = data.readUTFBytes(length);
 							}

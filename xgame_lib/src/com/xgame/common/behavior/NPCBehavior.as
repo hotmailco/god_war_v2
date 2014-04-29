@@ -16,28 +16,17 @@ package com.xgame.common.behavior
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 
-	public class PlayerBehavior extends Behavior
+	public class NPCBehavior extends Behavior
 	{
 		protected var _currentStep: uint;
 		protected var _path: Array;
 		protected var _skillTarget: *;
 		
-		public function PlayerBehavior()
+		public function NPCBehavior()
 		{
 			super();
 			
 			_currentStep = 1;
-			installListener();
-		}
-		
-		override public function installListener():void
-		{
-			Scene.instance.stage.addEventListener(MouseEvent.CLICK, onMouseClick, false, 0, true);
-		}
-		
-		override public function uninstallListener():void
-		{
-			Scene.instance.stage.removeEventListener(MouseEvent.CLICK, onMouseClick);
 		}
 		
 		public function clearPath(): void
@@ -52,29 +41,6 @@ package com.xgame.common.behavior
 			_currentStep = 1;
 		}
 		
-		private function onMouseClick(evt: MouseEvent): void
-		{
-			if((_target as ActionDisplay).action == Action.DIE)
-			{
-				return;
-			}
-			
-			var clicker: BitmapDisplay = Perception.getClicker(evt.stageX, evt.stageY);
-			if(clicker != null)
-			{
-				//TODO 激活点击事件
-				(_target as PlayerDisplay).locker = clicker;
-				return;
-			}
-			
-			var e: InteractionEvent = new InteractionEvent(InteractionEvent.SCENE_CLICK);
-			e.clicker = clicker;
-			e.stageX = evt.stageX;
-			e.stageY = evt.stageY;
-			dispatchEvent(e);
-			_endPoint = Map.instance.getWorldPosition(evt.stageX, evt.stageY);
-		}
-		
 		public function move(node: Array): Boolean
 		{
 			if(_path == null)
@@ -84,15 +50,6 @@ package com.xgame.common.behavior
 			else
 			{
 				_path.splice(0, _path.length);
-			}
-			
-			var _point1: Point;
-			var _point2: Point;
-			_point1 = Map.instance.worldPosition2Block(_endPoint.x, _endPoint.y);
-			if(Map.instance.negativePath[_point1.y][_point1.x])
-			{
-				(_target as ActionDisplay).action = Action.STOP;
-				return false;
 			}
 			
 			if(node == null)

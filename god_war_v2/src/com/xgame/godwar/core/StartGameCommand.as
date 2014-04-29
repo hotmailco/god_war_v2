@@ -9,11 +9,12 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.enum.Action;
 	import com.xgame.event.scene.InteractionEvent;
+	import com.xgame.godwar.command.receive.Receive_Info_AccountRole;
 	import com.xgame.godwar.command.send.Send_Move_RequestFindPath;
 	import com.xgame.godwar.config.GlobalContextConfig;
-	import com.xgame.godwar.core.scene.proxy.MoveProxy;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
+	import com.xgame.godwar.core.scene.proxy.MoveProxy;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.manager.HotkeyCenter;
 	import com.xgame.manager.ResourceManager;
@@ -57,10 +58,13 @@ package com.xgame.godwar.core
 			var _proxy: RoleProxy = facade.retrieveProxy(RoleProxy.NAME) as RoleProxy;
 			if(_proxy != null)
 			{
-				var _protocol: * = _proxy.getData();
+				var _protocol: Receive_Info_AccountRole = _proxy.getData() as Receive_Info_AccountRole;
 				if(_protocol != null)
 				{
 					var _player: PlayerDisplay = new PlayerDisplay(new PlayerBehavior());
+					_player.objectId = _protocol.guid;
+					_player.accountId = _protocol.accountId;
+					_player.roleId = _protocol.roleId;
 					_player.speed = _protocol.speed / GlobalContextConfig.FrameRate;
 					_player.positionX = _protocol.x;
 					_player.positionY = _protocol.y;

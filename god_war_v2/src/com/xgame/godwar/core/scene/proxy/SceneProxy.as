@@ -45,6 +45,9 @@ package com.xgame.godwar.core.scene.proxy
 		private function onPlayerShow(protocol: Receive_Scene_ShowPlayer): void
 		{
 			var _player: PlayerDisplay = new PlayerDisplay();
+			_player.objectId = protocol.guid;
+			_player.accountId = protocol.accountId;
+			_player.roleId = protocol.roleId;
 			_player.speed = protocol.speed / GlobalContextConfig.FrameRate;
 			_player.positionX = protocol.x;
 			_player.positionY = protocol.y;

@@ -1,5 +1,6 @@
 package com.xgame.godwar.core.scene.proxy
 {
+	import com.xgame.common.behavior.NPCBehavior;
 	import com.xgame.common.behavior.PlayerBehavior;
 	import com.xgame.common.display.PlayerDisplay;
 	import com.xgame.core.protocol.ProtocolList;
@@ -48,12 +49,12 @@ package com.xgame.godwar.core.scene.proxy
 		
 		private function onSendPath(protocol: Receive_Move_SendPath): void
 		{
-			if(!StringUtils(protocol.guid))
+			if(!StringUtils.empty(protocol.guid))
 			{
 				var player: PlayerDisplay = Scene.instance.getDisplayByGuid(protocol.guid) as PlayerDisplay;
 				if(player != null)
 				{
-					var behavior: PlayerBehavior = player.behavior as PlayerBehavior;
+					var behavior: NPCBehavior = player.behavior as NPCBehavior;
 					behavior.move(protocol.path);
 				}
 			}

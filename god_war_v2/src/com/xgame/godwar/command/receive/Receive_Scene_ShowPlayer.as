@@ -9,7 +9,9 @@ package com.xgame.godwar.command.receive
 
 	public class Receive_Scene_ShowPlayer extends ReceiveBase
 	{
+		public var guid: String;
 		public var accountId: Int64;
+		public var roleId: Int64;
 		public var nickName: String;
 		public var accountCash: Int64;
 		public var direction: int;
@@ -60,7 +62,14 @@ package com.xgame.godwar.command.receive
 								accountId.low = data.readUnsignedInt();
 								break;
 							}
-							if(accountCash == null)
+							else if(roleId == null)
+							{
+								roleId = new Int64();
+								roleId.high = data.readInt();
+								roleId.low = data.readUnsignedInt();
+								break;
+							}
+							else if(accountCash == null)
 							{
 								accountCash = new Int64();
 								accountCash.high = data.readInt();
@@ -68,7 +77,12 @@ package com.xgame.godwar.command.receive
 								break;
 							}
 						case TYPE_STRING:
-							if(StringUtils.empty(nickName))
+							if(StringUtils.empty(guid))
+							{
+								guid = data.readUTFBytes(length);
+								break;
+							}
+							else if(StringUtils.empty(nickName))
 							{
 								nickName = data.readUTFBytes(length);
 								break;
@@ -80,32 +94,32 @@ package com.xgame.godwar.command.receive
 								direction = data.readInt();
 								break;
 							}
-							if(currentHealth == int.MIN_VALUE)
+							else if(currentHealth == int.MIN_VALUE)
 							{
 								currentHealth = data.readInt();
 								break;
 							}
-							if(maxHealth == int.MIN_VALUE)
+							else if(maxHealth == int.MIN_VALUE)
 							{
 								maxHealth = data.readInt();
 								break;
 							}
-							if(currentMana == int.MIN_VALUE)
+							else if(currentMana == int.MIN_VALUE)
 							{
 								currentMana = data.readInt();
 								break;
 							}
-							if(maxMana == int.MIN_VALUE)
+							else if(maxMana == int.MIN_VALUE)
 							{
 								maxMana = data.readInt();
 								break;
 							}
-							if(currentEnergy == int.MIN_VALUE)
+							else if(currentEnergy == int.MIN_VALUE)
 							{
 								currentEnergy = data.readInt();
 								break;
 							}
-							if(maxEnergy == int.MIN_VALUE)
+							else if(maxEnergy == int.MIN_VALUE)
 							{
 								maxEnergy = data.readInt();
 								break;
@@ -122,7 +136,7 @@ package com.xgame.godwar.command.receive
 								x = data.readDouble();
 								break;
 							}
-							if(y == Number.MIN_VALUE)
+							else if(y == Number.MIN_VALUE)
 							{
 								y = data.readDouble();
 								break;

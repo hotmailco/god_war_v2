@@ -2,16 +2,20 @@ package com.xgame.common.display
 {
 	import com.xgame.Global;
 	import com.xgame.common.behavior.Behavior;
+	import com.xgame.common.behavior.NPCBehavior;
 	import com.xgame.common.behavior.Perception;
 	import com.xgame.common.behavior.PlayerBehavior;
 	import com.xgame.core.map.Map;
 	import com.xgame.enum.Action;
 	import com.xgame.event.BehaviorEvent;
+	import com.xgame.util.Int64;
 	
 	import flash.geom.Point;
 	
 	public class PlayerDisplay extends ActionDisplay implements IBattle
 	{
+		protected var _accountId: Int64;
+		protected var _roleId: Int64;
 		protected var _locker: BitmapDisplay;
 		protected var _attacker: *;
 		protected var _health: Number;
@@ -29,7 +33,7 @@ package com.xgame.common.display
 		
 		public function PlayerDisplay(behavoir: Behavior = null)
 		{
-			super(behavoir == null ? new Behavior() : behavoir);
+			super(behavoir == null ? new NPCBehavior() : behavoir);
 			canBeAttack = true;
 		}
 		
@@ -269,6 +273,26 @@ package com.xgame.common.display
 		public function set locker(value:BitmapDisplay):void
 		{
 			_locker = value;
+		}
+
+		public function get accountId():Int64
+		{
+			return _accountId;
+		}
+
+		public function set accountId(value:Int64):void
+		{
+			_accountId = value;
+		}
+
+		public function get roleId():Int64
+		{
+			return _roleId;
+		}
+
+		public function set roleId(value:Int64):void
+		{
+			_roleId = value;
 		}
 
 
