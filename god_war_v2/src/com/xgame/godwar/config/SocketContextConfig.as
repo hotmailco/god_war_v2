@@ -43,6 +43,11 @@ package com.xgame.godwar.config
 		public static const	ACTION_SAVE_CARD_GROUP: int							= 12;
 		public static const	ACTION_HEART_BEAT: int								= 126;
 		public static const	ACTION_HEART_BEAT_ECHO: int							= 127;
+		// MSG
+		public static const	ACTION_SEND_PUBLIC: int								= 0;	// 附近
+		public static const	ACTION_SEND_TEAM: int								= 1;	// 组队
+		public static const	ACTION_SEND_PRIVATE: int							= 2;	// 密语
+		public static const	ACTION_SEND_WORLD: int								= 3;	// 世界
 		// BASE
 		public static const	ACTION_REGISTER_LOGIC_SERVER: int					= 0;
 		public static const	ACTION_REGISTER_LOGIC_SERVER_CONFIRM: int			= 1;
@@ -121,6 +126,15 @@ package com.xgame.godwar.config
 			| CONTROLLER_INFO;
 		public static const	INFO_HEART_BEAT_ECHO: int							= ACTION_HEART_BEAT_ECHO << 8
 			| CONTROLLER_INFO;
+		// MSG
+		public static const	MSG_SEND_PUBLIC: int								= ACTION_SEND_PUBLIC << 8
+			| CONTROLLER_MSG;
+		public static const	MSG_SEND_TEAM: int									= ACTION_SEND_TEAM << 8
+			| CONTROLLER_MSG;
+		public static const	MSG_SEND_PRIVATE: int								= ACTION_SEND_PRIVATE << 8
+			| CONTROLLER_MSG;
+		public static const	MSG_SEND_WORLD: int									= ACTION_SEND_WORLD << 8
+			| CONTROLLER_MSG;
 		// BASE
 		public static const	BASE_VERIFY_MAP: int								= ACTION_VERIFY_MAP << 8
 			| CONTROLLER_BASE;

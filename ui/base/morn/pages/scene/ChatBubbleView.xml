@@ -1,0 +1,4 @@
+<View sceneWidth="600" sceneHeight="400" sceneColor="0x999999" sceneBg="" layers="1,1,0,0,第 1 层">
+  <Image url="png.chat_bubble.default" x="0" y="0" layer="1" sizeGrid="35,10,10,20" var="imgBubble" width="50" height="40"/>
+  <Label text="label" x="5" y="5" layer="1" width="40" height="20" wordWrap="true" multiline="true" isHtml="true" align="left" autoSize="none" var="lblContent" size="12" font="Microsoft YaHei"/>
+</View>

@@ -72,8 +72,8 @@ package com.xgame.godwar.core
 			var _scene: Scene = evt.currentTarget as Scene;
 			_scene.removeEventListener(SceneEvent.SCENE_READY, onSceneReady);
 			
-			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
 			facade.sendNotification(ShowSceneMediatorCommand.SHOW_NOTE);
+			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
 			
 			var _proxy: SceneProxy = facade.retrieveProxy(SceneProxy.NAME) as SceneProxy;
 			if(_proxy == null)

@@ -48,6 +48,7 @@ package com.xgame.godwar.core.scene.proxy
 			_player.objectId = protocol.guid;
 			_player.accountId = protocol.accountId;
 			_player.roleId = protocol.roleId;
+			_player.name = protocol.nickName;
 			_player.speed = protocol.speed / GlobalContextConfig.FrameRate;
 			_player.positionX = protocol.x;
 			_player.positionY = protocol.y;

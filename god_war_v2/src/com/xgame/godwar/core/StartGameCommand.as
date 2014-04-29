@@ -23,6 +23,8 @@ package com.xgame.godwar.core
 	
 	import flash.geom.Point;
 	
+	import game.view.scene.ChatBubbleView;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
@@ -65,6 +67,7 @@ package com.xgame.godwar.core
 					_player.objectId = _protocol.guid;
 					_player.accountId = _protocol.accountId;
 					_player.roleId = _protocol.roleId;
+					_player.name = _protocol.nickName;
 					_player.speed = _protocol.speed / GlobalContextConfig.FrameRate;
 					_player.positionX = _protocol.x;
 					_player.positionY = _protocol.y;

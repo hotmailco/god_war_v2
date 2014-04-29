@@ -30,7 +30,7 @@ package com.xgame.godwar.core.scene.command
 			else
 			{
 				facade.sendNotification(LoaderMediator.SHOW_LOADER_NOTE);
-				ResourceManager.instance.load("scene_ui", null, onLoadComplete, onLoadProgress);
+				ResourceManager.instance.load("scene_ui_batch", null, onLoadComplete, onLoadProgress);
 			}
 		}
 		
