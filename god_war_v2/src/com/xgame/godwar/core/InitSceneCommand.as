@@ -6,6 +6,7 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
+	import com.xgame.godwar.core.scene.proxy.ChatProxy;
 	import com.xgame.godwar.core.scene.proxy.MapProxy;
 	import com.xgame.godwar.core.scene.proxy.SceneProxy;
 	import com.xgame.util.debug.Debug;
@@ -80,6 +81,10 @@ package com.xgame.godwar.core
 			{
 				_proxy = new SceneProxy();
 				facade.registerProxy(_proxy);
+			}
+			if(!facade.hasProxy(ChatProxy.NAME))
+			{
+				facade.registerProxy(new ChatProxy());
 			}
 			_proxy.updatePlayerStatus();
 		}

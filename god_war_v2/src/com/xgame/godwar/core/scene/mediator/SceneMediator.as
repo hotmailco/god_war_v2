@@ -3,6 +3,7 @@ package com.xgame.godwar.core.scene.mediator
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Strong;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
+	import com.xgame.util.StringUtils;
 	
 	import flash.events.MouseEvent;
 	
@@ -11,6 +12,7 @@ package com.xgame.godwar.core.scene.mediator
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
+	import com.xgame.godwar.core.scene.proxy.ChatProxy;
 	
 	public class SceneMediator extends Mediator implements IMediator
 	{
@@ -29,6 +31,7 @@ package com.xgame.godwar.core.scene.mediator
 			
 			component.addEventListener(MouseEvent.CLICK, onSceneUIClick);
 			component.btnCard.addEventListener(MouseEvent.CLICK, onButtonCardClick);
+			component.btnSend.addEventListener(MouseEvent.CLICK, onButtonSendClick);
 		}
 		
 		public function get component(): SceneView
@@ -94,6 +97,18 @@ package com.xgame.godwar.core.scene.mediator
 		private function onButtonCardClick(evt: MouseEvent): void
 		{
 			facade.sendNotification(ShowCardMediatorCommand.SHOW_NOTE);
+		}
+		
+		private function onButtonSendClick(evt: MouseEvent): void
+		{
+			var message: String = component.iptMessage.text;
+			if(!StringUtils.empty(message))
+			{
+				var proxy: ChatProxy = facade.retrieveProxy(ChatProxy.NAME) as ChatProxy;
+				proxy.sendMessagePublic(message);
+				
+				component.iptMessage.text = "";
+			}
 		}
 	}
 }

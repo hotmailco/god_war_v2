@@ -6,7 +6,7 @@ package com.xgame.godwar.command.send
 	public class Send_Msg_SendPrivate extends SendBase
 	{
 		public var guid: String;
-		public var message: String;
+		public var content: String;
 		
 		public function Send_Msg_SendPrivate()
 		{
@@ -21,9 +21,9 @@ package com.xgame.godwar.command.send
 			_byteData.writeByte(TYPE_STRING);
 			_byteData.writeUTF(guid);
 			
-			_byteData.writeInt(message.length);
+			_byteData.writeInt(content.length);
 			_byteData.writeByte(TYPE_STRING);
-			_byteData.writeUTF(message);
+			_byteData.writeUTF(content);
 		}
 	}
 }

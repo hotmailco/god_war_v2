@@ -12,6 +12,8 @@ package com.xgame.common.display
 	
 	import flash.geom.Point;
 	
+	import morn.core.components.View;
+	
 	public class PlayerDisplay extends ActionDisplay implements IBattle
 	{
 		protected var _accountId: Int64;
@@ -30,6 +32,7 @@ package com.xgame.common.display
 		
 		protected var _characterName: String;
 		protected var _characterLevel: uint;
+		protected var _chatBubble: View;
 		
 		public function PlayerDisplay(behavoir: Behavior = null)
 		{
@@ -293,6 +296,18 @@ package com.xgame.common.display
 		public function set roleId(value:Int64):void
 		{
 			_roleId = value;
+		}
+
+		public function get chatBubble():View
+		{
+			return _chatBubble;
+		}
+
+		public function set chatBubble(value:View):void
+		{
+			_chatBubble = value;
+			
+			addAdditionalDisplay(_chatBubble);
 		}
 
 

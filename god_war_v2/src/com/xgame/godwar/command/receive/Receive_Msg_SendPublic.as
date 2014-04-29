@@ -9,7 +9,7 @@ package com.xgame.godwar.command.receive
 	public class Receive_Msg_SendPublic extends ReceiveBase
 	{
 		public var guid: String;
-		public var message: String;
+		public var content: String;
 		
 		public function Receive_Msg_SendPublic()
 		{
@@ -35,9 +35,9 @@ package com.xgame.godwar.command.receive
 							{
 								guid = bytes.readUTFBytes(length);
 							}
-							else if (StringUtils.empty(message))
+							else if (StringUtils.empty(content))
 							{
-								message = bytes.readUTFBytes(length);
+								content = bytes.readUTFBytes(length);
 							}
 							break;
 					}

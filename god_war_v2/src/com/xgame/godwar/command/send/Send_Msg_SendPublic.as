@@ -5,7 +5,7 @@ package com.xgame.godwar.command.send
 	
 	public class Send_Msg_SendPublic extends SendBase
 	{
-		public var message: String;
+		public var content: String;
 		
 		public function Send_Msg_SendPublic()
 		{
@@ -16,9 +16,9 @@ package com.xgame.godwar.command.send
 		{
 			super.fill();
 			
-			_byteData.writeInt(message.length);
+			_byteData.writeInt(content.length);
 			_byteData.writeByte(TYPE_STRING);
-			_byteData.writeUTF(message);
+			_byteData.writeUTF(content);
 		}
 	}
 }
