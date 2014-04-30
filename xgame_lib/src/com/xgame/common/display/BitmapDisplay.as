@@ -160,15 +160,27 @@ package com.xgame.common.display
 				_graphic = null;
 			}
 			
-			if(!this.NSCamera::inScene)
+			_behavior.dispose();
+			_behavior = null;
+			
+			_render.dispose();
+			_render = null;
+			
+			removeChild(_buffer);
+			_buffer = null;
+			
+			_rect = null;
+			
+			_childrenContainer.removeChildren();
+			_childrenContainer = null;
+			while(_childrenDisplay.length > 0)
 			{
-				canBeAttack = false;
+				_childrenDisplay[0].dispose();
+				_childrenDisplay.splice(0, 1);
 			}
-			else
-			{
-				this.NSCamera::inScene = false;
-				this.NSCamera::shadeOut(dispose);
-			}
+			_childrenDisplay = null;
+			
+			_parentDisplay = null;
 		}
 		
 		public function rebuild(): void

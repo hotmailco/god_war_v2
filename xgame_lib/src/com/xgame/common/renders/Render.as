@@ -35,5 +35,10 @@ package com.xgame.common.renders
 				_target = value;
 			}
 		}
+		
+		public function dispose(): void
+		{
+			_target = null;
+		}
 	}
 }

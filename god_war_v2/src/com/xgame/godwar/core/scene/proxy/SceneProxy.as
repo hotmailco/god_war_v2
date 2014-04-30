@@ -1,10 +1,12 @@
 package com.xgame.godwar.core.scene.proxy
 {
 	
+	import com.greensock.TweenLite;
 	import com.xgame.common.display.PlayerDisplay;
 	import com.xgame.common.renders.Render;
 	import com.xgame.core.protocol.ProtocolList;
 	import com.xgame.core.scene.Scene;
+	import com.xgame.godwar.command.receive.Receive_Scene_RemovePlayer;
 	import com.xgame.godwar.command.receive.Receive_Scene_ShowPlayer;
 	import com.xgame.godwar.command.send.Send_Base_UpdatePlayerStatus;
 	import com.xgame.godwar.config.GlobalContextConfig;
@@ -27,6 +29,9 @@ package com.xgame.godwar.core.scene.proxy
 			
 			CommandManager.instance.add(SocketContextConfig.SCENE_SHOW_PLAYER, onPlayerShow);
 			ProtocolList.instance.bind(SocketContextConfig.SCENE_SHOW_PLAYER, Receive_Scene_ShowPlayer);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_REMOVE_PLAYER, onPlayerRemove);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_REMOVE_PLAYER, Receive_Scene_RemovePlayer);
 		}
 		
 		public function updatePlayerStatus(): void
@@ -57,6 +62,18 @@ package com.xgame.godwar.core.scene.proxy
 			_player.render = _render;
 			
 			Scene.instance.addObject(_player);
+		}
+		
+		private function onPlayerRemove(protocol: Receive_Scene_RemovePlayer): void
+		{
+			var player: PlayerDisplay = Scene.instance.getDisplayByGuid(protocol.guid) as PlayerDisplay;
+			if(player != null)
+			{
+				TweenLite.to(player, .5, {alpha: 0, onComplete: function(): void
+				{
+					Scene.instance.removeObject(player);
+				}});
+			}
 		}
 	}
 }

@@ -165,8 +165,8 @@ package com.xgame.core.scene
 			if(_layerDisplay.contains(value))
 			{
 				_layerDisplay.removeChild(value);
-				value.NSCamera::inScene = false;
-				value.NSCamera::shadeOut();
+//				value.NSCamera::inScene = false;
+//				value.NSCamera::shadeOut();
 			}
 		}
 		

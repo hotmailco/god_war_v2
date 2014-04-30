@@ -1,5 +1,6 @@
 package com.xgame.godwar.core.scene.proxy
 {
+	import com.xgame.common.display.PlayerDisplay;
 	import com.xgame.core.protocol.ProtocolList;
 	import com.xgame.core.scene.Scene;
 	import com.xgame.godwar.command.receive.Receive_Info_AccountRole;
@@ -7,6 +8,7 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.godwar.command.send.Send_Msg_SendPublic;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
+	import com.xgame.godwar.manager.ChatBubbleManager;
 	import com.xgame.manager.CommandManager;
 	
 	import flash.text.TextFieldAutoSize;
@@ -44,19 +46,15 @@ package com.xgame.godwar.core.scene.proxy
 			var p: Receive_Info_AccountRole = proxy.getData() as Receive_Info_AccountRole;
 			if(protocol.guid == p.guid)
 			{
-				if(Scene.instance.player.chatBubble == null)
-				{
-					Scene.instance.player.chatBubble = new ChatBubbleView();
-				}
-				var bubble: ChatBubbleView = Scene.instance.player.chatBubble as ChatBubbleView;
-				bubble.lblContent.autoSize = TextFieldAutoSize.LEFT;
-				bubble.lblContent.text = protocol.content;
-				bubble.x = -20;
-				bubble.y = -Scene.instance.player.graphic.frameHeight - bubble.height;
+				ChatBubbleManager.instance.showBubble(Scene.instance.player, protocol.content);
 			}
 			else
 			{
-				
+				var player: PlayerDisplay = Scene.instance.getDisplayByGuid(protocol.guid) as PlayerDisplay;
+				if(player != null)
+				{
+					ChatBubbleManager.instance.showBubble(player, protocol.content);
+				}
 			}
 		}
 	}

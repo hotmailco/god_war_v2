@@ -148,7 +148,7 @@ package com.xgame.common.display
 		 */
 		public function render(target: Bitmap, line: uint, frame: uint): void
 		{
-			if(_frameArray != null)
+			if(_frameArray != null && _frameArray.length > 0)
 			{
 				target.bitmapData = _frameArray[line][frame].bitmapData;
 			}
@@ -163,22 +163,23 @@ package com.xgame.common.display
 			{
 				_bitmap = null;
 			}
-			for(var i: String in _bitmapDictionary)
-			{
-				for(var y: uint = 0; y < _frameLine; y++)
-				{
-					for(var x: uint = 0; x < _frameTotal; x++)
-					{
-						_bitmapDictionary[i][y][x] = null;
-						delete _bitmapDictionary[i][y][x];
-					}
-					_bitmapDictionary[i][y].splice(0, _frameTotal);
-				}
-				_bitmapDictionary[i].splice(0, _frameLine);
-				delete _bitmapDictionary[i];
-				_bitmapDictionary[i] = null;
-			}
-			for(i in _actionDataDictionary)
+//			for(var i: String in _bitmapDictionary)
+//			{
+//				for(var y: uint = 0; y < _frameLine; y++)
+//				{
+//					for(var x: uint = 0; x < _frameTotal; x++)
+//					{
+//						_bitmapDictionary[i][y][x] = null;
+//						delete _bitmapDictionary[i][y][x];
+//					}
+//					_bitmapDictionary[i][y].splice(0, _frameTotal);
+//				}
+//				_bitmapDictionary[i].splice(0, _frameLine);
+//				delete _bitmapDictionary[i];
+//				_bitmapDictionary[i] = null;
+//			}
+			_bitmapDictionary = null;
+			for(var i: String in _actionDataDictionary)
 			{
 				delete _actionDataDictionary[i];
 				_actionDataDictionary[i] = null;
