@@ -3,6 +3,7 @@ package
 	import com.xgame.manager.LanguageManager;
 	import com.xgame.util.RequestUtils;
 	import com.xgame.util.VersionUtils;
+	import com.xgame.util.debug.Debug;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -18,6 +19,7 @@ package
 	import flash.system.ApplicationDomain;
 	import flash.system.Capabilities;
 	import flash.system.LoaderContext;
+	import flash.system.Security;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -33,6 +35,9 @@ package
 		
 		public function IndexLoader()
 		{
+			UIManager.init(this);
+			Debug.init();
+			
 			LanguageManager.language = Capabilities.language;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;

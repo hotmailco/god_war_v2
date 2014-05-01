@@ -11,10 +11,6 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.godwar.manager.ChatBubbleManager;
 	import com.xgame.manager.CommandManager;
 	
-	import flash.text.TextFieldAutoSize;
-	
-	import game.view.scene.ChatBubbleView;
-	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	

@@ -2,8 +2,7 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
-	
-	import starling.core.Starling;
+	import flash.system.Security;
 	
 	[SWF(width="1200", height="800", backgroundColor="0x000000",frameRate="30")]
 	public class Main extends Sprite
@@ -11,6 +10,7 @@ package
 		public function Main()
 		{
 			super();
+			Security.allowDomain("*");
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -21,7 +21,6 @@ package
 			{
 				removeEventListener(Event.ADDED_TO_STAGE, init);
 			}
-			UIManager.init(this);
 			GameFacade.getInstance().start(this);
 		}
 	}

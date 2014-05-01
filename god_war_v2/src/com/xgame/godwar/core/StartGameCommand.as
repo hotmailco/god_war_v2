@@ -7,12 +7,10 @@ package com.xgame.godwar.core
 	import com.xgame.core.Camera;
 	import com.xgame.core.map.Map;
 	import com.xgame.core.scene.Scene;
-	import com.xgame.enum.Action;
 	import com.xgame.event.scene.InteractionEvent;
 	import com.xgame.godwar.command.receive.Receive_Info_AccountRole;
 	import com.xgame.godwar.command.send.Send_Move_RequestFindPath;
 	import com.xgame.godwar.config.GlobalContextConfig;
-	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
 	import com.xgame.godwar.core.scene.proxy.MoveProxy;
 	import com.xgame.manager.CommandManager;
@@ -22,8 +20,6 @@ package com.xgame.godwar.core
 	import com.xgame.util.debug.Debug;
 	
 	import flash.geom.Point;
-	
-	import game.view.scene.ChatBubbleView;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;

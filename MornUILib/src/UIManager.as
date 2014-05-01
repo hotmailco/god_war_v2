@@ -29,6 +29,8 @@ package {
 		public static var uiLayer: Sprite = new Sprite();
 		/**场景层*/
 		public static var sceneLayer: Sprite = new Sprite();
+		/**调试信息层*/
+		public static var debugLayer: Sprite = new Sprite();
 		/**资源管理器*/
 		public static var asset:AssetManager = new AssetManager();
 		/**加载管理器*/
@@ -73,6 +75,7 @@ package {
 			stage.addChild(dialog);
 			stage.addChild(tip);
 			stage.addChild(log);
+			stage.addChild(debugLayer);
 			
 			//如果UI视图是加载模式，则进行整体加载
 			if (Boolean(Config.uiPath)) {

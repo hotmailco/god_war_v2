@@ -34,7 +34,7 @@ package com.xgame.godwar.core.login.command
 			else
 			{
 				facade.sendNotification(LoaderMediator.SHOW_LOADER_NOTE);
-				ResourceManager.instance.load("login_ui_batch", null, onLoadComplete, onLoadProgress);
+				ResourceManager.instance.load("login_ui", null, onLoadComplete, onLoadProgress);
 			}
 		}
 		

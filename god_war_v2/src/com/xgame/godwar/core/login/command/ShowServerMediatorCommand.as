@@ -4,9 +4,7 @@ package com.xgame.godwar.core.login.command
 	import com.greensock.loading.core.LoaderCore;
 	import com.xgame.godwar.core.InitGameSocketCommand;
 	import com.xgame.godwar.core.loader.mediator.LoaderMediator;
-	import com.xgame.godwar.core.login.mediator.LoginMediator;
 	import com.xgame.godwar.core.login.mediator.ServerMediator;
-	import com.xgame.godwar.core.login.proxy.LoginProxy;
 	import com.xgame.godwar.core.login.proxy.ServerListProxy;
 	import com.xgame.manager.ResourceManager;
 	
@@ -43,7 +41,7 @@ package com.xgame.godwar.core.login.command
 			else
 			{
 				facade.sendNotification(LoaderMediator.SHOW_LOADER_NOTE);
-				ResourceManager.instance.load("login_ui_batch", null, onLoadComplete, onLoadProgress);
+				ResourceManager.instance.load("login_ui", null, onLoadComplete, onLoadProgress);
 			}
 		}
 		

@@ -24,7 +24,7 @@ package com.xgame.godwar.core.login.command
 		
 		override public function execute(notification:INotification):void
 		{
-			ResourceManager.instance.load("login_ui_batch", null, onLoadComplete, onLoadProgress, onLoadIOError);
+			ResourceManager.instance.load("login_ui", null, onLoadComplete, onLoadProgress, onLoadIOError);
 			facade.sendNotification(LoaderMediator.SHOW_LOADER_NOTE);
 			facade.sendNotification(LoaderMediator.SET_LOADER_TITLE_NOTE, LanguageManager.getInstance().lang("load_loagin_ui"));
 		}

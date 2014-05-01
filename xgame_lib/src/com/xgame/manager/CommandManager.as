@@ -12,6 +12,7 @@ package com.xgame.manager
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.system.Security;
 	import flash.utils.ByteArray;
 
 	public class CommandManager extends BaseManager
@@ -98,6 +99,7 @@ package com.xgame.manager
 			{
 				Debug.info(this, "服务器连接中...(IP=" + host + ", Port=" + port + ")");
 			}
+			Security.loadPolicyFile("xmlsocket://" + host + ":1843");
 			_socket.connect(host, port);
 		}
 		

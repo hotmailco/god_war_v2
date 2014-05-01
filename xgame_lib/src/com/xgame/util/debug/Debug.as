@@ -1,10 +1,17 @@
 package com.xgame.util.debug
 {
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import flash.utils.ByteArray;
 	import flash.utils.getQualifiedClassName;
 	
 	public class Debug
 	{
+		private static var _btn: Sprite = new Sprite();
+		private static var _container: Sprite = new Sprite();
+		private static var _text: TextField = new TextField();
 		private static var _logId: uint = 1;
 		public static const LEVEL_INFO: Number = 0;
 		public static const LEVEL_WARNING: Number = 1;
@@ -15,6 +22,46 @@ package com.xgame.util.debug
 		{
 		}
 		
+		public static function init(): void
+		{
+			UIManager.debugLayer.addChild(_btn);
+			_btn.graphics.beginFill(0xFF00FF);
+			_btn.graphics.drawRect(0, 0, 120, 50);
+			_btn.graphics.endFill();
+			_btn.x = UIManager.stage.stageWidth - _btn.width;
+			_btn.y = 0;
+			
+			_btn.addEventListener(MouseEvent.CLICK, function(evt: MouseEvent): void
+			{
+				if(_container.visible)
+				{
+					_container.visible = false;
+				}
+				else
+				{
+					_container.visible = true;
+				}
+			});
+			
+			UIManager.debugLayer.addChild(_container);
+			_container.graphics.beginFill(0x000000, .5);
+			_container.graphics.drawRect(0, 0, 600, 300);
+			_container.graphics.endFill();
+			_container.x = (UIManager.stage.stageWidth - 600) >> 1;
+			_container.y = (UIManager.stage.stageHeight - 300) >> 1;
+			
+			var format: TextFormat = new TextFormat();
+			format.size = 12;
+			format.color = 0xFFFFFF;
+			
+			_text.defaultTextFormat = format;
+			_text.wordWrap = true;
+			_text.multiline = true;
+			_text.width = 600;
+			_text.height = 300;
+			_container.addChild(_text);
+		}
+		
 		private static function log(sender: *, content: *, level: Number): void
 		{
 			var output: String;
@@ -22,10 +69,11 @@ package com.xgame.util.debug
 				_logId + ". " +
 				"[" + _levelArray[level] + "]" +
 				"[" + getClassName(sender) + " - " +
-				getCodePosition() + " - " +
+//				getCodePosition() + " - " +
 				getDate() + "]\n" + 
-				getContent(content);
+				getContent(content) + "\n";
 			trace(output);
+			_text.appendText(output);
 			_logId++;
 		}
 		
