@@ -5,7 +5,6 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.login.command.RequestBindSessionCommand;
-	import com.xgame.godwar.core.login.mediator.ServerMediator;
 	import com.xgame.godwar.parameter.ServerListParameter;
 	import com.xgame.manager.CommandManager;
 	
@@ -32,7 +31,8 @@ package com.xgame.godwar.core
 			}
 			
 			var _commandCenter: CommandManager = CommandManager.instance;
-			_commandCenter.close();
+			_commandCenter.dispose();
+			_commandCenter = CommandManager.instance;
 			_commandCenter.addEventListener(CommandEvent.CLOSED_EVENT, onClosed);
 			_commandCenter.addEventListener(CommandEvent.CONNECTED_EVENT, onConnected);
 			_commandCenter.addEventListener(CommandEvent.IOERROR_EVENT, onIOError);
