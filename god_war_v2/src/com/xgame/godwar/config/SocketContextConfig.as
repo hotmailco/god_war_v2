@@ -9,7 +9,7 @@ package com.xgame.godwar.config
 	 */
 	public final class SocketContextConfig 
 	{
-		public static var login_ip: String = 'server.profzone.net';
+		public static var login_ip: String = '';
 		public static var login_port: int = 9040;
 		public static var server_ip: String = '';
 		public static var server_port: int = 0;

@@ -31,8 +31,7 @@ package com.xgame.godwar.core
 			}
 			
 			var _commandCenter: CommandManager = CommandManager.instance;
-			_commandCenter.dispose();
-			_commandCenter = CommandManager.instance;
+			_commandCenter.close();
 			_commandCenter.addEventListener(CommandEvent.CLOSED_EVENT, onClosed);
 			_commandCenter.addEventListener(CommandEvent.CONNECTED_EVENT, onConnected);
 			_commandCenter.addEventListener(CommandEvent.IOERROR_EVENT, onIOError);
@@ -65,6 +64,8 @@ package com.xgame.godwar.core
 		{
 			facade.removeCommand(CONNECT_SOCKET_NOTE);
 			facade.sendNotification(LoadingIconMediator.HIDE_NOTE);
+			
+//			onConnected(event);
 		}
 		
 		private function onSecurityError(event: CommandEvent): void
