@@ -102,6 +102,7 @@ package com.xgame.common.display
 		{
 			if(_bitmap != null)
 			{
+				Debug.info(this, "_bitmap不为空");
 				var frameConfig: Array;
 				try
 				{
@@ -112,12 +113,15 @@ package com.xgame.common.display
 					frameConfig = null;
 				}
 				var name: String = String(_bitmap["name"]);
+				Debug.info(this, "name：" + name);
 				var bmArray: Vector.<Vector.<BitmapFrame>> = ResourceManager.instance.getBitmapClip(name);
 				if(bmArray == null)
 				{
+					Debug.info(this, "bmArray不为空");
 					bmArray = ResourceManager.clipBitmapData(_bitmap, _frameLine, _frameTotal, _frameWidth, _frameHeight, frameConfig);
 					ResourceManager.instance.cacheBitmapClip(name, bmArray);
 				}
+				Debug.info(this, "bmArray: " + bmArray.length);
 				return bmArray;
 			}
 			else
@@ -150,9 +154,6 @@ package com.xgame.common.display
 		{
 			if(_frameArray != null && _frameArray.length > 0)
 			{
-				Debug.info(this, line + ", " + frame + " : ");
-				var bitmap: Bitmap = new Bitmap(_frameArray[line][frame].bitmapData);
-				UIManager.debugLayer.addChild(bitmap);
 				target.bitmapData = _frameArray[line][frame].bitmapData;
 			}
 		}
