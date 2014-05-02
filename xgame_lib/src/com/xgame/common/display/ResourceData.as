@@ -2,6 +2,7 @@ package com.xgame.common.display
 {
 	import com.demonsters.debugger.MonsterDebugger;
 	import com.xgame.manager.ResourceManager;
+	import com.xgame.util.debug.Debug;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

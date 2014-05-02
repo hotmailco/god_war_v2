@@ -6,11 +6,13 @@ package com.xgame.common.display
 	import com.xgame.core.Camera;
 	import com.xgame.enum.Direction;
 	import com.xgame.ns.NSCamera;
+	import com.xgame.util.debug.Debug;
 	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.utils.getTimer;
 
 	public class BitmapDisplay extends StaticDisplay
 	{

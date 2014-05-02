@@ -1,5 +1,6 @@
 package com.xgame.godwar.core
 {
+	import com.demonsters.debugger.MonsterDebugger;
 	import com.xgame.common.behavior.PlayerBehavior;
 	import com.xgame.common.display.BitmapDisplay;
 	import com.xgame.common.display.PlayerDisplay;
@@ -92,7 +93,7 @@ package com.xgame.godwar.core
 				protocol.endY = endPoint.y;
 				
 				CommandManager.instance.send(protocol);
-				Debug.info(this, "start x=" + Scene.instance.player.positionX + ", y=" + Scene.instance.player.positionY + ", end x=" + endPoint.x + ", y=" + endPoint.y);
+//				MonsterDebugger.trace(this, "start x=" + Scene.instance.player.positionX + ", y=" + Scene.instance.player.positionY + ", end x=" + endPoint.x + ", y=" + endPoint.y);
 			}
 		}
 	}

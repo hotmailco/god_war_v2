@@ -8,6 +8,7 @@ package com.xgame.core.scene
 	import com.xgame.event.map.MapEvent;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.ns.NSCamera;
+	import com.xgame.util.debug.Debug;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -283,14 +284,8 @@ package com.xgame.core.scene
 				this.NSCamera::cut();
 			}
 			
-			
-			while(true)
+			while(_currentRenderIndex < _renderList.length)
 			{
-				if(_currentRenderIndex >= _renderList.length)
-				{
-					_currentRenderIndex = 0;
-					break;
-				}
 				item = _renderList[_currentRenderIndex];
 				if(item == null)
 				{
@@ -305,6 +300,7 @@ package com.xgame.core.scene
 					break;
 				}
 			}
+			_currentRenderIndex = 0;
 		}
 		
 		NSCamera function cut(): void

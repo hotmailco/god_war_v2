@@ -73,6 +73,7 @@ package com.xgame.util.debug
 				getDate() + "]\n" + 
 				getContent(content) + "\n";
 			trace(output);
+//			_text.text = output;
 			_text.appendText(output);
 			_logId++;
 		}

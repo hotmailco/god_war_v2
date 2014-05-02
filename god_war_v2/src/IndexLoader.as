@@ -12,9 +12,11 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
+	import flash.events.UncaughtErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
@@ -35,12 +37,31 @@ package
 		
 		public function IndexLoader()
 		{
-//			if(CONFIG::DebugMode)
-//			{
-//				MonsterDebugger.initialize(this);
-//				Debug.init();
-//			}
+			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(evt: UncaughtErrorEvent): void
+			{
+				var message: String = "";
+				if(evt.error is Error)
+				{
+					message = (evt.error as Error).getStackTrace();
+					if(!message)
+					{
+						message = (evt.error as Error).message;
+					}
+				}
+				else if(evt.error is ErrorEvent)
+				{
+					message = ErrorEvent(evt.error).text;
+				}
+				else
+				{
+					message = evt.error.toString();
+				}
+				Debug.error(this, message);
+			});
 			UIManager.init(this);
+			
+//			MonsterDebugger.initialize(this);
+			Debug.init();
 			
 			LanguageManager.language = Capabilities.language;
 			stage.align = StageAlign.TOP_LEFT;
