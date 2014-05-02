@@ -1,7 +1,7 @@
 package com.xgame.common.display
 {
+	import com.demonsters.debugger.MonsterDebugger;
 	import com.xgame.manager.ResourceManager;
-	import com.xgame.util.debug.Debug;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -102,7 +102,6 @@ package com.xgame.common.display
 		{
 			if(_bitmap != null)
 			{
-				Debug.info(this, "_bitmap不为空");
 				var frameConfig: Array;
 				try
 				{
@@ -113,15 +112,12 @@ package com.xgame.common.display
 					frameConfig = null;
 				}
 				var name: String = String(_bitmap["name"]);
-				Debug.info(this, "name：" + name);
 				var bmArray: Vector.<Vector.<BitmapFrame>> = ResourceManager.instance.getBitmapClip(name);
 				if(bmArray == null)
 				{
-					Debug.info(this, "bmArray不为空");
 					bmArray = ResourceManager.clipBitmapData(_bitmap, _frameLine, _frameTotal, _frameWidth, _frameHeight, frameConfig);
 					ResourceManager.instance.cacheBitmapClip(name, bmArray);
 				}
-				Debug.info(this, "bmArray: " + bmArray.length);
 				return bmArray;
 			}
 			else
@@ -142,6 +138,10 @@ package com.xgame.common.display
 			_fps = fps;
 			_bitmap = data;
 			
+			if(CONFIG::DebugMode)
+			{
+				MonsterDebugger.trace(this, _bitmap);
+			}
 			_bitmapDictionary[action] = prepareBitmapArray();
 			_actionDataDictionary[action] = new ActionData(action, frameTotal, frameLine, fps);
 			_bitmap = null;

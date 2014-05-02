@@ -1,5 +1,6 @@
 package 
 {
+	import com.demonsters.debugger.MonsterDebugger;
 	import com.xgame.manager.LanguageManager;
 	import com.xgame.util.RequestUtils;
 	import com.xgame.util.VersionUtils;
@@ -34,8 +35,12 @@ package
 		
 		public function IndexLoader()
 		{
+//			if(CONFIG::DebugMode)
+//			{
+//				MonsterDebugger.initialize(this);
+//				Debug.init();
+//			}
 			UIManager.init(this);
-			Debug.init();
 			
 			LanguageManager.language = Capabilities.language;
 			stage.align = StageAlign.TOP_LEFT;

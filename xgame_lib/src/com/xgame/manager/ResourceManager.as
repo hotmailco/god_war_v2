@@ -1,14 +1,13 @@
 package com.xgame.manager
 {
+	import com.demonsters.debugger.MonsterDebugger;
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.LoaderMax;
-	import com.greensock.loading.SWFLoader;
 	import com.greensock.loading.core.LoaderCore;
 	import com.greensock.loading.utils.LoaderUtils;
 	import com.xgame.common.display.BitmapFrame;
 	import com.xgame.common.display.ResourceData;
 	import com.xgame.util.Reflection;
-	import com.xgame.util.debug.Debug;
 	
 	import flash.display.BitmapData;
 	import flash.errors.IllegalOperationError;
@@ -95,7 +94,7 @@ package com.xgame.manager
 				{
 					CONFIG::DebugMode
 					{
-						Debug.error(this, "资源不存在 ( " + name + " )");
+						MonsterDebugger.trace(this, "资源不存在 ( " + name + " )");
 					}
 				}
 			}
@@ -218,7 +217,7 @@ package com.xgame.manager
 				{
 					CONFIG::DebugMode
 					{
-						Debug.error(this, "加载资源失败 ( " + name + " )");
+						MonsterDebugger.trace(this, "加载资源失败 ( " + name + " )");
 					}
 					return;
 				}
