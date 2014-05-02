@@ -150,6 +150,9 @@ package com.xgame.common.display
 		{
 			if(_frameArray != null && _frameArray.length > 0)
 			{
+				Debug.info(this, line + ", " + frame + " : ");
+				var bitmap: Bitmap = new Bitmap(_frameArray[line][frame].bitmapData);
+				UIManager.debugLayer.addChild(bitmap);
 				target.bitmapData = _frameArray[line][frame].bitmapData;
 			}
 		}
@@ -217,10 +220,8 @@ package com.xgame.common.display
 		
 		public function syncActionResource(): void
 		{
-			Debug.info(this, "同步动作资源 - " + _currentAction);
 			if(_bitmapDictionary[_currentAction] != null)
 			{
-				Debug.info(this, "同步动作资源 - _bitmapDictionary 不为空" + _currentAction);
 				_frameArray = _bitmapDictionary[_currentAction];
 				var actionData: ActionData = _actionDataDictionary[_currentAction];
 				if(actionData != null)
