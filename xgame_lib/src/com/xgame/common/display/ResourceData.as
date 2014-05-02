@@ -5,7 +5,6 @@ package com.xgame.common.display
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.errors.IllegalOperationError;
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	

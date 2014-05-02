@@ -10,6 +10,7 @@ package com.xgame.manager
 	import com.xgame.util.Reflection;
 	import com.xgame.util.debug.Debug;
 	
+	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.errors.IllegalOperationError;
 	import flash.geom.Point;
@@ -127,13 +128,19 @@ package com.xgame.manager
 			var vars: Object = _item.vars;
 			var resource: ResourceData = vars.vars.resource as ResourceData;
 			
+			Debug.info(this, "资源加载完成 - " + _item.name);
 			if(resource != null)
 			{
+				Debug.info(this, "资源加载完成 - ResourceData不为空");
 				var name: String = _item.name;
 				var action: int = int(vars.vars.action);
 				var _bitmapData: BitmapData = getBitmapData(name);
 				if(_bitmapData != null)
 				{
+					Debug.info(this, "资源加载完成 - 已获取BitmapData - " + name);
+					var bitmap: Bitmap = new Bitmap(_bitmapData);
+					UIManager.debugLayer.addChild(bitmap);
+					bitmap.x = action * 100;
 					resource.getResource(_bitmapData, action, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
 					resource.syncActionResource();
 					resource.target.rebuild();
