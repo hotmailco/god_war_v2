@@ -1,6 +1,7 @@
 package com.xgame.common.display
 {
 	import com.xgame.manager.ResourceManager;
+	import com.xgame.util.debug.Debug;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -216,8 +217,10 @@ package com.xgame.common.display
 		
 		public function syncActionResource(): void
 		{
+			Debug.info(this, "同步动作资源 - " + _currentAction);
 			if(_bitmapDictionary[_currentAction] != null)
 			{
+				Debug.info(this, "同步动作资源 - _bitmapDictionary 不为空" + _currentAction);
 				_frameArray = _bitmapDictionary[_currentAction];
 				var actionData: ActionData = _actionDataDictionary[_currentAction];
 				if(actionData != null)
