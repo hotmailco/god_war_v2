@@ -65,6 +65,8 @@ package com.xgame.godwar.config
 		public static const	ACTION_REQUEST_ENTER_ROOM_LOGICSERVER: int			= 4;
 		public static const	ACTION_SHOW_PLAYER: int								= 5;
 		public static const	ACTION_REMOVE_PLAYER: int							= 6;
+		public static const	ACTION_SHOW_NPC: int								= 7;
+		public static const	ACTION_REMOVE_NPC: int								= 8;
 		// BATTLE ROOM
 		public static const	ACTION_INIT_ROOM_DATA: int							= 0;
 		public static const	ACTION_PLAYER_ENTER_ROOM_NOTICE: int				= 1;
@@ -167,6 +169,10 @@ package com.xgame.godwar.config
 		public static const	SCENE_SHOW_PLAYER: int							= ACTION_SHOW_PLAYER << 8
 			| CONTROLLER_SCENE;
 		public static const	SCENE_REMOVE_PLAYER: int							= ACTION_REMOVE_PLAYER << 8
+			| CONTROLLER_SCENE;
+		public static const	SCENE_SHOW_NPC: int								= ACTION_SHOW_NPC << 8
+			| CONTROLLER_SCENE;
+		public static const	SCENE_REMOVE_NPC: int							= ACTION_REMOVE_NPC << 8
 			| CONTROLLER_SCENE;
 		// BATTLE ROOM
 		public static const	BATTLEROOM_INIT_ROOM: int						= ACTION_INIT_ROOM_DATA << 8
