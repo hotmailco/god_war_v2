@@ -54,7 +54,7 @@ package com.xgame.godwar.core
 			facade.removeCommand(CONNECT_SOCKET_NOTE);
 			facade.sendNotification(LoadingIconMediator.HIDE_NOTE);
 			
-			onConnected(event);
+//			onConnected(event);
 		}
 		
 		private function onSecurityError(event: CommandEvent): void
