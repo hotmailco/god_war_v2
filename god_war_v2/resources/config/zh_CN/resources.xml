@@ -7,6 +7,7 @@
 	</LoaderMax>
 	<SWFLoader name='scene_card_ui' url='assets/scene_card.swf' autoPlay= "false" version="1.0.0"/>
 	
+	<SWFLoader name='assets.character.char3_0' url='assets/character/character_char3_0.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='assets.character.char4_0' url='assets/character/character_char4_0.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='assets.character.char4_1' url='assets/character/character_char4_1.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='assets.character.char4_2' url='assets/character/character_char4_2.swf' autoPlay= "false" version="1.0.0"/>

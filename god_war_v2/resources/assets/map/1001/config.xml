@@ -7,14 +7,15 @@
   <blockNumWidth>160</blockNumWidth>
   <blockNumHeight>100</blockNumHeight>
   <npcList>
-  	<npc id="110001">
+  	<npc>
+  	    <id>110001</id>
   		<prependName>风暴战将</prependName>
 		<name>加斯特的幻像</name>
 		<level>99</level>
 		<health>9999999</health>
 		<mana>9999999</mana>
 		<x>700</x>
-		<y>500</y>
+		<y>400</y>
 		<action>0</action>
 		<direction>0</direction>
 		<resource>assets.character.char3</resource>

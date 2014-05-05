@@ -34,9 +34,9 @@ package com.xgame.common.display
 		protected var _characterLevel: uint;
 		protected var _chatBubble: View;
 		
-		public function PlayerDisplay(behavoir: Behavior = null)
+		public function PlayerDisplay(behavior: Behavior = null)
 		{
-			super(behavoir == null ? new NPCBehavior() : behavoir);
+			super(behavior == null ? new NPCBehavior() : behavior);
 			canBeAttack = true;
 		}
 		

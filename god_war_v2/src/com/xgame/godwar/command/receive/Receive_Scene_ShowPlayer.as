@@ -16,10 +16,6 @@ package com.xgame.godwar.command.receive
 		public var accountCash: Int64;
 		public var direction: int;
 		public var speed: Number;
-		public var currentHealth: int;
-		public var maxHealth: int;
-		public var currentMana: int;
-		public var maxMana: int;
 		public var currentEnergy: int;
 		public var maxEnergy: int;
 		public var x: Number;
@@ -30,10 +26,6 @@ package com.xgame.godwar.command.receive
 			super(SocketContextConfig.SCENE_SHOW_PLAYER);
 			direction = int.MIN_VALUE;
 			speed = Number.MIN_VALUE;
-			currentHealth = int.MIN_VALUE;
-			maxHealth = int.MIN_VALUE;
-			currentMana = int.MIN_VALUE;
-			maxMana = int.MIN_VALUE;
 			currentEnergy = int.MIN_VALUE;
 			maxEnergy = int.MIN_VALUE;
 			x = Number.MIN_VALUE;
@@ -92,26 +84,6 @@ package com.xgame.godwar.command.receive
 							if(direction == int.MIN_VALUE)
 							{
 								direction = data.readInt();
-								break;
-							}
-							else if(currentHealth == int.MIN_VALUE)
-							{
-								currentHealth = data.readInt();
-								break;
-							}
-							else if(maxHealth == int.MIN_VALUE)
-							{
-								maxHealth = data.readInt();
-								break;
-							}
-							else if(currentMana == int.MIN_VALUE)
-							{
-								currentMana = data.readInt();
-								break;
-							}
-							else if(maxMana == int.MIN_VALUE)
-							{
-								maxMana = data.readInt();
 								break;
 							}
 							else if(currentEnergy == int.MIN_VALUE)

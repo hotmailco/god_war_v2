@@ -37,6 +37,10 @@ package com.xgame.godwar.core
 			{
 				facade.registerCommand(ShowCardMediatorCommand.SHOW_NOTE, ShowCardMediatorCommand);
 			}
+			if(!facade.hasProxy(SceneProxy.NAME))
+			{
+				facade.registerProxy(new SceneProxy());
+			}
 		}
 		
 		override public function execute(notification:INotification):void
@@ -76,17 +80,11 @@ package com.xgame.godwar.core
 			facade.sendNotification(ShowSceneMediatorCommand.SHOW_NOTE);
 			facade.sendNotification(StartGameCommand.START_GAME_NOTE, _scene);
 			
-			var _proxy: SceneProxy = facade.retrieveProxy(SceneProxy.NAME) as SceneProxy;
-			if(_proxy == null)
-			{
-				_proxy = new SceneProxy();
-				facade.registerProxy(_proxy);
-			}
 			if(!facade.hasProxy(ChatProxy.NAME))
 			{
 				facade.registerProxy(new ChatProxy());
 			}
-			_proxy.updatePlayerStatus();
+//			_proxy.updatePlayerStatus();
 		}
 		
 		private function loadDebug(): void

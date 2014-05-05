@@ -17,7 +17,7 @@ package com.xgame.common.display
 		private var _follow: ActionDisplay;
 		private var _followDistance: Number;
 		private var _additionalDisplay: Sprite;
-		private var _lblName: Label;
+		protected var _lblName: Label;
 		
 		public function ActionDisplay(behavior: Behavior = null)
 		{
