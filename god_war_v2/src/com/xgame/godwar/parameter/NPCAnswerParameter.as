@@ -5,6 +5,7 @@ package com.xgame.godwar.parameter
 		public var content: String;
 		public var action: String;
 		public var position: int = int.MIN_VALUE;
+		public var command: String;
 		
 		public function NPCAnswerParameter()
 		{

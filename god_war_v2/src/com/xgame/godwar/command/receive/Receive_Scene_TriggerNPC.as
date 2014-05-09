@@ -55,6 +55,10 @@ package com.xgame.godwar.command.receive
 							{
 								answer.action = data.readUTFBytes(length);
 							}
+							else if(StringUtils.empty(answer.command))
+							{
+								answer.command = data.readUTFBytes(length);
+							}
 							break;
 						case TYPE_INT:
 							if(answer.position == int.MIN_VALUE)
@@ -66,7 +70,8 @@ package com.xgame.godwar.command.receive
 					
 					if(!StringUtils.empty(answer.content) && 
 						!StringUtils.empty(answer.action) && 
-						answer.position != int.MIN_VALUE)
+						answer.position != int.MIN_VALUE &&
+						answer.command != null)
 					{
 						content.answer.push(answer);
 						answer = new NPCAnswerParameter();

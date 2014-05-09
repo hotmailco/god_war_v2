@@ -102,6 +102,10 @@ package com.xgame.godwar.core.scene.mediator
 						CommandManager.instance.send(trigger);
 					}
 				}
+				else if(answer.action == "command")
+				{
+					facade.sendNotification(answer.command);
+				}
 				else if(answer.action == "close")
 				{
 					hide();
