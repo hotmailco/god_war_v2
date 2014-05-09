@@ -3,6 +3,7 @@ package com.xgame.godwar.core
 	import com.demonsters.debugger.MonsterDebugger;
 	import com.xgame.common.behavior.PlayerBehavior;
 	import com.xgame.common.display.BitmapDisplay;
+	import com.xgame.common.display.NPCDisplay;
 	import com.xgame.common.display.PlayerDisplay;
 	import com.xgame.common.renders.Render;
 	import com.xgame.core.Camera;
@@ -18,12 +19,12 @@ package com.xgame.godwar.core
 	import com.xgame.manager.HotkeyCenter;
 	import com.xgame.manager.ResourceManager;
 	import com.xgame.manager.TimerManager;
-	import com.xgame.util.debug.Debug;
 	
 	import flash.geom.Point;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	import com.xgame.godwar.command.send.Send_Scene_TriggerNPC;
 	
 	public class StartGameCommand extends SimpleCommand
 	{
@@ -85,15 +86,29 @@ package com.xgame.godwar.core
 			var clicker: BitmapDisplay = evt.clicker;
 			if(clicker == null)
 			{
-				var endPoint: Point = Map.instance.getWorldPosition(evt.stageX, evt.stageY);
-				var protocol: Send_Move_RequestFindPath = new Send_Move_RequestFindPath();
-				protocol.startX = Scene.instance.player.positionX;
-				protocol.startY = Scene.instance.player.positionY;
-				protocol.endX = endPoint.x;
-				protocol.endY = endPoint.y;
-				
-				CommandManager.instance.send(protocol);
-//				MonsterDebugger.trace(this, "start x=" + Scene.instance.player.positionX + ", y=" + Scene.instance.player.positionY + ", end x=" + endPoint.x + ", y=" + endPoint.y);
+				if(CommandManager.instance.connected)
+				{
+					var endPoint: Point = Map.instance.getWorldPosition(evt.stageX, evt.stageY);
+					var protocol: Send_Move_RequestFindPath = new Send_Move_RequestFindPath();
+					protocol.startX = Scene.instance.player.positionX;
+					protocol.startY = Scene.instance.player.positionY;
+					protocol.endX = endPoint.x;
+					protocol.endY = endPoint.y;
+					
+					CommandManager.instance.send(protocol);
+//					MonsterDebugger.trace(this, "start x=" + Scene.instance.player.positionX + ", y=" + Scene.instance.player.positionY + ", end x=" + endPoint.x + ", y=" + endPoint.y);
+				}
+			}
+			else if(clicker is NPCDisplay)
+			{
+				if(CommandManager.instance.connected)
+				{
+					var npc: NPCDisplay = clicker as NPCDisplay;
+					var trigger: Send_Scene_TriggerNPC = new Send_Scene_TriggerNPC();
+					trigger.guid = npc.objectId;
+					trigger.step = npc.dialogueStep;
+					CommandManager.instance.send(trigger);
+				}
 			}
 		}
 	}

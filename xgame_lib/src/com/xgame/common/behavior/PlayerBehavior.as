@@ -62,9 +62,7 @@ package com.xgame.common.behavior
 			var clicker: BitmapDisplay = Perception.getClicker(evt.stageX, evt.stageY);
 			if(clicker != null)
 			{
-				//TODO 激活点击事件
 				(_target as PlayerDisplay).locker = clicker;
-				return;
 			}
 			
 			var e: InteractionEvent = new InteractionEvent(InteractionEvent.SCENE_CLICK);

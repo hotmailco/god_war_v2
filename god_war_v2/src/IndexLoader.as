@@ -37,31 +37,35 @@ package
 		
 		public function IndexLoader()
 		{
-			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(evt: UncaughtErrorEvent): void
-			{
-				var message: String = "";
-				if(evt.error is Error)
-				{
-					message = (evt.error as Error).getStackTrace();
-					if(!message)
-					{
-						message = (evt.error as Error).message;
-					}
-				}
-				else if(evt.error is ErrorEvent)
-				{
-					message = ErrorEvent(evt.error).text;
-				}
-				else
-				{
-					message = evt.error.toString();
-				}
-				Debug.error(this, message);
-			});
 			UIManager.init(this);
 			
-//			MonsterDebugger.initialize(this);
-			Debug.init();
+			if(CONFIG::DebugMode)
+			{
+//				MonsterDebugger.initialize(this);
+				Debug.init();
+				
+				loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(evt: UncaughtErrorEvent): void
+				{
+					var message: String = "";
+					if(evt.error is Error)
+					{
+						message = (evt.error as Error).getStackTrace();
+						if(!message)
+						{
+							message = (evt.error as Error).message;
+						}
+					}
+					else if(evt.error is ErrorEvent)
+					{
+						message = ErrorEvent(evt.error).text;
+					}
+					else
+					{
+						message = evt.error.toString();
+					}
+					Debug.error(this, message);
+				});
+			}
 			
 			LanguageManager.language = Capabilities.language;
 			stage.align = StageAlign.TOP_LEFT;

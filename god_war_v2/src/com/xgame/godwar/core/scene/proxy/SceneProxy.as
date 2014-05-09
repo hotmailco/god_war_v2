@@ -11,13 +11,18 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.godwar.command.receive.Receive_Scene_RemovePlayer;
 	import com.xgame.godwar.command.receive.Receive_Scene_ShowNPC;
 	import com.xgame.godwar.command.receive.Receive_Scene_ShowPlayer;
+	import com.xgame.godwar.command.receive.Receive_Scene_TriggerNPC;
 	import com.xgame.godwar.command.send.Send_Base_UpdatePlayerStatus;
+	import com.xgame.godwar.command.send.Send_Scene_TriggerNPC;
 	import com.xgame.godwar.config.GlobalContextConfig;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
+	import com.xgame.godwar.core.scene.mediator.NPCMediator;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.manager.ResourceManager;
 	import com.xgame.util.debug.Debug;
+	
+	import flash.events.MouseEvent;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -41,6 +46,9 @@ package com.xgame.godwar.core.scene.proxy
 			
 			CommandManager.instance.add(SocketContextConfig.SCENE_REMOVE_NPC, onNPCRemove);
 			ProtocolList.instance.bind(SocketContextConfig.SCENE_REMOVE_NPC, Receive_Scene_RemoveNPC);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_TRIGGER_NPC, onNPCTrigger);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_TRIGGER_NPC, Receive_Scene_TriggerNPC);
 		}
 		
 		public function updatePlayerStatus(): void
@@ -48,7 +56,10 @@ package com.xgame.godwar.core.scene.proxy
 			var _p: RoleProxy = facade.retrieveProxy(RoleProxy.NAME) as RoleProxy;
 			if(_p == null)
 			{
-				Debug.error(this, "RequestRoleProxy为空，无法获取AccountId");
+				if(CONFIG::DebugMode)
+				{
+					Debug.error(this, "RequestRoleProxy为空，无法获取AccountId");
+				}
 				return;
 			}
 			var _protocol: Send_Base_UpdatePlayerStatus = new Send_Base_UpdatePlayerStatus();
@@ -88,6 +99,7 @@ package com.xgame.godwar.core.scene.proxy
 		private function onNPCShow(protocol: Receive_Scene_ShowNPC): void
 		{
 			var npc: NPCDisplay = new NPCDisplay();
+			npc.objectId = protocol.guid;
 			npc.id = protocol.id;
 			npc.prependName = protocol.prependName;
 			npc.name = protocol.name;
@@ -102,7 +114,21 @@ package com.xgame.godwar.core.scene.proxy
 			var _render: Render = new Render();
 			npc.render = _render;
 			
+			npc.addEventListener(MouseEvent.CLICK, onNPCClick);
+			
 			Scene.instance.addObject(npc);
+		}
+		
+		private function onNPCClick(evt: MouseEvent): void
+		{
+//			if(CommandManager.instance.connected)
+//			{
+//				var npc: NPCDisplay = evt.currentTarget as NPCDisplay;
+//				var protocol: Send_Scene_TriggerNPC = new Send_Scene_TriggerNPC();
+//				protocol.guid = npc.objectId;
+//				protocol.step = npc.dialogueStep;
+//				CommandManager.instance.send(protocol);
+//			}
 		}
 		
 		private function onNPCRemove(protocol: Receive_Scene_RemoveNPC): void
@@ -112,6 +138,14 @@ package com.xgame.godwar.core.scene.proxy
 			{
 				Scene.instance.removeObject(npc);
 			}
+		}
+		
+		private function onNPCTrigger(protocol: Receive_Scene_TriggerNPC): void
+		{
+			var npc: NPCDisplay = Scene.instance.getDisplayByGuid(protocol.guid) as NPCDisplay;
+			facade.sendNotification(NPCMediator.SET_NPC, npc);
+			facade.sendNotification(NPCMediator.SHOW_CONTENT, protocol.content);
+			facade.sendNotification(NPCMediator.SHOW_NOTE);
 		}
 	}
 }

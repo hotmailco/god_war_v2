@@ -52,12 +52,18 @@ package com.xgame.godwar.core.login.proxy
 				}
 				else
 				{
-					Debug.error(this, "LoginProxy.getData()为空，用户数据不存在");
+					if(CONFIG::DebugMode)
+					{
+						Debug.error(this, "LoginProxy.getData()为空，用户数据不存在");
+					}
 				}
 			}
 			else
 			{
-				Debug.error(this, "LoginProxy未注册");
+				if(CONFIG::DebugMode)
+				{
+					Debug.error(this, "LoginProxy未注册");
+				}
 			}
 		}
 		

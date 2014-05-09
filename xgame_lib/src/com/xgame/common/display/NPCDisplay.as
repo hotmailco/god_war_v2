@@ -15,6 +15,7 @@ package com.xgame.common.display
 		private var _level: int;
 		private var _health: int;
 		private var _mana: int;
+		public var dialogueStep: int = 0;
 		
 		public function NPCDisplay(behavior:Behavior=null)
 		{

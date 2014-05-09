@@ -29,7 +29,10 @@ package com.xgame.godwar.core.scene.proxy
 			}
 			else
 			{
-				Debug.error(this, "地图验证信息错误，未获取到MapID");
+				if(CONFIG::DebugMode)
+				{
+					Debug.error(this, "地图验证信息错误，未获取到MapID");
+				}
 			}
 		}
 	}

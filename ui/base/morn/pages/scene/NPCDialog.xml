@@ -1,17 +1,17 @@
-<Dialog sceneWidth="600" sceneHeight="400" sceneColor="0x999999" sceneBg="" layers="2,0,1,1,drag;4,1,1,0,第 4 层;3,1,1,1,第 3 层;1,1,1,1,第 1 层">
-  <Image url="png.base.dialog_bg" x="15" y="48.5" layer="1" sizeGrid="40,40,40,40" width="570" height="303"/>
-  <Button skin="png.base.btn_close" x="550" y="35" layer="1" var="btnClose"/>
-  <Label text="&lt;风暴战将>加斯特" x="46" y="78" layer="3" width="502" height="25" color="0xffcc00" bold="true" align="left" autoSize="left" size="14" font="Microsoft YaHei" var="lblName"/>
-  <Panel layers="1,1,0" layer="3" x="49" y="113" width="504" height="130" vScrollBarSkin="png.base.vscroll">
+<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0xffffff" sceneBg="morn/views/窗口/CardDialog.jpg" layers="2,0,0,1,drag;4,1,0,0,第 4 层;3,1,0,0,第 3 层;1,1,0,0,第 1 层">
+  <Image url="png.base.dialog_bg" x="315" y="248.5" layer="1" sizeGrid="40,40,40,40" width="570" height="303"/>
+  <Button skin="png.base.btn_close" x="850" y="235" layer="1" var="btnClose"/>
+  <Label x="346" y="278" layer="3" width="502" height="25" color="0xffcc00" bold="true" align="left" autoSize="left" size="14" font="Microsoft YaHei" var="lblName" isHtml="true"/>
+  <Panel layers="1,1,0" layer="3" x="349" y="313" width="504" height="130" vScrollBarSkin="png.base.vscroll">
     <Label layer="1" color="0xffffff" width="505" height="123" wordWrap="true" multiline="true" isHtml="true" font="Microsoft YaHei" align="left" x="0" y="0" var="lblContent"/>
   </Panel>
-  <Image url="png.base.blank" x="41" y="251" layer="3" width="521" height="75"/>
-  <Image url="png.base.blank" x="38" y="74" layer="2" width="515" height="36" name="drag" var="imgBlank"/>
-  <List layers="1,1,0" layer="4" x="56" y="256" repeatY="3" var="lstAnswer">
+  <Image url="png.base.blank" x="341" y="451" layer="3" width="521" height="75"/>
+  <Image url="png.base.blank" x="343" y="277" layer="2" width="515" height="36" name="drag" var="imgBlank"/>
+  <List layers="1,1,0" layer="4" x="356" y="456" repeatY="3" var="lstAnswer">
     <Box layers="1,1,0" layer="1" name="render">
       <Clip url="png.base.clip_listitem" layer="1" width="489" height="22" clipY="2" name="selectBox"/>
-      <Label text="label" x="4" y="2" layer="1" color="0xff9900" width="481" height="18"/>
+      <Label x="4" y="2" layer="1" color="0xff9900" width="481" height="18" name="label"/>
     </Box>
-    <VScrollBar skin="png.base.vscroll" x="487" layer="1" width="17" height="64"/>
+    <VScrollBar skin="png.base.vscroll" x="487" layer="1" width="17" height="64" name="scrollBar"/>
   </List>
 </Dialog>

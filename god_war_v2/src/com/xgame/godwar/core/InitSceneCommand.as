@@ -6,6 +6,7 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
+	import com.xgame.godwar.core.scene.mediator.NPCMediator;
 	import com.xgame.godwar.core.scene.proxy.ChatProxy;
 	import com.xgame.godwar.core.scene.proxy.MapProxy;
 	import com.xgame.godwar.core.scene.proxy.SceneProxy;
@@ -41,6 +42,10 @@ package com.xgame.godwar.core
 			{
 				facade.registerProxy(new SceneProxy());
 			}
+			if(!facade.hasMediator(NPCMediator.NAME))
+			{
+				facade.registerMediator(new NPCMediator());
+			}
 		}
 		
 		override public function execute(notification:INotification):void
@@ -60,7 +65,10 @@ package com.xgame.godwar.core
 			}
 			if(_protocol == null)
 			{
-				Debug.error(this, "没有获取到地图数据");
+				if(CONFIG::DebugMode)
+				{
+					Debug.error(this, "没有获取到地图数据");
+				}
 				return;
 			}
 			
