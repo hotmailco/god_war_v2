@@ -1,6 +1,9 @@
 package com.xgame.godwar.core.scene.mediator
 {
+	import com.xgame.godwar.command.receive.Receive_Hall_RequestCardGroup;
 	import com.xgame.godwar.core.general.mediator.DialogMediator;
+	import com.xgame.godwar.core.scene.proxy.CardGroupProxy;
+	import com.xgame.godwar.parameter.CardGroupParameter;
 	
 	import flash.events.MouseEvent;
 	
@@ -27,6 +30,11 @@ package com.xgame.godwar.core.scene.mediator
 				test.push({label: "test" + i});
 			}
 			component.lstGroup.array = test;
+			
+			if(!facade.hasProxy(CardGroupProxy.NAME))
+			{
+				facade.registerProxy(new CardGroupProxy());
+			}
 		}
 		
 		public function get component(): CardDialog
@@ -44,7 +52,11 @@ package com.xgame.godwar.core.scene.mediator
 			switch(notification.getName())
 			{
 				case SHOW_NOTE:
-					show(notification.getBody() as Function);
+					show(function(): void
+					{
+						var callback: Function = notification.getBody() as Function;
+						requestCardList(callback);
+					});
 					break;
 				case HIDE_NOTE:
 					hide(notification.getBody() as Function);
@@ -55,6 +67,29 @@ package com.xgame.godwar.core.scene.mediator
 		private function onButtonCloseClick(evt: MouseEvent): void
 		{
 			hide();
+		}
+		
+		private function requestCardList(callback: Function = null): void
+		{
+			var proxy: CardGroupProxy = facade.retrieveProxy(CardGroupProxy.NAME) as CardGroupProxy;
+			if(proxy.getData() != null)
+			{
+				var protocol: Receive_Hall_RequestCardGroup = proxy.getData() as Receive_Hall_RequestCardGroup;
+				showCardGroup(protocol.list);
+			}
+			else
+			{
+				proxy.requestCardGroup();
+			}
+		}
+		
+		private function showCardGroup(list: Vector.<CardGroupParameter>): void
+		{
+			var parameter: CardGroupParameter;
+			for(var i: int = 0; i < list.length; i++)
+			{
+				parameter = list[i];
+			}
 		}
 	}
 }
