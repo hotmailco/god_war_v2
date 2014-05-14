@@ -44,16 +44,11 @@ package com.xgame.godwar.command.receive
 							{
 								parameter.groupName = data.readUTFBytes(length);
 							}
-							else if(!parameter.cardListReady)
-							{
-								parameter.cards = data.readUTFBytes(length);
-							}
 							break;
 					}
 					
 					if(parameter.groupId != int.MIN_VALUE &&
-						!StringUtils.empty(parameter.groupName) &&
-						parameter.cardListReady)
+						!StringUtils.empty(parameter.groupName))
 					{
 						list.push(parameter);
 						parameter = new CardGroupParameter();
