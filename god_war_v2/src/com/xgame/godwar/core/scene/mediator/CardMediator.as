@@ -17,6 +17,7 @@ package com.xgame.godwar.core.scene.mediator
 		
 		public static const SHOW_NOTE: String = NAME + ".ShowNote";
 		public static const HIDE_NOTE: String = NAME + ".HideNote";
+		public static const SHOW_CARD_GROUP_NOTE: String = NAME + ".ShowCardGroupNote";
 		
 		public function CardMediator()
 		{
@@ -24,12 +25,9 @@ package com.xgame.godwar.core.scene.mediator
 			
 			component.btnClose.addEventListener(MouseEvent.CLICK, onButtonCloseClick);
 			
-			var test: Array = new Array();
-			for(var i: int = 0; i<10; i++)
-			{
-				test.push({label: "test" + i});
-			}
-			component.lstGroup.array = test;
+			component.lstGroup.array = [];
+			component.lstChosen.array = [];
+			component.lstStandby.array = [];
 			
 			if(!facade.hasProxy(CardGroupProxy.NAME))
 			{
@@ -44,7 +42,7 @@ package com.xgame.godwar.core.scene.mediator
 		
 		override public function listNotificationInterests():Array
 		{
-			return [SHOW_NOTE, HIDE_NOTE];
+			return [SHOW_NOTE, HIDE_NOTE, SHOW_CARD_GROUP_NOTE];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -60,6 +58,9 @@ package com.xgame.godwar.core.scene.mediator
 					break;
 				case HIDE_NOTE:
 					hide(notification.getBody() as Function);
+					break;
+				case SHOW_CARD_GROUP_NOTE:
+					showCardGroup(notification.getBody() as Vector.<CardGroupParameter>);
 					break;
 			}
 		}
@@ -86,10 +87,13 @@ package com.xgame.godwar.core.scene.mediator
 		private function showCardGroup(list: Vector.<CardGroupParameter>): void
 		{
 			var parameter: CardGroupParameter;
+			var groupArray: Array = new Array();
 			for(var i: int = 0; i < list.length; i++)
 			{
 				parameter = list[i];
+				groupArray.push({label: parameter.groupName});
 			}
+			component.lstGroup.array = groupArray;
 		}
 	}
 }

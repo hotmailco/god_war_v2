@@ -2,8 +2,8 @@ package com.xgame.godwar.parameter.card
 {
 	public class SoulCardParameter extends RoleCardParameter
 	{
-		public var level: int;
-		public var race: int;
+		public var level: int = int.MIN_VALUE;
+		public var race: int = int.MIN_VALUE;
 		public var skillList: Vector.<String>;
 		
 		public function SoulCardParameter()

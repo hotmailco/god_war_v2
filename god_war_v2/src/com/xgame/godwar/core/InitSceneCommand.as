@@ -4,6 +4,7 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
+	import com.xgame.godwar.core.general.proxy.CardProxy;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
 	import com.xgame.godwar.core.scene.mediator.NPCMediator;
@@ -38,6 +39,10 @@ package com.xgame.godwar.core
 			{
 				facade.registerCommand(ShowCardMediatorCommand.SHOW_NOTE, ShowCardMediatorCommand);
 			}
+			if(!facade.hasProxy(CardProxy.NAME))
+			{
+				facade.registerProxy(new CardProxy());
+			}
 			if(!facade.hasProxy(SceneProxy.NAME))
 			{
 				facade.registerProxy(new SceneProxy());
@@ -52,6 +57,9 @@ package com.xgame.godwar.core
 		{
 //			var _s: Starling = new Starling(Scene, UIManager.stage);
 //			_s.start();
+			var proxy: CardProxy = facade.retrieveProxy(CardProxy.NAME) as CardProxy;
+			proxy.getConfig();
+			proxy.requestCardList();
 			loadScene();
 		}
 		

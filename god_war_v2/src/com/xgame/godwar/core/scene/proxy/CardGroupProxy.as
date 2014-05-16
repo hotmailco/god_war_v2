@@ -6,6 +6,7 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.godwar.command.send.Send_Hall_RequestCardGroup;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
+	import com.xgame.godwar.core.scene.mediator.CardMediator;
 	import com.xgame.manager.CommandManager;
 	
 	import org.puremvc.as3.interfaces.IProxy;
@@ -36,7 +37,7 @@ package com.xgame.godwar.core.scene.proxy
 		private function onRequestCardGroup(protocol: Receive_Hall_RequestCardGroup): void
 		{
 			sendNotification(LoadingIconMediator.HIDE_NOTE);
-//			sendNotification(CardConfigMediator.SHOW_CARD_GROUP_NOTE, protocol.list);
+			sendNotification(CardMediator.SHOW_CARD_GROUP_NOTE, protocol.list);
 			setData(protocol);
 		}
 	}
