@@ -3,18 +3,20 @@ package com.xgame.godwar.core.general.proxy
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.XMLLoader;
 	import com.xgame.core.protocol.ProtocolList;
+	import com.xgame.godwar.command.receive.Receive_Info_RequestCardGroupCards;
+	import com.xgame.godwar.command.receive.Receive_Info_RequestCardList;
+	import com.xgame.godwar.command.send.Send_Info_RequestCardGroupCards;
+	import com.xgame.godwar.command.send.Send_Info_RequestCardList;
 	import com.xgame.godwar.common.pool.CardParameterPool;
 	import com.xgame.godwar.config.SocketContextConfig;
+	import com.xgame.godwar.core.scene.mediator.CardMediator;
+	import com.xgame.godwar.parameter.CardGroupParameter;
 	import com.xgame.godwar.parameter.card.SoulCardParameter;
 	import com.xgame.manager.CommandManager;
 	import com.xgame.manager.LanguageManager;
 	
-	import flash.utils.Dictionary;
-	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import com.xgame.godwar.command.receive.Receive_Info_RequestCardList;
-	import com.xgame.godwar.command.send.Send_Info_RequestCardList;
 	
 	public class CardProxy extends Proxy implements IProxy
 	{
@@ -26,6 +28,9 @@ package com.xgame.godwar.core.general.proxy
 			
 			ProtocolList.instance.bind(SocketContextConfig.INFO_REQUEST_CARD_LIST, Receive_Info_RequestCardList);
 			CommandManager.instance.add(SocketContextConfig.INFO_REQUEST_CARD_LIST, onRequestCardList);
+			
+			ProtocolList.instance.bind(SocketContextConfig.INFO_REQUEST_CARD_GROUP_CARDS, Receive_Info_RequestCardGroupCards);
+			CommandManager.instance.add(SocketContextConfig.INFO_REQUEST_CARD_GROUP_CARDS, onRequestCardGroupCards);
 		}
 		
 		public function getConfig(): void
@@ -62,14 +67,41 @@ package com.xgame.godwar.core.general.proxy
 		
 		public function requestCardList(): void
 		{
-			var protocol: Send_Info_RequestCardList = new Send_Info_RequestCardList();
-			
-			CommandManager.instance.send(protocol);
+			if(CommandManager.instance.connected)
+			{
+				var protocol: Send_Info_RequestCardList = new Send_Info_RequestCardList();
+				CommandManager.instance.send(protocol);
+			}
 		}
 		
 		private function onRequestCardList(protocol: Receive_Info_RequestCardList): void
 		{
 			setData(protocol);
+		}
+		
+		public function requestCardGroupCards(groupId: int): void
+		{
+			if(CommandManager.instance.connected)
+			{
+				var protocol: Send_Info_RequestCardGroupCards = new Send_Info_RequestCardGroupCards();
+				protocol.groupId = groupId;
+				CommandManager.instance.send(protocol);
+			}
+		}
+		
+		private function onRequestCardGroupCards(protocol: Receive_Info_RequestCardGroupCards): void
+		{
+			var m: CardMediator = facade.retrieveMediator(CardMediator.NAME) as CardMediator;
+			var container: Vector.<CardGroupParameter> = m.cardGroup;
+			for(var i: int = 0; i<container.length; i++)
+			{
+				if(container[i].groupId == protocol.groupId)
+				{
+					container[i].cardList = protocol.container;
+					break;
+				}
+			}
+			facade.sendNotification(CardMediator.SHOW_CARD_GROUP_CARDS_NOTE, protocol.container);
 		}
 	}
 }

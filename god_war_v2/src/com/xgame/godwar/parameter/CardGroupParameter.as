@@ -13,7 +13,6 @@ package com.xgame.godwar.parameter
 		public function CardGroupParameter()
 		{
 			super();
-			cardList = new Vector.<SoulCardParameter>()
 		}
 	}
 }
