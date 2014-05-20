@@ -35,6 +35,7 @@ package com.xgame.godwar.core.scene.mediator
 			
 			component.btnClose.addEventListener(MouseEvent.CLICK, onButtonCloseClick);
 			component.lstGroup.mouseHandler = new Handler(onItemGroupClick);
+			component.lstStandby.mouseHandler = new Handler(onItemStandbyClick);
 			
 			component.lstGroup.array = [];
 			component.lstChosen.array = [];
@@ -82,6 +83,7 @@ package com.xgame.godwar.core.scene.mediator
 					break;
 			}
 		}
+		
 		private function onItemGroupClick(evt: MouseEvent, index: int): void
 		{
 			if(evt.type == MouseEvent.CLICK && cardGroup != null && index < cardGroup.length)
@@ -100,6 +102,11 @@ package com.xgame.godwar.core.scene.mediator
 				
 				currentCardGroup = parameter.groupId;
 			}
+		}
+		
+		private function onItemStandbyClick(evt: MouseEvent, index: int): void
+		{
+			
 		}
 		
 		private function onButtonCloseClick(evt: MouseEvent): void
