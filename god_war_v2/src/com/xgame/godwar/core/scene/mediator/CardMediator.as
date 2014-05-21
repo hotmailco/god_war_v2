@@ -3,8 +3,8 @@ package com.xgame.godwar.core.scene.mediator
 	import com.xgame.godwar.command.receive.Receive_Hall_RequestCardGroup;
 	import com.xgame.godwar.command.receive.Receive_Info_RequestCardList;
 	import com.xgame.godwar.core.general.mediator.DialogMediator;
-	import com.xgame.godwar.core.general.proxy.CardProxy;
 	import com.xgame.godwar.core.scene.proxy.CardGroupProxy;
+	import com.xgame.godwar.core.scene.proxy.CardProxy;
 	import com.xgame.godwar.parameter.CardGroupParameter;
 	import com.xgame.godwar.parameter.card.SoulCardParameter;
 	
@@ -26,8 +26,11 @@ package com.xgame.godwar.core.scene.mediator
 		public static const SHOW_CARD_GROUP_CARDS_NOTE: String = NAME + ".ShowCardGroupCardsNote";
 		public static const SET_CURRENT_GROUP: String = NAME + ".SetCurrentGroup";
 		
+		private var _cardList: Vector.<SoulCardParameter>;
 		private var _cardGroup: Vector.<CardGroupParameter>;
-		private var currentCardGroup: int;
+		private var _changedGroup: Vector.<CardGroupParameter>;
+		private var _currentGroup: CardGroupParameter;
+		private var _groupCardChanged: Boolean = false;
 		
 		public function CardMediator()
 		{
@@ -45,6 +48,9 @@ package com.xgame.godwar.core.scene.mediator
 			{
 				facade.registerProxy(new CardGroupProxy());
 			}
+			
+			_cardList = new Vector.<SoulCardParameter>();
+			_changedGroup = new Vector.<CardGroupParameter>();
 		}
 		
 		public function get component(): CardDialog
@@ -54,8 +60,7 @@ package com.xgame.godwar.core.scene.mediator
 		
 		override public function listNotificationInterests():Array
 		{
-			return [SHOW_NOTE, HIDE_NOTE, SHOW_CARD_GROUP_NOTE, SHOW_CARD_GROUP_CARDS_NOTE,
-				SET_CURRENT_GROUP];
+			return [SHOW_NOTE, HIDE_NOTE, SHOW_CARD_GROUP_NOTE, SHOW_CARD_GROUP_CARDS_NOTE];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -78,17 +83,14 @@ package com.xgame.godwar.core.scene.mediator
 				case SHOW_CARD_GROUP_CARDS_NOTE:
 					showCardGroupCards(notification.getBody() as Vector.<SoulCardParameter>);
 					break;
-				case SET_CURRENT_GROUP:
-					currentCardGroup = int(notification.getBody());
-					break;
 			}
 		}
 		
 		private function onItemGroupClick(evt: MouseEvent, index: int): void
 		{
-			if(evt.type == MouseEvent.CLICK && cardGroup != null && index < cardGroup.length)
+			if(evt.type == MouseEvent.CLICK && _cardGroup != null && index < _cardGroup.length)
 			{
-				var parameter: CardGroupParameter = cardGroup[index];
+				var parameter: CardGroupParameter = _cardGroup[index];
 				
 				if(parameter.cardList == null)
 				{
@@ -100,18 +102,48 @@ package com.xgame.godwar.core.scene.mediator
 					showCardGroupCards(parameter.cardList);
 				}
 				
-				currentCardGroup = parameter.groupId;
+				_currentGroup = parameter;
 			}
 		}
 		
 		private function onItemStandbyClick(evt: MouseEvent, index: int): void
 		{
-			
+			if(evt.type == MouseEvent.CLICK)
+			{
+				if(_currentGroup != null && _currentGroup.cardList != null)
+				{
+					if(index < _cardList.length)
+					{
+						var parameter: SoulCardParameter = _cardList[index];
+						_cardList.splice(index, 1);
+						_currentGroup.addCard(parameter);
+						showCardGroupCards(_currentGroup.cardList);
+						showStandbyCardList();
+						
+						_groupCardChanged = true;
+						
+						if(_changedGroup.indexOf(_currentGroup) < 0)
+						{
+							_changedGroup.push(_currentGroup);
+						}
+					}
+				}
+			}
 		}
 		
 		private function onButtonCloseClick(evt: MouseEvent): void
 		{
 			hide();
+			
+			if(_groupCardChanged)
+			{
+				_groupCardChanged = false;
+				var proxy: CardGroupProxy = facade.retrieveProxy(CardGroupProxy.NAME) as CardGroupProxy;
+				if(proxy != null)
+				{
+					proxy.saveCardGroupCards(_changedGroup);
+				}
+			}
 		}
 		
 		private function requestCardList(callback: Function = null): void
@@ -127,12 +159,7 @@ package com.xgame.godwar.core.scene.mediator
 				proxy.requestCardGroup();
 			}
 			
-			var cardProxy: CardProxy = facade.retrieveProxy(CardProxy.NAME) as CardProxy;
-			if(cardProxy.getData() != null)
-			{
-				var cardProtocol: Receive_Info_RequestCardList = cardProxy.getData() as Receive_Info_RequestCardList;
-				showStandbyCardList(cardProtocol.container);
-			}
+			showStandbyCardList();
 		}
 		
 		private function showCardGroup(list: Vector.<CardGroupParameter>): void
@@ -149,13 +176,15 @@ package com.xgame.godwar.core.scene.mediator
 			_cardGroup = list;
 		}
 		
-		private function showStandbyCardList(list: Vector.<SoulCardParameter>): void
+		private function showStandbyCardList(): void
 		{
+			checkCardList();
+			
 			var parameter: SoulCardParameter;
 			var cardArray: Array = new Array();
-			for(var i: int = 0; i<list.length; i++)
+			for(var i: int = 0; i<_cardList.length; i++)
 			{
-				parameter = list[i];
+				parameter = _cardList[i];
 				cardArray.push({label: parameter.name});
 			}
 			component.lstStandby.array = cardArray;
@@ -171,6 +200,26 @@ package com.xgame.godwar.core.scene.mediator
 				cardArray.push({label: parameter.name});
 			}
 			component.lstChosen.array = cardArray;
+			
+			showStandbyCardList();
+		}
+		
+		private function checkCardList(): void
+		{
+			var cardProxy: CardProxy = facade.retrieveProxy(CardProxy.NAME) as CardProxy;
+			if(cardProxy.getData() != null)
+			{
+				var cardProtocol: Receive_Info_RequestCardList = cardProxy.getData() as Receive_Info_RequestCardList;
+				_cardList.splice(0, _cardList.length);
+				for(var i: int = 0; i<cardProtocol.container.length; i++)
+				{
+					if(_currentGroup != null && _currentGroup.cardIndex[cardProtocol.container[i].guid.toString()] != null)
+					{
+						continue;
+					}
+					_cardList.push(cardProtocol.container[i]);
+				}
+			}
 		}
 
 		public function get cardGroup():Vector.<CardGroupParameter>

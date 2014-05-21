@@ -4,19 +4,23 @@ package com.xgame.godwar.command.receive
 	import com.xgame.core.protocol.ReceiveBase;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.parameter.card.SoulCardParameter;
+	import com.xgame.util.Int64;
 	import com.xgame.util.StringUtils;
 	
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 
 	public class Receive_Info_RequestCardList extends ReceiveBase
 	{
 		public var container: Vector.<SoulCardParameter>;
+		public var index: Dictionary;
 		
 		public function Receive_Info_RequestCardList()
 		{
 			super(SocketContextConfig.INFO_REQUEST_CARD_LIST);
 			
 			container = new Vector.<SoulCardParameter>();
+			index = new Dictionary();
 		}
 		
 		override public function fill(data:ByteArray):void
@@ -76,15 +80,25 @@ package com.xgame.godwar.command.receive
 								parameter.race = data.readInt();
 							}
 							break;
+						case TYPE_LONG:
+							if(parameter.guid == null)
+							{
+								parameter.guid = new Int64();
+								parameter.guid.high = data.readInt();
+								parameter.guid.low = data.readUnsignedInt();
+							}
+							break;
 					}
 					
-					if(!StringUtils.empty(parameter.id) && !StringUtils.empty(parameter.name) &&
+					if(parameter.guid != null &&
+					!StringUtils.empty(parameter.id) && !StringUtils.empty(parameter.name) &&
 					parameter.attack != int.MIN_VALUE && parameter.def != int.MIN_VALUE &&
 					parameter.mdef != int.MIN_VALUE && parameter.health != int.MIN_VALUE &&
 					parameter.energy != int.MIN_VALUE && parameter.level != int.MIN_VALUE &&
 					parameter.race != int.MIN_VALUE)
 					{
 						container.push(parameter);
+						index[parameter.guid.toString()] = parameter;
 						parameter = new SoulCardParameter();
 					}
 				}

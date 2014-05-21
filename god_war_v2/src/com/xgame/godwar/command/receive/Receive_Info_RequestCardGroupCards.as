@@ -6,6 +6,7 @@ package com.xgame.godwar.command.receive
 	import com.xgame.util.StringUtils;
 	
 	import flash.utils.ByteArray;
+	import com.xgame.util.Int64;
 	
 	public class Receive_Info_RequestCardGroupCards extends ReceiveBase
 	{
@@ -79,9 +80,18 @@ package com.xgame.godwar.command.receive
 								parameter.race = data.readInt();
 							}
 							break;
+						case TYPE_LONG:
+							if(parameter.guid == null)
+							{
+								parameter.guid = new Int64();
+								parameter.guid.high = data.readInt();
+								parameter.guid.low = data.readUnsignedInt();
+							}
+							break;
 					}
 					
-					if(!StringUtils.empty(parameter.id) && !StringUtils.empty(parameter.name) &&
+					if(parameter.guid != null &&
+						!StringUtils.empty(parameter.id) && !StringUtils.empty(parameter.name) &&
 						parameter.attack != int.MIN_VALUE && parameter.def != int.MIN_VALUE &&
 						parameter.mdef != int.MIN_VALUE && parameter.health != int.MIN_VALUE &&
 						parameter.energy != int.MIN_VALUE && parameter.level != int.MIN_VALUE &&

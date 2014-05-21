@@ -32,23 +32,23 @@ package game.ui.scene {
 			  <Image url="png.scene_card.img_container_left" x="488" y="195"/>
 			  <Image url="png.scene_card.title_bg" x="519" y="124"/>
 			  <Label text="已选卡牌" x="576" y="153" color="0xc9933e" width="71" height="18" align="center" font="Microsoft YaHei" size="12"/>
-			  <List x="488" y="202" repeatY="17" height="433" var="lstChosen">
+			  <List x="488" y="195" repeatY="17" height="433" var="lstChosen">
 			    <Box name="render">
 			      <Clip url="png.base.clip_listitem" width="250" clipY="2" name="selectBox"/>
 			      <Label text="label" x="7" y="4" width="239" height="18" name="label" color="0xc9933e"/>
 			    </Box>
-			    <VScrollBar skin="png.base.vscroll" x="233" y="0" height="433" name="scrollBar"/>
+			    <VScrollBar skin="png.base.vscroll" x="233" y="0" height="441" name="scrollBar" width="17"/>
 			  </List>
-			  <Label text="80" x="562" y="642" width="35" height="18" var="lblEnergyUse" color="0xff9900" align="right"/>
+			  <Label text="0" x="562" y="642" width="35" height="18" var="lblEnergyUse" color="0xff9900" align="right"/>
 			  <Label text="/" x="596" y="642" width="10" height="18" color="0xff9900" align="right"/>
 			  <Label text="100" x="607" y="642" width="35" height="18" var="lblEnergyTotal" color="0xff9900" align="left"/>
 			  <Image url="png.scene_card.img_container_right" x="755" y="195"/>
-			  <List x="755" y="202" repeatY="17" height="433" var="lstStandby">
+			  <List x="755" y="195" repeatY="17" height="433" var="lstStandby">
 			    <Box name="render">
 			      <Clip url="png.base.clip_listitem" width="250" clipY="2" name="selectBox"/>
 			      <Label text="label" x="7" y="4" width="239" height="18" name="label" color="0xc9933e"/>
 			    </Box>
-			    <VScrollBar skin="png.base.vscroll" x="233" y="0" height="433" name="scrollBar"/>
+			    <VScrollBar skin="png.base.vscroll" x="233" y="0" height="441" name="scrollBar"/>
 			  </List>
 			  <Image url="png.scene_card.title_bg" x="787" y="124"/>
 			  <Label text="待选卡牌" x="844" y="153" color="0xc9933e" width="71" height="18" align="center" font="Microsoft YaHei" size="12"/>

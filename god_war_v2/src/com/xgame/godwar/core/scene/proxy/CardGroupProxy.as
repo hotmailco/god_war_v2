@@ -4,9 +4,11 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.core.protocol.ProtocolList;
 	import com.xgame.godwar.command.receive.Receive_Hall_RequestCardGroup;
 	import com.xgame.godwar.command.send.Send_Hall_RequestCardGroup;
+	import com.xgame.godwar.command.send.Send_Hall_SaveCardGroupCards;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.general.mediator.LoadingIconMediator;
 	import com.xgame.godwar.core.scene.mediator.CardMediator;
+	import com.xgame.godwar.parameter.CardGroupParameter;
 	import com.xgame.manager.CommandManager;
 	
 	import org.puremvc.as3.interfaces.IProxy;
@@ -39,6 +41,17 @@ package com.xgame.godwar.core.scene.proxy
 			sendNotification(LoadingIconMediator.HIDE_NOTE);
 			sendNotification(CardMediator.SHOW_CARD_GROUP_NOTE, protocol.list);
 			setData(protocol);
+		}
+		
+		public function saveCardGroupCards(list: Vector.<CardGroupParameter>): void
+		{
+			if(CommandManager.instance.connected)
+			{
+				var protocol: Send_Hall_SaveCardGroupCards = new Send_Hall_SaveCardGroupCards();
+				protocol.list = list;
+				
+				CommandManager.instance.send(protocol);
+			}
 		}
 	}
 }

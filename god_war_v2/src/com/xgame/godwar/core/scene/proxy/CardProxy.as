@@ -1,4 +1,4 @@
-package com.xgame.godwar.core.general.proxy
+package com.xgame.godwar.core.scene.proxy
 {
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.XMLLoader;

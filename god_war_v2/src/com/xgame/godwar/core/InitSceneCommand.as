@@ -4,7 +4,7 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
-	import com.xgame.godwar.core.general.proxy.CardProxy;
+	import com.xgame.godwar.core.scene.proxy.CardProxy;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
 	import com.xgame.godwar.core.scene.mediator.NPCMediator;

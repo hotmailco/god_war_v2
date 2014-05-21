@@ -42,6 +42,7 @@ package com.xgame.godwar.config
 		public static const	ACTION_DELETE_GROUP: int							= 11;
 		public static const	ACTION_SAVE_CARD_GROUP: int							= 12;
 		public static const	ACTION_REQUEST_CARD_GROUP_CARDS: int				= 13;
+		public static const	ACTION_SAVE_CARD_GROUP_CARDS: int					= 14;
 		public static const	ACTION_HEART_BEAT: int								= 126;
 		public static const	ACTION_HEART_BEAT_ECHO: int							= 127;
 		// MSG
@@ -132,6 +133,8 @@ package com.xgame.godwar.config
 		public static const	INFO_HEART_BEAT_ECHO: int							= ACTION_HEART_BEAT_ECHO << 8
 			| CONTROLLER_INFO;
 		public static const	INFO_REQUEST_CARD_GROUP_CARDS: int				= ACTION_REQUEST_CARD_GROUP_CARDS << 8
+			| CONTROLLER_INFO;
+		public static const	INFO_SAVE_CARD_GROUP_CARDS: int					= ACTION_SAVE_CARD_GROUP_CARDS << 8
 			| CONTROLLER_INFO;
 		// MSG
 		public static const	MSG_SEND_PUBLIC: int								= ACTION_SEND_PUBLIC << 8
