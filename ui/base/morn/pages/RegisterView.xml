@@ -1,4 +1,4 @@
-<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" var="btnStart" layers="1,1,0,0,第 1 层">
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x000000" sceneBg="" var="btnStart" layers="1,1,0,0,第 1 层">
   <Image url="png.login.login_panel_bg" x="375.5" y="245.5" layer="1"/>
   <TextInput skin="png.base.textinput" x="499" y="374" layer="1" width="270" height="46" margin="20,10,10,10" size="16" asPassword="true" var="iptPassword"/>
   <Button label="注册" skin="png.base.button" x="626" y="454" layer="1" labelFont="Microsoft YaHei" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" var="btnRegister"/>

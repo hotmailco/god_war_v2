@@ -41,8 +41,12 @@ package com.xgame.godwar.parameter
 			{
 				_cardList = new Vector.<SoulCardParameter>();
 			}
-			_cardList.push(card);
-			_cardIndex[card.guid.toString()] = card;
+			
+			if(card != null)
+			{
+				_cardList.push(card);
+				_cardIndex[card.guid.toString()] = card;
+			}
 		}
 
 		public function get cardList():Vector.<SoulCardParameter>

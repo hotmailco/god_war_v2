@@ -31,14 +31,14 @@ package com.xgame.godwar.core.general.mediator
 				UIManager.uiLayer.addChild(view);
 			}
 			
-			TweenLite.to(view, .5, {alpha: 1, ease: Strong.easeOut, onComplete: callback});
+			TweenLite.to(view, .3, {alpha: 1, ease: Strong.easeOut, onComplete: callback});
 		}
 		
 		protected function hide(callback: Function = null): void
 		{
 			if(UIManager.uiLayer.contains(view))
 			{
-				TweenLite.to(view, .5, {alpha: 0, ease: Strong.easeIn, onComplete: function(): void
+				TweenLite.to(view, .3, {alpha: 0, ease: Strong.easeIn, onComplete: function(): void
 				{
 					if(view.parent != null)
 					{

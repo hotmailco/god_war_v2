@@ -1,4 +1,4 @@
-<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0xffffff" sceneBg="morn/views/窗口/CardDialog.jpg" layers="2,0,0,1,drag;4,1,0,0,第 4 层;3,1,0,0,第 3 层;1,1,0,0,第 1 层">
+<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0x000000" sceneBg="morn/views/窗口/CardDialog.jpg" layers="2,0,0,1,drag;4,1,0,0,第 4 层;3,1,0,0,第 3 层;1,1,0,0,第 1 层">
   <Image url="png.base.dialog_bg" x="315" y="248.5" layer="1" sizeGrid="40,40,40,40" width="570" height="303"/>
   <Button skin="png.base.btn_close" x="850" y="235" layer="1" var="btnClose"/>
   <Label x="346" y="278" layer="3" width="502" height="25" color="0xffcc00" bold="true" align="left" autoSize="left" size="14" font="Microsoft YaHei" var="lblName" isHtml="true"/>

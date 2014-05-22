@@ -24,7 +24,8 @@ package com.xgame.godwar.core.scene.mediator
 		public static const HIDE_NOTE: String = NAME + ".HideNote";
 		public static const SHOW_CARD_GROUP_NOTE: String = NAME + ".ShowCardGroupNote";
 		public static const SHOW_CARD_GROUP_CARDS_NOTE: String = NAME + ".ShowCardGroupCardsNote";
-		public static const SET_CURRENT_GROUP: String = NAME + ".SetCurrentGroup";
+		public static const ADD_GROUP_NOTE: String = NAME + ".AddGroupNote";
+		public static const DELETE_GROUP_NOTE: String = NAME + ".DeleteGroupNote";
 		
 		private var _cardList: Vector.<SoulCardParameter>;
 		private var _cardGroup: Vector.<CardGroupParameter>;
@@ -39,11 +40,21 @@ package com.xgame.godwar.core.scene.mediator
 			component.btnClose.addEventListener(MouseEvent.CLICK, onButtonCloseClick);
 			component.lstGroup.mouseHandler = new Handler(onItemGroupClick);
 			component.lstStandby.mouseHandler = new Handler(onItemStandbyClick);
+			component.btnAdd.addEventListener(MouseEvent.CLICK, onBtnAddClick);
+			component.btnDelete.addEventListener(MouseEvent.CLICK, onBtnDeleteClick);
 			
 			component.lstGroup.array = [];
 			component.lstChosen.array = [];
 			component.lstStandby.array = [];
 			
+			if(!facade.hasMediator(AddGroupMediator.NAME))
+			{
+				facade.registerMediator(new AddGroupMediator());
+			}
+			if(!facade.hasMediator(DeleteGroupMediator.NAME))
+			{
+				facade.registerMediator(new DeleteGroupMediator());
+			}
 			if(!facade.hasProxy(CardGroupProxy.NAME))
 			{
 				facade.registerProxy(new CardGroupProxy());
@@ -60,7 +71,8 @@ package com.xgame.godwar.core.scene.mediator
 		
 		override public function listNotificationInterests():Array
 		{
-			return [SHOW_NOTE, HIDE_NOTE, SHOW_CARD_GROUP_NOTE, SHOW_CARD_GROUP_CARDS_NOTE];
+			return [SHOW_NOTE, HIDE_NOTE, SHOW_CARD_GROUP_NOTE, SHOW_CARD_GROUP_CARDS_NOTE,
+				ADD_GROUP_NOTE, DELETE_GROUP_NOTE];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -83,6 +95,37 @@ package com.xgame.godwar.core.scene.mediator
 				case SHOW_CARD_GROUP_CARDS_NOTE:
 					showCardGroupCards(notification.getBody() as Vector.<SoulCardParameter>);
 					break;
+				case ADD_GROUP_NOTE:
+					addGroup(notification.getBody() as CardGroupParameter);
+					break;
+				case DELETE_GROUP_NOTE:
+					deleteGroup(int(notification.getBody()));
+					break;
+			}
+		}
+		
+		private function addGroup(parameter: CardGroupParameter): void
+		{
+			if(parameter != null && _cardGroup != null)
+			{
+				_cardGroup.push(parameter);
+				showCardGroup(_cardGroup);
+			}
+		}
+		
+		private function deleteGroup(groupId: int): void
+		{
+			if(groupId > 0 && _cardGroup != null)
+			{
+				for(var i: int = 0; i < _cardGroup.length; i++)
+				{
+					if(_cardGroup[i].groupId == groupId)
+					{
+						_cardGroup.splice(i, 1);
+						showCardGroup(_cardGroup);
+						break;
+					}
+				}
 			}
 		}
 		
@@ -221,11 +264,25 @@ package com.xgame.godwar.core.scene.mediator
 				}
 			}
 		}
+		
+		private function onBtnAddClick(evt: MouseEvent): void
+		{
+			facade.sendNotification(AddGroupMediator.SHOW_NOTE);
+		}
+		
+		private function onBtnDeleteClick(evt: MouseEvent): void
+		{
+			if(_currentGroup != null)
+			{
+				facade.sendNotification(DeleteGroupMediator.SHOW_NOTE, _currentGroup);
+			}
+		}
 
 		public function get cardGroup():Vector.<CardGroupParameter>
 		{
 			return _cardGroup;
 		}
+
 
 	}
 }

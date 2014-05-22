@@ -1,4 +1,4 @@
-<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,菜单">
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x000000" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,菜单">
   <Box layers="1,1,0" layer="1" x="622" y="713" var="boxMenu">
     <Image url="png.scene.menu_bg" y="12" layer="1"/>
     <Button skin="png.scene.btn_menu_role" x="18" layer="1" var="btnRole"/>

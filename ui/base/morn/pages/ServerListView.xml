@@ -1,4 +1,4 @@
-<View sceneWidth="350" sceneHeight="100" sceneColor="0xffffff" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
+<View sceneWidth="350" sceneHeight="100" sceneColor="0x000000" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
   <Image url="png.login.login_Serverlist_BG" x="22" y="34" layer="1"/>
   <Image url="png.login.login_hot" x="0" y="0" layer="2" var="imgHot"/>
   <Image url="png.login.login_ServerStatusNOR" x="304" y="33" layer="2" var="imgStatusNormal"/>

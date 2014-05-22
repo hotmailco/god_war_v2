@@ -1,0 +1,10 @@
+<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0x0" sceneBg="morn/views/scene/AddGroupDialog.jpg" layers="3,1,0,0,第 3 层;2,1,0,1,第 2 层;1,1,0,1,第 1 层">
+  <Image url="png.base.dialog_bg" x="403" y="286.5" layer="1" sizeGrid="40,40,40,40" width="394" height="227"/>
+  <Image url="png.base.dialog_title" x="431.5" y="268" layer="1"/>
+  <Label text="添加卡组" x="526" y="278" layer="2" color="0xff9900" size="16" font="Microsoft YaHei" width="147" height="26" align="center"/>
+  <Image url="png.base.blank" x="483" y="272" layer="2" width="229" height="37" var="imgBlank" name="drag"/>
+  <Label text="名称" x="463" y="367" layer="3" color="0xc9933e" font="Microsoft YaHei" size="14"/>
+  <TextInput skin="png.base.textinput" x="517" y="358" layer="3" width="219" height="40" font="Microsoft YaHei" margin="15,6,15,10" size="14" var="iptName"/>
+  <Button label="确定" skin="png.base.button" x="530" y="436" layer="3" labelColors="0xFFFFFF,0xFFFF00,0xAAAAAA" labelFont="Microsoft YaHei" var="btnConfirm"/>
+  <Button skin="png.base.btn_close" x="762" y="275" layer="3" var="btnClose"/>
+</Dialog>

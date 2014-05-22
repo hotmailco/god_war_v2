@@ -1,4 +1,4 @@
-<View sceneWidth="1200" sceneHeight="800" sceneColor="0x999999" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
+<View sceneWidth="1200" sceneHeight="800" sceneColor="0x0" sceneBg="" layers="2,1,0,0,第 2 层;1,1,0,0,第 1 层">
   <Image url="png.login.role_selected_forward" x="0" y="672" layer="1"/>
   <Image url="png.login.login_nameinput_BG" x="446" y="548" layer="2"/>
   <Button skin="png.login.btn_random_name" x="686" y="548" layer="2" var="btnRandName"/>
