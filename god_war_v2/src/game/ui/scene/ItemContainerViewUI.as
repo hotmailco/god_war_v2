@@ -4,7 +4,7 @@ package game.ui.scene {
 	public class ItemContainerViewUI extends View {
 		protected var uiXML:XML =
 			<View>
-			  <Image url="png.character.equipment_back" x="0" y="0"/>
+			  <Image url="png.scene_character.equipment_back" x="0" y="0"/>
 			</View>;
 		public function ItemContainerViewUI(){}
 		override protected function createChildren():void {

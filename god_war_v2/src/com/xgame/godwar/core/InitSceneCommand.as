@@ -4,10 +4,11 @@ package com.xgame.godwar.core
 	import com.xgame.core.scene.Scene;
 	import com.xgame.event.scene.SceneEvent;
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
-	import com.xgame.godwar.core.scene.proxy.CardProxy;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
+	import com.xgame.godwar.core.scene.command.ShowCharacterMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
 	import com.xgame.godwar.core.scene.mediator.NPCMediator;
+	import com.xgame.godwar.core.scene.proxy.CardProxy;
 	import com.xgame.godwar.core.scene.proxy.ChatProxy;
 	import com.xgame.godwar.core.scene.proxy.MapProxy;
 	import com.xgame.godwar.core.scene.proxy.SceneProxy;
@@ -34,6 +35,10 @@ package com.xgame.godwar.core
 			if(!facade.hasCommand(ShowSceneMediatorCommand.SHOW_NOTE))
 			{
 				facade.registerCommand(ShowSceneMediatorCommand.SHOW_NOTE, ShowSceneMediatorCommand);
+			}
+			if(!facade.hasCommand(ShowCharacterMediatorCommand.SHOW_NOTE))
+			{
+				facade.registerCommand(ShowCharacterMediatorCommand.SHOW_NOTE, ShowCharacterMediatorCommand);
 			}
 			if(!facade.hasCommand(ShowCardMediatorCommand.SHOW_NOTE))
 			{
