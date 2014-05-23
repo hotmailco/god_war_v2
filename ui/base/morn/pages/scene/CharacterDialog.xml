@@ -1,0 +1,9 @@
+<Dialog sceneWidth="1200" sceneHeight="800" sceneColor="0x0" sceneBg="morn/views/scene/CharacterDialog.jpg" layers="4,1,2,1,第 4 层;3,1,2,1,第 3 层;1,1,2,0,第 1 层">
+  <Image url="png.base.dialog_bg" x="405.5" y="167.5" layer="1" sizeGrid="40,40,40,40" width="389" height="465"/>
+  <Image url="png.character.back" x="421" y="187.5" layer="1"/>
+  <Image url="png.base.dialog_title" x="431.5" y="151" layer="1"/>
+  <Label text="人物" x="523" y="161" layer="1" font="Microsoft YaHei" size="16" color="0xff9900" align="center" width="153" height="26"/>
+  <Image url="png.character.back1" x="480" y="209" layer="1"/>
+  <Image url="png.base.blank" x="486" y="157" layer="3" width="229" height="37" var="imgBlank" name="drag"/>
+  <Button skin="png.base.btn_close" x="761" y="156" layer="3" var="btnClose"/>
+</Dialog>
