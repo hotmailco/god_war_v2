@@ -1,6 +1,11 @@
 package game.view.scene
 {
+	import com.xgame.core.scene.Scene;
+	
 	import game.ui.scene.CharacterDialogUI;
+	
+	import morn.core.components.Image;
+	import com.xgame.common.display.PlayerDisplay;
 	
 	public class CharacterDialog extends CharacterDialogUI
 	{
@@ -10,10 +15,18 @@ package game.view.scene
 		public var itemBlockTouKui: ItemContainerView;
 		public var itemBlockKuiJia: ItemContainerView;
 		public var itemBlockXieZi: ItemContainerView;
+		public var avatar: Image;
 		
 		public function CharacterDialog()
 		{
 			super();
+			
+			avatar = new Image();
+			avatar.x = 162;
+			avatar.y = 120;
+			var p: PlayerDisplay = Scene.instance.player;
+			avatar.bitmapData = p.graphic.bitmapArray[0][0].bitmapData;
+			addChild(avatar);
 			
 			itemBlockXiangLian = new ItemContainerView();
 			itemBlockXiangLian.x = 41;
