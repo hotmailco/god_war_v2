@@ -4,6 +4,7 @@ package com.xgame.godwar.core.scene.mediator
 	import com.greensock.easing.Strong;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowCharacterMediatorCommand;
+	import com.xgame.godwar.core.scene.command.ShowItemMediatorCommand;
 	import com.xgame.godwar.core.scene.proxy.ChatProxy;
 	import com.xgame.util.StringUtils;
 	
@@ -32,6 +33,7 @@ package com.xgame.godwar.core.scene.mediator
 			
 			component.addEventListener(MouseEvent.CLICK, onSceneUIClick);
 			component.btnRole.addEventListener(MouseEvent.CLICK, onButtonRoleClick);
+			component.btnPackage.addEventListener(MouseEvent.CLICK, onButtonPackageClick);
 			component.btnCard.addEventListener(MouseEvent.CLICK, onButtonCardClick);
 			component.btnSend.addEventListener(MouseEvent.CLICK, onButtonSendClick);
 		}
@@ -104,6 +106,11 @@ package com.xgame.godwar.core.scene.mediator
 		private function onButtonRoleClick(evt: MouseEvent): void
 		{
 			facade.sendNotification(ShowCharacterMediatorCommand.SHOW_NOTE);
+		}
+		
+		private function onButtonPackageClick(evt: MouseEvent): void
+		{
+			facade.sendNotification(ShowItemMediatorCommand.SHOW_NOTE);
 		}
 		
 		private function onButtonSendClick(evt: MouseEvent): void

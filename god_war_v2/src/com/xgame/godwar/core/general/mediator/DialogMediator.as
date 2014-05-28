@@ -54,6 +54,7 @@ package com.xgame.godwar.core.general.mediator
 		
 		private function onViewClick(evt: MouseEvent): void
 		{
+			UIManager.uiLayer.addChild(view);
 			evt.stopImmediatePropagation();
 		}
 	}

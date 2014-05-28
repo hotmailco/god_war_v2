@@ -4,6 +4,8 @@
     <classEntry path="com.xgame.Global"/>
     <classEntry path="com.xgame.manager.SmartEventDispatcher"/>
     <classEntry path="com.xgame.common.display.NPCDisplay"/>
+    <classEntry path="com.xgame.common.display.PortalDisplay"/>
+    <classEntry path="com.xgame.common.display.InstancePortalDisplay"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

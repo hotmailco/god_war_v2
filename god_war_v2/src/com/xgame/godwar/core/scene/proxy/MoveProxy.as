@@ -42,9 +42,9 @@ package com.xgame.godwar.core.scene.proxy
 		
 		private function onSyncMove(protocol: Receive_Move_Sync): void
 		{
-			Scene.instance.player.positionX = protocol.x;
-			Scene.instance.player.positionY = protocol.y;
-			trace("移动同步 x=" + protocol.x + ", y=" + protocol.y);
+//			Scene.instance.player.positionX = protocol.x;
+//			Scene.instance.player.positionY = protocol.y;
+//			trace("移动同步 x=" + protocol.x + ", y=" + protocol.y);
 		}
 		
 		private function onSendPath(protocol: Receive_Move_SendPath): void

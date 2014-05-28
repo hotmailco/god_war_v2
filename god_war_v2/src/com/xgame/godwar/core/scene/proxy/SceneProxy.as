@@ -2,13 +2,18 @@ package com.xgame.godwar.core.scene.proxy
 {
 	
 	import com.greensock.TweenLite;
+	import com.xgame.common.display.InstancePortalDisplay;
 	import com.xgame.common.display.NPCDisplay;
 	import com.xgame.common.display.PlayerDisplay;
 	import com.xgame.common.renders.Render;
 	import com.xgame.core.protocol.ProtocolList;
 	import com.xgame.core.scene.Scene;
+	import com.xgame.godwar.command.receive.Receive_Scene_RemoveInstancePortal;
+	import com.xgame.godwar.command.receive.Receive_Scene_RemoveMapPortal;
 	import com.xgame.godwar.command.receive.Receive_Scene_RemoveNPC;
 	import com.xgame.godwar.command.receive.Receive_Scene_RemovePlayer;
+	import com.xgame.godwar.command.receive.Receive_Scene_ShowInstancePortal;
+	import com.xgame.godwar.command.receive.Receive_Scene_ShowMapPortal;
 	import com.xgame.godwar.command.receive.Receive_Scene_ShowNPC;
 	import com.xgame.godwar.command.receive.Receive_Scene_ShowPlayer;
 	import com.xgame.godwar.command.receive.Receive_Scene_TriggerNPC;
@@ -49,6 +54,18 @@ package com.xgame.godwar.core.scene.proxy
 			
 			CommandManager.instance.add(SocketContextConfig.SCENE_TRIGGER_NPC, onNPCTrigger);
 			ProtocolList.instance.bind(SocketContextConfig.SCENE_TRIGGER_NPC, Receive_Scene_TriggerNPC);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_SHOW_INSTANCE_PORTAL, onInstancePortalShow);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_SHOW_INSTANCE_PORTAL, Receive_Scene_ShowInstancePortal);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_REMOVE_INSTANCE_PORTAL, onInstancePortalRemove);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_REMOVE_INSTANCE_PORTAL, Receive_Scene_RemoveInstancePortal);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_SHOW_MAP_PORTAL, onMapPortalShow);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_SHOW_MAP_PORTAL, Receive_Scene_ShowMapPortal);
+			
+			CommandManager.instance.add(SocketContextConfig.SCENE_REMOVE_MAP_PORTAL, onMapPortalRemove);
+			ProtocolList.instance.bind(SocketContextConfig.SCENE_REMOVE_MAP_PORTAL, Receive_Scene_RemoveMapPortal);
 		}
 		
 		public function updatePlayerStatus(): void
@@ -146,6 +163,40 @@ package com.xgame.godwar.core.scene.proxy
 			facade.sendNotification(NPCMediator.SET_NPC, npc);
 			facade.sendNotification(NPCMediator.SHOW_CONTENT, protocol.content);
 			facade.sendNotification(NPCMediator.SHOW_NOTE);
+		}
+		
+		private function onInstancePortalShow(protocol: Receive_Scene_ShowInstancePortal): void
+		{
+			var portal: InstancePortalDisplay = new InstancePortalDisplay();
+			portal.objectId = protocol.guid;
+			portal.loop = true;
+			portal.graphic = ResourceManager.instance.getResourceData(protocol.resource, true);
+			portal.positionX = protocol.x;
+			portal.positionY = protocol.y;
+			portal.instanceList = protocol.instance;
+			var _render: Render = new Render();
+			portal.render = _render;
+			
+			Scene.instance.addObject(portal);
+		}
+		
+		private function onInstancePortalRemove(protocol: Receive_Scene_RemoveInstancePortal): void
+		{
+			var portal: InstancePortalDisplay = Scene.instance.getDisplayByGuid(protocol.guid) as InstancePortalDisplay;
+			if(portal != null)
+			{
+				Scene.instance.removeObject(portal);
+			}
+		}
+		
+		private function onMapPortalShow(protocol: Receive_Scene_ShowMapPortal): void
+		{
+			
+		}
+		
+		private function onMapPortalRemove(protocol: Receive_Scene_RemoveMapPortal): void
+		{
+			
 		}
 	}
 }

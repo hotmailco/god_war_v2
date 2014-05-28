@@ -101,20 +101,35 @@ package com.xgame.manager
 			return _cache;
 		}
 		
-		public function getResourceData(name: String): ResourceData
+		public function getResourceData(name: String, withNoAction: Boolean = false): ResourceData
 		{
 			var _resourceData: ResourceData = new ResourceData();
 			var _bitmapData: BitmapData;
-			for(var i: int = 0; i < 9; i++)
+			if(!withNoAction)
 			{
-				_bitmapData = getBitmapData(name + "_" + i);
+				for(var i: int = 0; i < 9; i++)
+				{
+					_bitmapData = getBitmapData(name + "_" + i);
+					if(_bitmapData != null)
+					{
+						_resourceData.getResource(_bitmapData, i, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
+					}
+					else
+					{
+						load(name + "_" + i, {resource: _resourceData, action: i}, onResourceDataLoaded);
+					}
+				}
+			}
+			else
+			{
+				_bitmapData = getBitmapData(name);
 				if(_bitmapData != null)
 				{
-					_resourceData.getResource(_bitmapData, i, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
+					_resourceData.getResource(_bitmapData, 0, _bitmapData["frameLine"], _bitmapData["frameTotal"], _bitmapData["fps"]);
 				}
 				else
 				{
-					load(name + "_" + i, {resource: _resourceData, action: i}, onResourceDataLoaded);
+					load(name, {resource: _resourceData, action: 0}, onResourceDataLoaded);
 				}
 			}
 			return _resourceData;
