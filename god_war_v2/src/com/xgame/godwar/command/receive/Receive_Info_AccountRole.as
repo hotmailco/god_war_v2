@@ -3,6 +3,7 @@ package com.xgame.godwar.command.receive
 	
 	import com.xgame.core.protocol.ReceiveBase;
 	import com.xgame.godwar.config.SocketContextConfig;
+	import com.xgame.godwar.parameter.InstanceParameter;
 	import com.xgame.util.Int64;
 	import com.xgame.util.StringUtils;
 	
@@ -26,10 +27,13 @@ package com.xgame.godwar.command.receive
 		public var mapId: int = int.MIN_VALUE;
 		public var x: Number = Number.MIN_VALUE;
 		public var y: Number = Number.MIN_VALUE;
+		public var instanceList: Vector.<InstanceParameter>;
 		
 		public function Receive_Info_AccountRole()
 		{
 			super(SocketContextConfig.REGISTER_ACCOUNT_ROLE);
+			
+			instanceList = new Vector.<InstanceParameter>();
 		}
 		
 		override public function fill(data:ByteArray):void
@@ -40,6 +44,7 @@ package com.xgame.godwar.command.receive
 			{
 				var length: int;
 				var type: int;
+				var parameter: InstanceParameter = new InstanceParameter();
 				while (data.bytesAvailable > 8)
 				{
 					length = data.readInt();
@@ -109,6 +114,14 @@ package com.xgame.godwar.command.receive
 							{
 								mapId = data.readInt();
 							}
+							else if(parameter.instanceId == int.MIN_VALUE)
+							{
+								parameter.instanceId = data.readInt();
+							}
+							else if(parameter.level == int.MIN_VALUE)
+							{
+								parameter.level = data.readInt();
+							}
 							break;
 						case TYPE_FLOAT:
 							if(speed == Number.MIN_VALUE)
@@ -126,6 +139,11 @@ package com.xgame.godwar.command.receive
 								y = data.readDouble();
 							}
 							break;
+					}
+					if(parameter.instanceId != int.MIN_VALUE && parameter.level != int.MIN_VALUE)
+					{
+						instanceList.push(parameter);
+						parameter = new InstanceParameter();
 					}
 				}
 			}
