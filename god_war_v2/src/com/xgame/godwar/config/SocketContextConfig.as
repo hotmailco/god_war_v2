@@ -74,6 +74,8 @@ package com.xgame.godwar.config
 		public static const	ACTION_REMOVE_INSTANCE_PORTAL: int					= 11;
 		public static const	ACTION_SHOW_MAP_PORTAL: int							= 12;
 		public static const	ACTION_REMOVE_MAP_PORTAL: int						= 13;
+		public static const	ACTION_TRIGGER_MAP_PORTAL: int						= 14;
+		public static const	ACTION_TRIGGER_INSTANCE_PORTAL: int					= 15;
 		// BATTLE ROOM
 		public static const	ACTION_INIT_ROOM_DATA: int							= 0;
 		public static const	ACTION_PLAYER_ENTER_ROOM_NOTICE: int				= 1;
@@ -194,6 +196,10 @@ package com.xgame.godwar.config
 		public static const	SCENE_SHOW_MAP_PORTAL: int						= ACTION_SHOW_MAP_PORTAL << 8
 			| CONTROLLER_SCENE;
 		public static const	SCENE_REMOVE_MAP_PORTAL: int						= ACTION_REMOVE_MAP_PORTAL << 8
+			| CONTROLLER_SCENE;
+		public static const SCENE_TRIGGER_MAP_PORTAL: int					= ACTION_TRIGGER_MAP_PORTAL << 8
+			| CONTROLLER_SCENE;
+		public static const	SCENE_TRIGGER_INSTANCE_PORTAL: int				= ACTION_TRIGGER_INSTANCE_PORTAL << 8
 			| CONTROLLER_SCENE;
 		// BATTLE ROOM
 		public static const	BATTLEROOM_INIT_ROOM: int						= ACTION_INIT_ROOM_DATA << 8

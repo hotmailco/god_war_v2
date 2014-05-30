@@ -8,6 +8,7 @@ package com.xgame.godwar.command.receive
 	import com.xgame.util.StringUtils;
 	
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 
 	public class Receive_Info_AccountRole extends ReceiveBase
 	{
@@ -27,13 +28,13 @@ package com.xgame.godwar.command.receive
 		public var mapId: int = int.MIN_VALUE;
 		public var x: Number = Number.MIN_VALUE;
 		public var y: Number = Number.MIN_VALUE;
-		public var instanceList: Vector.<InstanceParameter>;
+		public var instanceIndex: Dictionary;
 		
 		public function Receive_Info_AccountRole()
 		{
 			super(SocketContextConfig.REGISTER_ACCOUNT_ROLE);
 			
-			instanceList = new Vector.<InstanceParameter>();
+			instanceIndex = new Dictionary();
 		}
 		
 		override public function fill(data:ByteArray):void
@@ -142,7 +143,7 @@ package com.xgame.godwar.command.receive
 					}
 					if(parameter.instanceId != int.MIN_VALUE && parameter.level != int.MIN_VALUE)
 					{
-						instanceList.push(parameter);
+						instanceIndex[parameter.instanceId] = parameter;
 						parameter = new InstanceParameter();
 					}
 				}
