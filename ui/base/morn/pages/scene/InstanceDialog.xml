@@ -1,5 +1,7 @@
 <Dialog sceneWidth="830" sceneHeight="390" sceneColor="0x0" sceneBg="" layers="3,1,0,0,第 3 层;2,1,0,1,第 2 层;1,1,0,1,第 1 层">
-  <Image url="jpg.scene_instance.chengq4" x="15" y="15" layer="1" var="imgBack"/>
+  <Image url="png.scene_instance.chengq4" x="15" y="15" layer="1" var="imgBack"/>
   <Image url="png.base.dialog1_bg" x="0" y="0" layer="2" sizeGrid="40,40,40,40" width="830" height="390"/>
-  <Button skin="png.base.btn_close" x="780" y="0" layer="3"/>
+  <Button skin="png.base.btn_close" x="780" y="0" layer="3" var="btnClose"/>
+  <Button skin="png.scene_instance.btn_arrow_down" x="389.5" y="329" layer="3" var="btnNext"/>
+  <Button skin="png.scene_instance.btn_arrow_up" x="389.5" y="22" layer="3" var="btnPrev"/>
 </Dialog>

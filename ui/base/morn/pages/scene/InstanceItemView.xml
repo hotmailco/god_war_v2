@@ -1,0 +1,6 @@
+<View sceneWidth="114" sceneHeight="120" sceneColor="0x0" sceneBg="" layers="3,1,0,0,第 3 层;2,1,0,1,第 2 层;1,1,0,1,第 1 层;4,1,0,1,第 4 层">
+  <Image x="24" y="24" layer="4" width="66" height="66" var="imgBg"/>
+  <Image url="png.scene_instance.Elite_Frame_nor" x="0" y="0" layer="1" var="imgBg1"/>
+  <Image url="png.scene_instance.Elite_Frame_on" x="0" y="0" layer="2" var="imgBg2"/>
+  <Label x="4.5" y="95" layer="3" width="105" height="19" align="center" color="0xffcc00" var="lblName"/>
+</View>
