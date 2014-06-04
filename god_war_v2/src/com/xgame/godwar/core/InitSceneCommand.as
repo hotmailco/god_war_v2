@@ -67,9 +67,11 @@ package com.xgame.godwar.core
 		{
 //			var _s: Starling = new Starling(Scene, UIManager.stage);
 //			_s.start();
-			var proxy: CardProxy = facade.retrieveProxy(CardProxy.NAME) as CardProxy;
-			proxy.getConfig();
-			proxy.requestCardList();
+			var cardProxy: CardProxy = facade.retrieveProxy(CardProxy.NAME) as CardProxy;
+			cardProxy.getConfig();
+			cardProxy.requestCardList();
+			var mapProxy: MapProxy = facade.retrieveProxy(MapProxy.NAME) as MapProxy;
+			mapProxy.getInstanceConfig();
 			loadScene();
 		}
 		

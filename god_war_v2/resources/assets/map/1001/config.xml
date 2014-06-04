@@ -21,5 +21,38 @@
 		<resource>assets.character.char3</resource>
 		<script></script>
   	</npc>
+  	<npc>
+  	    <id>110002</id>
+  		<prependName>打不赢</prependName>
+		<name>唐虾</name>
+		<level>99</level>
+		<health>9999999</health>
+		<mana>9999999</mana>
+		<x>780</x>
+		<y>450</y>
+		<action>0</action>
+		<direction>0</direction>
+		<resource>assets.character.char2</resource>
+		<script></script>
+  	</npc>
   </npcList>
+  <portalList>
+      <portal>
+          <type>instance</type>
+          <x>500</x>
+          <y>550</y>
+          <resource>assets.portal.portal1</resource>
+          <rect>
+              <x>500</x>
+              <y>550</y>
+              <width>192</width>
+              <height>90</height>
+          </rect>
+          <instances>
+              <instance>1001001</instance>
+              <instance>1001002</instance>
+              <instance>1001003</instance>
+          </instances>
+      </portal>
+  </portalList>
 </map>

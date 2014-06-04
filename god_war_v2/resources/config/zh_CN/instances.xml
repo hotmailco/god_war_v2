@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instances>
+	<instance>
+		<id>1001001</id>
+		<name>王城山麓</name>
+		<entrances>
+			<entrance>
+				<level>1</level>
+				<name>山麓入口</name>
+				<x>30</x>
+				<y>40</y>
+			</entrance>
+			<entrance>
+				<level>2</level>
+				<name>山麓小径</name>
+				<x>40</x>
+				<y>170</y>
+			</entrance>
+		</entrances>
+	</instance>
+</instances>
