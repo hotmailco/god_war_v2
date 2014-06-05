@@ -8,6 +8,8 @@ package com.xgame.godwar.core.scene.proxy
 	import com.xgame.godwar.command.receive.Receive_Scene_TriggerInstancePortal;
 	import com.xgame.godwar.config.SocketContextConfig;
 	import com.xgame.godwar.core.login.proxy.RoleProxy;
+	import com.xgame.godwar.core.scene.command.ShowInstanceMediatorCommand;
+	import com.xgame.godwar.core.scene.mediator.InstanceMediator;
 	import com.xgame.godwar.manager.InstanceManager;
 	import com.xgame.godwar.parameter.InstanceDataParameter;
 	import com.xgame.godwar.parameter.InstanceEntranceParameter;
@@ -57,6 +59,8 @@ package com.xgame.godwar.core.scene.proxy
 					entrance.name = _config.instance[i].entrances.entrance[j].name;
 					entrance.x = _config.instance[i].entrances.entrance[j].x;
 					entrance.y = _config.instance[i].entrances.entrance[j].y;
+					entrance.type = _config.instance[i].entrances.entrance[j].type;
+					entrance.bg = _config.instance[i].entrances.entrance[j].bg;
 					parameter.list.push(entrance);
 				}
 				InstanceManager.instance.addInstance(parameter);
@@ -92,6 +96,11 @@ package com.xgame.godwar.core.scene.proxy
 						instanceList.push(roleProtocol.instanceIndex[protocol.instanceList[i]]);
 					}
 				}
+				
+				facade.sendNotification(ShowInstanceMediatorCommand.SHOW_NOTE, function(): void
+				{
+					facade.sendNotification(InstanceMediator.SHOW_INSTANCE_NOTE, instanceList);
+				});
 			}
 		}
 	}

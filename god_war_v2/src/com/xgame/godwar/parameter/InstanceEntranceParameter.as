@@ -6,6 +6,8 @@ package com.xgame.godwar.parameter
 		public var name: String;
 		public var x: int;
 		public var y: int;
+		public var type: int;
+		public var bg: String;
 		
 		public function InstanceEntranceParameter()
 		{

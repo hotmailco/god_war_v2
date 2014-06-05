@@ -6,6 +6,7 @@ package com.xgame.godwar.core
 	import com.xgame.godwar.command.receive.Receive_Base_VerifyMap;
 	import com.xgame.godwar.core.scene.command.ShowCardMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowCharacterMediatorCommand;
+	import com.xgame.godwar.core.scene.command.ShowInstanceMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowItemMediatorCommand;
 	import com.xgame.godwar.core.scene.command.ShowSceneMediatorCommand;
 	import com.xgame.godwar.core.scene.mediator.NPCMediator;
@@ -48,6 +49,10 @@ package com.xgame.godwar.core
 			if(!facade.hasCommand(ShowCardMediatorCommand.SHOW_NOTE))
 			{
 				facade.registerCommand(ShowCardMediatorCommand.SHOW_NOTE, ShowCardMediatorCommand);
+			}
+			if(!facade.hasCommand(ShowInstanceMediatorCommand.SHOW_NOTE))
+			{
+				facade.registerCommand(ShowInstanceMediatorCommand.SHOW_NOTE, ShowInstanceMediatorCommand);
 			}
 			if(!facade.hasProxy(CardProxy.NAME))
 			{

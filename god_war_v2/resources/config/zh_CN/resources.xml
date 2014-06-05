@@ -8,6 +8,7 @@
 	<SWFLoader name='scene_character_ui' url='assets/scene_character.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='scene_item_ui' url='assets/scene_item.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='scene_card_ui' url='assets/scene_card.swf' autoPlay= "false" version="1.0.0"/>
+	<SWFLoader name='scene_instance_ui' url='assets/scene_instance.swf' autoPlay= "false" version="1.0.0"/>
 	
 	<SWFLoader name='assets.portal.portal1' url='assets/portal/portal_portal1.swf' autoPlay= "false" version="1.0.0"/>
 	<SWFLoader name='assets.portal.portal2' url='assets/portal/portal_portal2.swf' autoPlay= "false" version="1.0.0"/>
