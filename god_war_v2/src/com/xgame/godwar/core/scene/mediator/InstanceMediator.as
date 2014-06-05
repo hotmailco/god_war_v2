@@ -1,6 +1,7 @@
 package com.xgame.godwar.core.scene.mediator
 {
 	import com.xgame.godwar.core.general.mediator.DialogMediator;
+	import com.xgame.godwar.event.SceneInstanceEvent;
 	import com.xgame.godwar.parameter.InstanceParameter;
 	import com.xgame.util.UIUtils;
 	
@@ -9,6 +10,7 @@ package com.xgame.godwar.core.scene.mediator
 	import game.view.scene.InstanceDialog;
 	
 	import org.puremvc.as3.interfaces.INotification;
+	import com.xgame.godwar.parameter.InstanceEntranceParameter;
 	
 	public class InstanceMediator extends DialogMediator
 	{
@@ -26,6 +28,8 @@ package com.xgame.godwar.core.scene.mediator
 			component.btnPrev.addEventListener(MouseEvent.CLICK, onBtnPrevClick);
 			component.btnNext.addEventListener(MouseEvent.CLICK, onBtnNextClick);
 			UIUtils.center(component, component.width, component.height);
+			
+			component.addEventListener(SceneInstanceEvent.ENTRANCE_CLICK_EVENT, onEntranceClick);
 		}
 		
 		public function get component(): InstanceDialog
@@ -76,6 +80,11 @@ package com.xgame.godwar.core.scene.mediator
 		private function showInstance(instanceList: Vector.<InstanceParameter>): void
 		{
 			component.instanceList = instanceList;
+		}
+		
+		private function onEntranceClick(evt: SceneInstanceEvent): void
+		{
+			
 		}
 	}
 }
